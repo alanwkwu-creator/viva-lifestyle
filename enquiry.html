@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Enquiries — Viva Lifestyle</title>
+<meta name="description" content="Membership of Viva Lifestyle is by invitation. Enquiries are read by a person and answered.">
+<meta name="theme-color" content="#0A0E17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+<style>
+  .lede{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.3vw,26px);line-height:1.42;max-width:30ch;margin-bottom:14px}
+  .aside{border-left:1px solid var(--line);padding-left:22px;margin-top:30px}
+  .aside p{font-size:13.5px;color:rgba(246,243,236,.5);margin-bottom:14px}
+  .cols{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(30px,6vw,72px);align-items:start}
+  @media(max-width:860px){.cols{grid-template-columns:1fr}}
+  .ref{font-family:var(--display);font-size:clamp(24px,3.4vw,34px);letter-spacing:.14em;color:var(--champagne);margin:18px 0 8px}
+</style>
+</head>
+<body>
+<div class="grain" style="position:fixed;inset:0;z-index:941;pointer-events:none;opacity:.5;mix-blend-mode:overlay;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E&quot;)"></div>
+
+<header class="top">
+  <div class="wrap topin">
+    <a href="index.html" class="logo">VI<b>V</b>A</a>
+    <nav class="topnav">
+      <a href="index.html" data-en="Home" data-zh="主頁">Home</a>
+      <a href="index.html#circle" data-en="The Circle" data-zh="會員網絡">The Circle</a>
+      <a href="enquiry.html" aria-current="page" data-en="Enquiries" data-zh="查詢">Enquiries</a>
+      <a href="card.html" data-en="Member card" data-zh="會員卡">Member card</a>
+    </nav>
+    <div class="toptools">
+      <div class="lang">
+        <button class="act" data-lang="en">EN</button>
+        <button data-lang="zh">繁中</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap page">
+
+  <div class="notice">
+    <b data-en="Prototype" data-zh="原型">Prototype</b>
+    <span data-en=" — this form is a demonstration. Nothing entered here is submitted, transmitted or stored." data-zh="——此表格僅作示範。所填寫的內容不會提交、傳送或儲存。"> — this form is a demonstration. Nothing entered here is submitted, transmitted or stored.</span>
+  </div>
+
+  <p class="crumb" data-en="The Circle · Enquiries" data-zh="The Circle · 查詢">The Circle · Enquiries</p>
+  <div class="phead">
+    <h1 class="serif" data-en="Membership is by invitation." data-zh="會籍憑邀請。">Membership is by invitation.</h1>
+  </div>
+
+  <div class="cols">
+    <section>
+      <div id="pane-form">
+        <p class="lede rv" data-en="Most members are introduced. If nobody has introduced you, write to us instead." data-zh="多數會員經人引薦。若未有人為你引薦，可直接來函。">Most members are introduced. If nobody has introduced you, write to us instead.</p>
+        <p class="muted rv" style="font-size:14px;max-width:46ch;margin-bottom:34px" data-en="There is no application form and no scoring. An enquiry is a letter to a person, and it is answered by one." data-zh="我們並無申請表格，亦不設評分。查詢是寫給一個人的信，亦由一個人回覆。">There is no application form and no scoring. An enquiry is a letter to a person, and it is answered by one.</p>
+
+        <form id="form" novalidate>
+          <div class="grid2">
+            <div class="field" id="f-name">
+              <label data-en="Your name" data-zh="姓名">Your name</label>
+              <input name="name" autocomplete="name" placeholder="Chan Ka-yan">
+              <div class="msg" data-en="Please tell us your name." data-zh="請填寫姓名。">Please tell us your name.</div>
+            </div>
+            <div class="field" id="f-email">
+              <label data-en="Email" data-zh="電郵">Email</label>
+              <input name="email" type="email" autocomplete="email" placeholder="name@email.com">
+              <div class="msg" data-en="That address does not look right." data-zh="電郵地址似乎不正確。">That address does not look right.</div>
+            </div>
+          </div>
+
+          <div class="grid2">
+            <div class="field">
+              <label data-en="Telephone — optional" data-zh="電話（選填）">Telephone — optional</label>
+              <input name="phone" autocomplete="tel" placeholder="+852">
+            </div>
+            <div class="field" id="f-ref">
+              <label data-en="Who suggested you write?" data-zh="由誰建議你來函？">Who suggested you write?</label>
+              <select name="referral">
+                <option value="" data-en="Select…" data-zh="請選擇…">Select…</option>
+                <option value="member" data-en="A member introduced me" data-zh="由會員引薦">A member introduced me</option>
+                <option value="partner" data-en="A partner organisation" data-zh="合作機構">A partner organisation</option>
+                <option value="event" data-en="I attended something" data-zh="曾出席活動">I attended something</option>
+                <option value="none" data-en="Nobody — I found you" data-zh="無人引薦，自行找到">Nobody — I found you</option>
+              </select>
+              <div class="msg" data-en="Please choose one." data-zh="請選擇其一。">Please choose one.</div>
+            </div>
+          </div>
+
+          <div class="field" id="f-who" hidden>
+            <label data-en="Their name" data-zh="引薦人姓名">Their name</label>
+            <input name="referrer" placeholder="Member or organisation">
+            <div class="hint" data-en="We will check with them before replying." data-zh="回覆前我們會先向對方確認。">We will check with them before replying.</div>
+          </div>
+
+          <div class="field" id="f-note">
+            <label data-en="Why are you writing?" data-zh="來函緣由">Why are you writing?</label>
+            <textarea name="note" rows="5" placeholder="A few sentences is plenty."></textarea>
+            <div class="hint" data-en="Tell us what you do, or what you are building. Brevity is welcome." data-zh="請簡述你的工作，或你正在建立的事業。從簡為佳。">Tell us what you do, or what you are building. Brevity is welcome.</div>
+            <div class="msg" data-en="Please write a line or two." data-zh="請至少寫一兩句。">Please write a line or two.</div>
+          </div>
+
+          <div class="hr"></div>
+
+          <div class="check">
+            <input type="checkbox" id="c1">
+            <label for="c1" data-en="I consent to Viva Lifestyle holding these details for the purpose of answering this enquiry, in accordance with the Personal Data (Privacy) Ordinance. Required." data-zh="本人同意活力生活有限公司為回覆本查詢而保存上述資料，並遵照《個人資料（私隱）條例》辦理。此項必填。">I consent to Viva Lifestyle holding these details for the purpose of answering this enquiry, in accordance with the Personal Data (Privacy) Ordinance. Required.</label>
+          </div>
+          <div class="check">
+            <input type="checkbox" id="c2">
+            <label for="c2" data-en="You may also send me the monthly dispatch. Optional." data-zh="亦可向本人發送每月通訊。選填。">You may also send me the monthly dispatch. Optional.</label>
+          </div>
+          <p class="tiny" id="consentErr" style="color:var(--pulse);display:none" data-en="The first box is required." data-zh="第一項為必填。">The first box is required.</p>
+
+          <div class="btnrow" style="margin-top:26px">
+            <button type="button" class="btn solid" id="submit"><i></i><span data-en="Send enquiry" data-zh="提交查詢">Send enquiry</span></button>
+          </div>
+        </form>
+      </div>
+
+      <div id="pane-done" hidden>
+        <div class="panel">
+          <span class="badge gold" data-en="Received" data-zh="已收到">Received</span>
+          <h2 class="serif" style="font-size:clamp(26px,3.6vw,38px);margin:20px 0 6px" data-en="Thank you. It is with us." data-zh="謝謝。來函已送達。">Thank you. It is with us.</h2>
+          <p class="ref" id="refno">VL·E·0000</p>
+          <p class="muted" style="font-size:14px;max-width:44ch" data-en="Quote that reference if you write again. Enquiries are read in the order they arrive and answered within five working days — by a person, not a template." data-zh="如再度來函，請引述上述編號。查詢按到達次序閱覽，並於五個工作天內回覆——由專人撰寫，並非罐頭回應。">Quote that reference if you write again. Enquiries are read in the order they arrive and answered within five working days — by a person, not a template.</p>
+          <div class="btnrow" style="margin-top:28px">
+            <a class="btn ghost" href="index.html"><i></i><span data-en="Return" data-zh="返回">Return</span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <aside>
+      <div class="aside rv">
+        <p data-en="Membership is not sold. Dues exist so that the Member tier covers its own costs, and bursaries exist so that they never decide who belongs." data-zh="會籍不設買賣。年費的作用僅在於令正式會員級別自負成本；而資助的存在，是為了確保費用永不決定誰屬於這裡。">Membership is not sold. Dues exist so that the Member tier covers its own costs, and bursaries exist so that they never decide who belongs.</p>
+        <p data-en="We are a youth organisation. Everyone here is between fifteen and thirty, and members under eighteen need a guardian's consent before their first event." data-zh="我們是青年組織。所有成員年齡介乎十五至三十歲；未滿十八歲者，須先取得監護人同意方可出席首次活動。">We are a youth organisation. Everyone here is between fifteen and thirty, and members under eighteen need a guardian's consent before their first event.</p>
+        <p data-en="Partners, venues and incubators should write to the same address. We answer those first." data-zh="合作夥伴、場地及孵化器請寄同一地址，我們會優先回覆。">Partners, venues and incubators should write to the same address. We answer those first.</p>
+        <p class="withheld" style="color:rgba(246,243,236,.36)" data-en="What follows an invitation is described only to those who receive one." data-zh="邀請之後的內容，只向獲邀者說明。">What follows an invitation is described only to those who receive one.</p>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap in">
+    <span>© 2026 Viva Lifestyle Limited · Hong Kong</span>
+    <span data-en="Prototype — no data is collected" data-zh="原型 — 不會收集任何資料">Prototype — no data is collected</span>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+VIVA.ready(function () {
+  var f = document.getElementById('form');
+
+  f.referral.addEventListener('change', function () {
+    var v = f.referral.value;
+    document.getElementById('f-who').hidden = !(v === 'member' || v === 'partner');
+  });
+
+  function bad(id, is) { document.getElementById(id).classList.toggle('err', is); return is; }
+
+  document.getElementById('submit').addEventListener('click', function () {
+    var e = false;
+    e = bad('f-name', !f.name.value.trim()) || e;
+    e = bad('f-email', !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.value)) || e;
+    e = bad('f-ref', !f.referral.value) || e;
+    e = bad('f-note', f.note.value.trim().length < 10) || e;
+    if (e) return;
+    if (!document.getElementById('c1').checked) {
+      document.getElementById('consentErr').style.display = 'block'; return;
+    }
+    document.getElementById('consentErr').style.display = 'none';
+    var n = String(Math.floor(1000 + Math.random() * 8999));
+    document.getElementById('refno').textContent = 'VL·E·' + n;
+    document.getElementById('pane-form').hidden = true;
+    document.getElementById('pane-done').hidden = false;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+</script>
+</body>
+</html>

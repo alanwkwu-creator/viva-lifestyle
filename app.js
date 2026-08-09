@@ -13,9 +13,9 @@
 
   /* ---------- reference data ---------- */
   var TIERS = {
-    open:    { key:'open',    en:'Open',    zh:'開放',    price:0,   priceLabel:'Free', term:'—' },
-    active:  { key:'active',  en:'Active',  zh:'活躍',    price:480, priceLabel:'HK$480 / year', term:'12 months' },
-    builder: { key:'builder', en:'Builder', zh:'創建者',  price:0,   priceLabel:'By application', term:'12 months' }
+    open:    { key:'open',    en:'Associate', zh:'準會員',   price:0,   priceLabel:'By invitation', term:'—' },
+    active:  { key:'active',  en:'Member',    zh:'正式會員', price:480, priceLabel:'Annual dues HK$480', term:'12 months' },
+    builder: { key:'builder', en:'Fellow',    zh:'創建會員', price:0,   priceLabel:'By nomination', term:'12 months' }
   };
 
   var PERKS = {
