@@ -38,8 +38,19 @@ If GitHub Pages is enabled on this repository, the live preview is at
 
 ## Sections
 
-Hero · Partner marquee · Manifesto · Three pillars · Upcoming events rail ·
-Impact counters · The Circle (membership) · Ventures · Journal · Closing band · Footer
+Hero (with stat chips and dual CTA) · Partner marquee · Manifesto ·
+Three pillars (each with a four-point breakdown) · Upcoming events rail (six events,
+with tags and logistics detail) · Impact counters with context lines ·
+The Circle (three tiers, itemised benefits) · Ventures (pull quote + three venture
+stories) · How to join (three steps) · Journal (four posts with category and read time) ·
+Closing band · Footer
+
+## Voice
+
+Copy is written for a 15–30 Hong Kong audience: second person, short sentences,
+concrete local detail (districts, MTR exits, prices in HKD). Direct and energetic
+rather than slangy, so it sits with the editorial design and does not date quickly.
+Traditional Chinese uses natural Hong Kong phrasing rather than literal translation.
 
 ## Features
 

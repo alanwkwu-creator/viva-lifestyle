@@ -62,7 +62,7 @@ header.stuck{background:rgba(10,14,23,.82);backdrop-filter:blur(14px);border-bot
 .nav{display:flex;align-items:center;justify-content:space-between;height:80px}
 .logo{font-family:var(--display);font-size:24px;letter-spacing:.16em;font-weight:400}
 .logo b{color:var(--gold);font-weight:400}
-.links{display:flex;gap:34px;align-items:center}
+.links{display:flex;gap:30px;align-items:center}
 .links a{font-size:13px;letter-spacing:.05em;position:relative;padding:4px 0}
 .links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--gold);transition:right .4s cubic-bezier(.76,0,.24,1)}
 .links a:hover::after{right:0}
@@ -79,7 +79,7 @@ body.menu .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 .sheet{position:fixed;inset:0;z-index:880;background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:0 var(--pad);
   clip-path:inset(0 0 100% 0);transition:clip-path .7s cubic-bezier(.76,0,.24,1);pointer-events:none}
 body.menu .sheet{clip-path:inset(0 0 0 0);pointer-events:auto}
-.sheet a{font-family:var(--display);font-size:clamp(30px,8vw,52px);font-weight:300;padding:10px 0;opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.sheet a{font-family:var(--display);font-size:clamp(28px,7vw,48px);font-weight:300;padding:8px 0;opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
 body.menu .sheet a{opacity:1;transform:none}
 
 /* ---------- buttons ---------- */
@@ -96,20 +96,24 @@ body.menu .sheet a{opacity:1;transform:none}
 .pearl-sect .btn{border-color:var(--ink);color:var(--ink)}
 .pearl-sect .btn i{background:var(--ink)}
 .pearl-sect .btn:hover{color:var(--pearl)}
+.btnrow{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
 
 /* ---------- hero ---------- */
-.hero{min-height:100svh;display:flex;align-items:flex-end;position:relative;padding-bottom:clamp(48px,8vh,90px);padding-top:140px;overflow:hidden}
+.hero{min-height:100svh;display:flex;align-items:flex-end;position:relative;padding-bottom:clamp(48px,7vh,80px);padding-top:130px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0}
 .hero-bg::before{content:"";position:absolute;inset:0;
   background:radial-gradient(120% 90% at 78% 18%,rgba(201,162,39,.16),transparent 62%),
              radial-gradient(90% 70% at 12% 88%,rgba(255,75,62,.12),transparent 60%),var(--ink)}
-.ghost{position:absolute;left:0;right:0;top:38%;font-family:var(--display);font-size:min(19vw,260px);line-height:1;
+.ghost{position:absolute;left:0;right:0;top:36%;font-family:var(--display);font-size:min(19vw,260px);line-height:1;
   color:rgba(246,243,236,.035);white-space:nowrap;letter-spacing:.02em;user-select:none}
 .hero-inner{position:relative;z-index:2;width:100%}
-.hero h1{font-size:clamp(46px,9.2vw,138px);margin:26px 0 0}
+.hero h1{font-size:clamp(44px,8.6vw,128px);margin:24px 0 0}
 .hero h1 em{font-style:normal;color:var(--champagne)}
-.hero-foot{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end;justify-content:space-between;margin-top:clamp(32px,5vw,56px)}
-.hero-foot p{max-width:40ch;font-size:15px}
+.hero-foot{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end;justify-content:space-between;margin-top:clamp(28px,4vw,44px)}
+.hero-foot p{max-width:46ch;font-size:15px}
+.hstats{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.chip{border:1px solid rgba(201,162,39,.32);border-radius:999px;padding:7px 16px;font-size:12px;letter-spacing:.05em;color:rgba(246,243,236,.7)}
+.chip b{color:var(--champagne);font-weight:400}
 .cue{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,243,236,.5)}
 .cue .bar{width:52px;height:1px;background:rgba(201,162,39,.6);position:relative;overflow:hidden}
 .cue .bar::after{content:"";position:absolute;inset:0;background:var(--champagne);animation:slide 2.4s infinite}
@@ -117,7 +121,7 @@ body.menu .sheet a{opacity:1;transform:none}
 
 /* ---------- marquee ---------- */
 .strip{border-top:1px solid rgba(201,162,39,.22);border-bottom:1px solid rgba(201,162,39,.22);overflow:hidden;padding:26px 0}
-.track{display:flex;gap:72px;width:max-content;animation:roll 34s linear infinite}
+.track{display:flex;gap:72px;width:max-content;animation:roll 40s linear infinite}
 .strip:hover .track{animation-play-state:paused}
 @keyframes roll{to{transform:translateX(-50%)}}
 .track span{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,243,236,.42);white-space:nowrap;transition:color .3s}
@@ -132,12 +136,15 @@ body.menu .sheet a{opacity:1;transform:none}
 .pillars{padding:0 0 var(--sect)}
 .head{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:56px}
 .head h2{font-size:clamp(30px,4.6vw,64px)}
-.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:rgba(201,162,39,.22)}
-.pillar{background:var(--ink);padding:44px 34px 40px;position:relative;transition:background .5s;min-height:340px;display:flex;flex-direction:column}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(201,162,39,.22)}
+.pillar{background:var(--ink);padding:44px 34px 40px;position:relative;transition:background .5s;display:flex;flex-direction:column}
 .pillar:hover{background:var(--navy)}
 .pillar .stat{font-family:var(--display);font-size:44px;color:var(--gold);line-height:1;margin-bottom:6px}
-.pillar h3{font-family:var(--display);font-weight:400;font-size:26px;margin:26px 0 12px}
-.pillar p{font-size:14px;flex:1}
+.pillar h3{font-family:var(--display);font-weight:400;font-size:26px;margin:24px 0 12px}
+.pillar>p{font-size:14px}
+.plist{list-style:none;margin:20px 0 22px;flex:1}
+.plist li{font-size:13px;padding-left:18px;position:relative;margin-bottom:9px;color:rgba(246,243,236,.58);line-height:1.55}
+.plist li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--gold)}
 .pillar .go{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--champagne);opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
 .pillar:hover .go{opacity:1;transform:none}
 
@@ -146,13 +153,17 @@ body.menu .sheet a{opacity:1;transform:none}
 .rail{display:flex;gap:24px;overflow-x:auto;padding:0 var(--pad) 12px;scrollbar-width:none;cursor:grab;scroll-snap-type:x proximity}
 .rail::-webkit-scrollbar{display:none}
 .rail.drag{cursor:grabbing;scroll-snap-type:none}
-.card{flex:0 0 clamp(260px,32vw,400px);scroll-snap-align:start;background:var(--navy);border:1px solid rgba(201,162,39,.2);
-  border-radius:2px;padding:32px 28px 28px;min-height:400px;display:flex;flex-direction:column;transition:border-color .4s,transform .25s ease-out;user-select:none}
+.card{flex:0 0 clamp(270px,32vw,400px);scroll-snap-align:start;background:var(--navy);border:1px solid rgba(201,162,39,.2);
+  border-radius:2px;padding:32px 28px 28px;display:flex;flex-direction:column;transition:border-color .4s,transform .25s ease-out;user-select:none}
 .card:hover{border-color:var(--gold)}
 .card .when{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
-.card h3{font-family:var(--display);font-weight:300;font-size:clamp(24px,2.6vw,34px);margin:16px 0 14px;line-height:1.12}
-.card p{font-size:14px;flex:1}
-.card .meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(201,162,39,.2);padding-top:16px;margin-top:20px;font-size:12px;letter-spacing:.06em}
+.card h3{font-family:var(--display);font-weight:300;font-size:clamp(23px,2.5vw,32px);margin:14px 0 12px;line-height:1.12}
+.card>p{font-size:14px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0}
+.tag{font-size:10px;letter-spacing:.13em;text-transform:uppercase;border:1px solid rgba(201,162,39,.3);border-radius:999px;padding:4px 10px;color:rgba(246,243,236,.55)}
+.det{font-size:12.5px;color:rgba(246,243,236,.5);border-top:1px solid rgba(201,162,39,.14);margin-top:18px;padding-top:14px;flex:1}
+.det span{display:block;margin-bottom:5px}
+.card .meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(201,162,39,.2);padding-top:16px;margin-top:16px;font-size:12px;letter-spacing:.06em}
 .dot{display:inline-flex;align-items:center;gap:7px;color:var(--pulse)}
 .dot::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pulse);animation:pulse 1.8s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
@@ -160,10 +171,12 @@ body.menu .sheet a{opacity:1;transform:none}
 
 /* ---------- impact ---------- */
 .impact{padding:var(--sect) 0}
+.inote{max-width:54ch;font-size:15px;margin-top:22px}
 .nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:48px 32px;margin-top:56px}
 .num b{display:block;font-family:var(--display);font-weight:300;font-size:clamp(44px,6vw,80px);line-height:1;font-variant-numeric:tabular-nums}
 .num .rule{margin:18px 0 14px}
-.num small{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.65}
+.num small{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.65;display:block}
+.num em{font-style:normal;display:block;font-size:13px;margin-top:10px;color:rgba(10,14,23,.6)}
 
 /* ---------- split ---------- */
 .split{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,6vw,90px);align-items:center;padding:var(--sect) 0}
@@ -175,23 +188,44 @@ body.menu .sheet a{opacity:1;transform:none}
 .tier .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
 .tier h4{font-family:var(--display);font-weight:400;font-size:22px;transition:color .3s}
 .tier:hover h4,.tier.open h4{color:var(--champagne)}
-.tier .price{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.tier .price{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
 .tier .body{max-height:0;overflow:hidden;transition:max-height .55s cubic-bezier(.76,0,.24,1)}
-.tier.open .body{max-height:200px}
+.tier.open .body{max-height:520px}
 .tier .body p{font-size:14px;padding-top:14px}
+.tier .body ul{list-style:none;margin-top:14px}
+.tier .body li{font-size:13px;padding-left:18px;position:relative;margin-bottom:8px;color:rgba(246,243,236,.6)}
+.tier .body li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--gold)}
+
+/* ---------- ventures ---------- */
+.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:rgba(10,14,23,.16);margin-top:52px}
+.vcard{background:var(--pearl);padding:34px 28px}
+.vcard .when{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6D12}
+.vcard h4{font-family:var(--display);font-weight:400;font-size:23px;margin:12px 0 10px}
+.vcard p{font-size:14px}
+
+/* ---------- steps ---------- */
+.stepsect{padding:var(--sect) 0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:38px;margin-top:52px}
+.step{border-top:1px solid rgba(201,162,39,.3);padding-top:22px}
+.step b{font-family:var(--display);font-size:40px;color:var(--gold);font-weight:300;line-height:1;display:block}
+.step h4{font-family:var(--display);font-weight:400;font-size:21px;margin:16px 0 10px}
+.step p{font-size:14px}
 
 /* ---------- journal ---------- */
-.journal{padding:var(--sect) 0}
+.journal{padding:0 0 var(--sect)}
 .posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px}
 .post{border-top:1px solid rgba(201,162,39,.3);padding-top:22px;transition:border-color .4s}
 .post:hover{border-color:var(--gold)}
 .post .when{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
-.post h3{font-family:var(--display);font-weight:300;font-size:24px;margin:14px 0 12px;line-height:1.2}
+.post h3{font-family:var(--display);font-weight:300;font-size:23px;margin:14px 0 12px;line-height:1.2}
 .post p{font-size:14px}
+.pmeta{display:flex;gap:14px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:rgba(246,243,236,.4);margin-top:14px}
 
 /* ---------- band ---------- */
 .band{border-top:1px solid rgba(201,162,39,.35);border-bottom:1px solid rgba(201,162,39,.35);padding:clamp(56px,8vw,96px) 0;text-align:center}
-.band h2{font-size:clamp(30px,5.4vw,74px);margin-bottom:32px}
+.band h2{font-size:clamp(30px,5.4vw,74px);margin-bottom:20px}
+.band p{max-width:44ch;margin:0 auto 30px;font-size:15px}
+.band .btnrow{justify-content:center}
 
 /* ---------- footer ---------- */
 footer{padding:var(--sect) 0 48px}
@@ -209,9 +243,9 @@ footer li a:hover{color:var(--champagne)}
 /* ---------- progress ---------- */
 #prog{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:950;width:0}
 
+@media(max-width:1080px){.links{display:none}.burger{display:block}}
 @media(max-width:900px){
-  .links,.navtools .btn{display:none}
-  .burger{display:block}
+  .navtools .btn{display:none}
   .split{grid-template-columns:1fr}
   .fgrid{grid-template-columns:1fr 1fr}
   #cur,#curRing{display:none}
@@ -233,10 +267,11 @@ footer li a:hover{color:var(--champagne)}
   <div class="wrap nav">
     <a href="#" class="logo">VI<b>V</b>A</a>
     <nav class="links">
-      <a href="#events" data-en="Events" data-zh="活動">Events</a>
+      <a href="#events" data-en="What we do" data-zh="我哋做乜">What we do</a>
+      <a href="#calendar" data-en="What's on" data-zh="近期活動">What's on</a>
       <a href="#circle" data-en="The Circle" data-zh="會員網絡">The Circle</a>
       <a href="#ventures" data-en="Ventures" data-zh="青年創業">Ventures</a>
-      <a href="#impact" data-en="Impact" data-zh="社會影響">Impact</a>
+      <a href="#start" data-en="How to join" data-zh="點樣入會">How to join</a>
       <a href="#journal" data-en="Journal" data-zh="專欄">Journal</a>
     </nav>
     <div class="navtools">
@@ -244,32 +279,43 @@ footer li a:hover{color:var(--champagne)}
         <button class="act" data-lang="en">EN</button>
         <button data-lang="zh">繁中</button>
       </div>
-      <button class="btn mag" data-en="Apply to join" data-zh="申請加入"><i></i><span>Apply to join</span></button>
+      <button class="btn mag"><i></i><span data-en="Join free" data-zh="免費加入">Join free</span></button>
       <button class="burger" id="bg" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
 <div class="sheet" id="sheet">
-  <a href="#events" data-en="Events" data-zh="活動">Events</a>
+  <a href="#events" data-en="What we do" data-zh="我哋做乜">What we do</a>
+  <a href="#calendar" data-en="What's on" data-zh="近期活動">What's on</a>
   <a href="#circle" data-en="The Circle" data-zh="會員網絡">The Circle</a>
   <a href="#ventures" data-en="Ventures" data-zh="青年創業">Ventures</a>
-  <a href="#impact" data-en="Impact" data-zh="社會影響">Impact</a>
+  <a href="#start" data-en="How to join" data-zh="點樣入會">How to join</a>
   <a href="#journal" data-en="Journal" data-zh="專欄">Journal</a>
 </div>
 
 <section class="hero">
   <div class="hero-bg"><div class="ghost">SPORT · COMMUNITY · VENTURE · SPORT</div></div>
   <div class="wrap hero-inner">
-    <p class="eyebrow rv" data-en="Hong Kong · Est. 2024" data-zh="香港 · 二〇二四年創立">Hong Kong · Est. 2024</p>
+    <p class="eyebrow rv" data-en="Hong Kong · 15–30 · Since 2024" data-zh="香港 · 15至30歲 · 二〇二四年開始">Hong Kong · 15–30 · Since 2024</p>
     <h1 class="serif">
       <span class="line"><span>The city moves</span></span>
       <span class="line"><span>when its youth</span></span>
       <span class="line"><span><em>connect.</em></span></span>
     </h1>
     <div class="hero-foot">
-      <p class="rv muted" data-en="Viva Lifestyle runs the sports and recreational events that bring young Hong Kong together — then opens the doors that come next: incubators, mentors, funding, work." data-zh="Viva Lifestyle 舉辦體育及康樂活動，凝聚香港青年，並為他們打開下一道門——創業孵化、導師、資金與工作機會。">Viva Lifestyle runs the sports and recreational events that bring young Hong Kong together — then opens the doors that come next: incubators, mentors, funding, work.</p>
-      <div class="cue rv"><span class="bar"></span><span data-en="Scroll" data-zh="向下滑動">Scroll</span></div>
+      <p class="rv muted" data-en="We run the runs, the games and the nights out that actually get you off the group chat and out the door. Then we open what comes next — incubators, mentors, funding, first jobs. Turn up once. You'll know forty people by December." data-zh="夜跑、球賽、天台聚會——真正讓你離開 group chat、走出門口嘅嘢。之後仲有下一步：孵化器、導師、資金、第一份工。嚟一次，到十二月你就識到四十個人。">We run the runs, the games and the nights out that actually get you off the group chat and out the door. Then we open what comes next — incubators, mentors, funding, first jobs. Turn up once. You'll know forty people by December.</p>
+      <div class="cue rv"><span class="bar"></span><span data-en="Scroll" data-zh="向下滑">Scroll</span></div>
+    </div>
+    <div class="hstats rv">
+      <span class="chip"><b>12,480</b> <span data-en="members" data-zh="會員">members</span></span>
+      <span class="chip"><b>214</b> <span data-en="events run" data-zh="場活動">events run</span></span>
+      <span class="chip"><b>18</b> <span data-en="districts" data-zh="區">districts</span></span>
+      <span class="chip"><b>0</b> <span data-en="experience needed" data-zh="經驗要求">experience needed</span></span>
+    </div>
+    <div class="btnrow rv">
+      <button class="btn solid mag"><i></i><span data-en="Join free — takes 2 minutes" data-zh="免費加入 — 兩分鐘搞掂">Join free — takes 2 minutes</span></button>
+      <button class="btn mag"><i></i><span data-en="See what's on" data-zh="睇下有咩玩">See what's on</span></button>
     </div>
   </div>
 </section>
@@ -287,88 +333,149 @@ footer li a:hover{color:var(--champagne)}
 <section class="wrap pillars" id="events">
   <div class="head">
     <div>
-      <p class="eyebrow rv" data-en="What we do" data-zh="業務範疇">What we do</p>
+      <p class="eyebrow rv" data-en="What we do" data-zh="我哋做乜">What we do</p>
       <h2 class="serif rv" data-en="Three ways in." data-zh="三個入口。">Three ways in.</h2>
     </div>
-    <p class="muted rv" style="max-width:34ch;font-size:14px" data-en="Every programme feeds the same network. Play, gather, build." data-zh="每個項目都連結同一個網絡：運動、聚會、創造。">Every programme feeds the same network. Play, gather, build.</p>
+    <p class="muted rv" style="max-width:38ch;font-size:14px" data-en="Pick any door — they all lead to the same room. Play, hang out, build something. Most people start with a Thursday run and end up on a founding team." data-zh="揀邊道門都得，最後都係同一個房。運動、聚會、創造。好多人由星期四夜跑開始，最後成為創業團隊一員。">Pick any door — they all lead to the same room. Play, hang out, build something. Most people start with a Thursday run and end up on a founding team.</p>
   </div>
   <div class="grid3">
     <article class="pillar tilt rv">
       <span class="stat">52</span>
       <p class="eyebrow" data-en="Fixtures a year" data-zh="每年賽事">Fixtures a year</p>
-      <h3 data-en="Sport" data-zh="體育">Sport</h3>
-      <p class="muted" data-en="Leagues, night runs, harbour paddles and open courts across all eighteen districts. Beginners welcome, always." data-zh="聯賽、夜跑、海濱獨木舟及開放球場，遍及全港十八區。永遠歡迎新手。">Leagues, night runs, harbour paddles and open courts across all eighteen districts. Beginners welcome, always.</p>
-      <span class="go" data-en="See the calendar →" data-zh="查看日程 →">See the calendar →</span>
+      <h3 data-en="Sport" data-zh="運動">Sport</h3>
+      <p class="muted" data-en="Show up alone. Leave with a team. Every fixture has a beginners' lane and nobody cares how fast you are." data-zh="一個人嚟，一隊人走。每場都有新手組，冇人理你跑幾快。">Show up alone. Leave with a team. Every fixture has a beginners' lane and nobody cares how fast you are.</p>
+      <ul class="plist">
+        <li data-en="Basketball and football leagues — 18 districts, mixed ability, Sunday afternoons" data-zh="籃球及足球聯賽——十八區、混合水平、逢星期日下午">Basketball and football leagues — 18 districts, mixed ability, Sunday afternoons</li>
+        <li data-en="Thursday night runs — 5K and 10K, pace groups from 4:30 to 8:00" data-zh="星期四夜跑——5公里及10公里，配速由 4:30 至 8:00">Thursday night runs — 5K and 10K, pace groups from 4:30 to 8:00</li>
+        <li data-en="Harbour paddles and dragon boat — Sai Kung and Stanley, kit provided" data-zh="海上獨木舟及龍舟——西貢及赤柱，提供裝備">Harbour paddles and dragon boat — Sai Kung and Stanley, kit provided</li>
+        <li data-en="Open courts — turn up, no team needed, we'll put you in one" data-zh="開放球場——直接嚟，唔使有隊，我哋幫你安排">Open courts — turn up, no team needed, we'll put you in one</li>
+      </ul>
+      <span class="go" data-en="See the calendar →" data-zh="睇日程 →">See the calendar →</span>
     </article>
     <article class="pillar tilt rv">
       <span class="stat">30+</span>
       <p class="eyebrow" data-en="Venues and partners" data-zh="場地及夥伴">Venues and partners</p>
-      <h3 data-en="Recreation" data-zh="康樂">Recreation</h3>
-      <p class="muted" data-en="Rooftop socials, hiking weekends, night markets and the annual Viva gala. The part where strangers become contacts." data-zh="天台聚會、遠足周末、夜市及年度 Viva 晚宴——陌生人成為夥伴的地方。">Rooftop socials, hiking weekends, night markets and the annual Viva gala. The part where strangers become contacts.</p>
+      <h3 data-en="Recreation" data-zh="玩樂">Recreation</h3>
+      <p class="muted" data-en="The part where strangers turn into contacts, and contacts turn into the people you call first." data-zh="陌生人變聯絡人，聯絡人變成你第一個打電話揾嘅人。">The part where strangers turn into contacts, and contacts turn into the people you call first.</p>
+      <ul class="plist">
+        <li data-en="Rooftop socials — monthly, Kwun Tong and Sheung Wan, first drink on us" data-zh="天台聚會——每月一次，觀塘及上環，第一杯我哋請">Rooftop socials — monthly, Kwun Tong and Sheung Wan, first drink on us</li>
+        <li data-en="Hiking weekends — Lantau, Sai Kung, Ma On Shan, transport sorted" data-zh="遠足周末——大嶼山、西貢、馬鞍山，交通我哋安排">Hiking weekends — Lantau, Sai Kung, Ma On Shan, transport sorted</li>
+        <li data-en="Night market takeovers — food, music, six hundred people you haven't met" data-zh="夜市包場——美食、音樂，六百個未識過嘅人">Night market takeovers — food, music, six hundred people you haven't met</li>
+        <li data-en="The Viva Gala — one night in December, the whole network in one room" data-zh="Viva 年度晚宴——十二月一晚，成個網絡聚埋一齊">The Viva Gala — one night in December, the whole network in one room</li>
+      </ul>
       <span class="go" data-en="What's on →" data-zh="近期活動 →">What's on →</span>
     </article>
     <article class="pillar tilt rv">
       <span class="stat">12</span>
       <p class="eyebrow" data-en="Incubator partners" data-zh="合作孵化器">Incubator partners</p>
       <h3 data-en="Ventures" data-zh="創業">Ventures</h3>
-      <p class="muted" data-en="We hand members to the incubators, mentors and funds who can take their idea further — and stay with them after the pitch." data-zh="我們把會員引薦給孵化器、導師及基金，並在提案之後繼續陪伴。">We hand members to the incubators, mentors and funds who can take their idea further — and stay with them after the pitch.</p>
+      <p class="muted" data-en="Got an idea? We'll introduce you to people who can fund it — and stay in the chat long after the pitch." data-zh="有諗法？我哋介紹識到可以出錢嘅人，而且提案完之後照樣傾落去。">Got an idea? We'll introduce you to people who can fund it — and stay in the chat long after the pitch.</p>
+      <ul class="plist">
+        <li data-en="Twelve incubator partners — HKSTP, Cyberport, Brinc, Betatron and more" data-zh="十二間合作孵化器——科學園、數碼港、Brinc、Betatron 等">Twelve incubator partners — HKSTP, Cyberport, Brinc, Betatron and more</li>
+        <li data-en="Mentor matching in two weeks — founders, operators, one lawyer who owes us" data-zh="兩星期內配對導師——創辦人、營運者，仲有一個欠我哋人情嘅律師">Mentor matching in two weeks — founders, operators, one lawyer who owes us</li>
+        <li data-en="Pitch clinics — practise on us before you practise on investors" data-zh="提案演練——喺我哋面前試過先去見投資者">Pitch clinics — practise on us before you practise on investors</li>
+        <li data-en="Desk space and legal basics through partners, at student rates or free" data-zh="透過夥伴提供辦公桌及基本法律支援，學生價或免費">Desk space and legal basics through partners, at student rates or free</li>
+      </ul>
       <span class="go" data-en="Meet the ventures →" data-zh="認識創業團隊 →">Meet the ventures →</span>
     </article>
   </div>
 </section>
 
-<section class="rail-sect">
+<section class="rail-sect" id="calendar">
   <div class="wrap head">
     <div>
       <p class="eyebrow rv" data-en="Coming up" data-zh="即將舉行">Coming up</p>
-      <h2 class="serif rv" data-en="Next on the calendar." data-zh="下一場活動。">Next on the calendar.</h2>
+      <h2 class="serif rv" data-en="Free your weekend." data-zh="留返個周末。">Free your weekend.</h2>
     </div>
-    <button class="btn mag rv" data-en="All events" data-zh="所有活動"><i></i><span>All events</span></button>
+    <button class="btn mag rv"><i></i><span data-en="All events" data-zh="所有活動">All events</span></button>
   </div>
   <div class="rail" id="rail">
     <article class="card tilt">
-      <span class="when">Sat 23 Aug · Central Harbourfront</span>
+      <span class="when">Sat 23 Aug · 7:30pm · Central Harbourfront</span>
       <h3>Harbour Night Run</h3>
-      <p class="muted">Five kilometres along the waterfront after dark, finishing with street food and a live set. Pace groups from 4:30 to 8:00.</p>
+      <p class="muted" data-en="Five kilometres along the water after dark, then street food and a live set until late. Walk it, jog it, race it — three pace groups and a sweeper at the back so nobody finishes alone." data-zh="入夜沿海跑五公里，之後街頭美食同 live band 玩到夜。行都得、緩跑都得、衝都得——三個配速組，後面有收隊，冇人會孤獨衝線。">Five kilometres along the water after dark, then street food and a live set until late. Walk it, jog it, race it — three pace groups and a sweeper at the back so nobody finishes alone.</p>
+      <div class="tags"><span class="tag">Running</span><span class="tag">Beginner OK</span><span class="tag">Social after</span></div>
+      <div class="det">
+        <span data-en="Meet: Pier 9, 7:00pm for bag drop" data-zh="集合：九號碼頭，七點寄存行李">Meet: Pier 9, 7:00pm for bag drop</span>
+        <span data-en="Bring: trainers, that's it" data-zh="帶：跑鞋，就係咁多">Bring: trainers, that's it</span>
+        <span data-en="Pace groups: 4:30 · 6:00 · 8:00 per km" data-zh="配速組：每公里 4:30 · 6:00 · 8:00">Pace groups: 4:30 · 6:00 · 8:00 per km</span>
+      </div>
       <div class="meta"><span class="dot">18 spots left</span><span class="muted">Free</span></div>
     </article>
     <article class="card tilt">
-      <span class="when">Sun 07 Sep · Kwun Tong</span>
+      <span class="when">Sun 07 Sep · 2:00pm · Kwun Tong</span>
       <h3>Rooftop Pickleball Social</h3>
-      <p class="muted">Open courts, rotating doubles, no experience needed. Paddles provided. Stay for drinks and introductions afterwards.</p>
+      <p class="muted" data-en="Rotating doubles on a rooftop court, so you play with six different partners in an afternoon. Never held a paddle? Good — half the court hasn't either. Drinks and introductions afterwards." data-zh="天台球場輪流雙打，一個下午同六個唔同拍檔玩過。未拎過球拍？好——場上一半人都係。之後飲嘢傾偈識人。">Rotating doubles on a rooftop court, so you play with six different partners in an afternoon. Never held a paddle? Good — half the court hasn't either. Drinks and introductions afterwards.</p>
+      <div class="tags"><span class="tag">Pickleball</span><span class="tag">Total beginners</span><span class="tag">Gear provided</span></div>
+      <div class="det">
+        <span data-en="Meet: APM rooftop, take Exit A2" data-zh="集合：APM 天台，A2 出口">Meet: APM rooftop, take Exit A2</span>
+        <span data-en="Bring: nothing — paddles and balls provided" data-zh="帶：唔使帶——球拍同球都有">Bring: nothing — paddles and balls provided</span>
+        <span data-en="Format: rotating doubles, 15 min rounds" data-zh="形式：輪換雙打，每輪十五分鐘">Format: rotating doubles, 15 min rounds</span>
+      </div>
       <div class="meta"><span class="dot">6 spots left</span><span class="muted">HK$120</span></div>
     </article>
     <article class="card tilt">
-      <span class="when">Fri 19 Sep · Science Park</span>
+      <span class="when">Fri 19 Sep · 7:00pm · Science Park</span>
       <h3>Founders' Table</h3>
-      <p class="muted">Twelve seats, four founders, one long dinner. Members put a real problem on the table and leave with three introductions.</p>
+      <p class="muted" data-en="Twelve seats, four founders, one long dinner. You put a real problem on the table — the one you've been avoiding — and you leave with three introductions and a follow-up already in your calendar." data-zh="十二個位、四個創辦人、一餐長飯。你將一個真實難題擺上枱——就係你一直逃避嗰個——走嗰陣有三個引薦，同埋 calendar 已經有 follow-up。">Twelve seats, four founders, one long dinner. You put a real problem on the table — the one you've been avoiding — and you leave with three introductions and a follow-up already in your calendar.</p>
+      <div class="tags"><span class="tag">Founders</span><span class="tag">Members only</span><span class="tag">12 seats</span></div>
+      <div class="det">
+        <span data-en="For: Active and Builder members" data-zh="對象：活躍及創建者會員">For: Active and Builder members</span>
+        <span data-en="Bring: one problem, stated in a sentence" data-zh="帶：一個難題，一句講得完">Bring: one problem, stated in a sentence</span>
+        <span data-en="Dinner included, no pitch decks allowed" data-zh="包晚餐，唔准帶 pitch deck">Dinner included, no pitch decks allowed</span>
+      </div>
       <div class="meta"><span class="muted">Members only</span><span class="muted">Invitation</span></div>
     </article>
     <article class="card tilt">
-      <span class="when">Sat 11 Oct · Sai Kung</span>
+      <span class="when">Sat 11 Oct · 5:30am · Sai Kung</span>
       <h3>Sunrise Trail &amp; Breakfast</h3>
-      <p class="muted">A gentle 9km ridge walk starting at 5:30am, ending with breakfast at the pier. Transport from Choi Hung included.</p>
+      <p class="muted" data-en="A gentle 9km ridge walk that starts in the dark and ends with the sun over the islands. Then breakfast at the pier, which is honestly the real reason everyone comes. Coach from Choi Hung included." data-zh="輕鬆 9 公里山脊路線，摸黑出發，日出照住個海。之後喺碼頭食早餐——講真，大家其實係為咗呢餐嚟。彩虹有旅遊巴接送。">A gentle 9km ridge walk that starts in the dark and ends with the sun over the islands. Then breakfast at the pier, which is honestly the real reason everyone comes. Coach from Choi Hung included.</p>
+      <div class="tags"><span class="tag">Hiking</span><span class="tag">Easy grade</span><span class="tag">Transport included</span></div>
+      <div class="det">
+        <span data-en="Meet: Choi Hung MTR Exit C, 4:45am" data-zh="集合：彩虹站 C 出口，4:45am">Meet: Choi Hung MTR Exit C, 4:45am</span>
+        <span data-en="Bring: headtorch, 1L water, layers" data-zh="帶：頭燈、一公升水、外套">Bring: headtorch, 1L water, layers</span>
+        <span data-en="Back in town by 11am" data-zh="十一點前返到市區">Back in town by 11am</span>
+      </div>
       <div class="meta"><span class="dot">31 spots left</span><span class="muted">HK$80</span></div>
     </article>
     <article class="card tilt">
-      <span class="when">Sat 06 Dec · TBC</span>
+      <span class="when">Thu 30 Oct · 7:00pm · Sheung Wan</span>
+      <h3>First Job, Real Talk</h3>
+      <p class="muted" data-en="Six people five years into careers you're considering, answering the questions you can't ask in an interview. What they actually earn, what they'd undo, and how they got in without a connection." data-zh="六個入行五年嘅人，答你面試唔敢問嘅嘢：真係賺幾多、有咩後悔、冇人脈點樣入到行。">Six people five years into careers you're considering, answering the questions you can't ask in an interview. What they actually earn, what they'd undo, and how they got in without a connection.</p>
+      <div class="tags"><span class="tag">Careers</span><span class="tag">Open to all</span><span class="tag">Q&amp;A</span></div>
+      <div class="det">
+        <span data-en="Panels: finance, design, engineering, media" data-zh="範疇：金融、設計、工程、媒體">Panels: finance, design, engineering, media</span>
+        <span data-en="Anonymous questions box, no filter" data-zh="匿名提問箱，唔篩問題">Anonymous questions box, no filter</span>
+        <span data-en="CV clinic afterwards if you want one" data-zh="想嘅話之後有 CV 診症">CV clinic afterwards if you want one</span>
+      </div>
+      <div class="meta"><span class="dot">44 spots left</span><span class="muted">Free</span></div>
+    </article>
+    <article class="card tilt">
+      <span class="when">Sat 06 Dec · 7:00pm · TBC</span>
       <h3>The Viva Gala</h3>
-      <p class="muted">One night, six hundred members, the year's ventures on stage. Black tie optional, energy compulsory.</p>
+      <p class="muted" data-en="One night, six hundred members, the year's ventures on stage and awards nobody takes too seriously. Black tie optional, energy compulsory. Tables of ten — bring the people you met in March." data-zh="一晚、六百個會員、全年創業團隊上台，加埋冇人認真對待嘅頒獎環節。禮服隨意，氣氛必須。十人一枱——帶埋三月識到嗰班人。">One night, six hundred members, the year's ventures on stage and awards nobody takes too seriously. Black tie optional, energy compulsory. Tables of ten — bring the people you met in March.</p>
+      <div class="tags"><span class="tag">Gala</span><span class="tag">600 people</span><span class="tag">Tables of 10</span></div>
+      <div class="det">
+        <span data-en="Registration opens October, members first" data-zh="十月開始報名，會員優先">Registration opens October, members first</span>
+        <span data-en="Venue announced September" data-zh="九月公布場地">Venue announced September</span>
+        <span data-en="Bursary tickets available — just ask" data-zh="有資助門票——直接問我哋">Bursary tickets available — just ask</span>
+      </div>
       <div class="meta"><span class="muted">Registration opens Oct</span><span class="muted">—</span></div>
     </article>
   </div>
-  <div class="wrap railhint"><span>← →</span><span data-en="Drag to explore" data-zh="拖曳瀏覽">Drag to explore</span></div>
+  <div class="wrap railhint"><span>← →</span><span data-en="Drag to explore" data-zh="拖曳睇更多">Drag to explore</span></div>
 </section>
 
 <section class="pearl-sect" id="impact">
   <div class="wrap impact">
-    <p class="eyebrow rv" data-en="Since 2024" data-zh="自二〇二四年起">Since 2024</p>
-    <h2 class="serif rv" style="font-size:clamp(30px,4.6vw,64px);max-width:16ch" data-en="The network, in numbers." data-zh="數字中的網絡。">The network, in numbers.</h2>
+    <p class="eyebrow rv" data-en="Since 2024" data-zh="由二〇二四年起">Since 2024</p>
+    <h2 class="serif rv" style="font-size:clamp(30px,4.6vw,64px);max-width:16ch" data-en="Two years. Receipts below." data-zh="兩年時間，數字擺喺度。">Two years. Receipts below.</h2>
+    <p class="muted rv inote" data-en="We count what matters to members, not what looks good in a deck. Every number here is people who turned up more than once." data-zh="我哋計嘅係會員在意嘅嘢，唔係 deck 上面靚睇嘅數字。以下每個數，都係嚟過唔止一次嘅人。">We count what matters to members, not what looks good in a deck. Every number here is people who turned up more than once.</p>
     <div class="nums">
-      <div class="num rv"><b data-count="12480">0</b><div class="rule"></div><small data-en="Members connected" data-zh="連結會員">Members connected</small></div>
-      <div class="num rv"><b data-count="214">0</b><div class="rule"></div><small data-en="Events delivered" data-zh="已舉辦活動">Events delivered</small></div>
-      <div class="num rv"><b data-count="46">0</b><div class="rule"></div><small data-en="Partner organisations" data-zh="合作機構">Partner organisations</small></div>
-      <div class="num rv"><b data-count="31">0</b><div class="rule"></div><small data-en="Ventures supported" data-zh="支援初創">Ventures supported</small></div>
+      <div class="num rv"><b data-count="12480">0</b><div class="rule"></div><small data-en="Members connected" data-zh="連結會員">Members connected</small><em data-en="Roughly one in every forty young people in Hong Kong." data-zh="大約每四十個香港年輕人就有一個。">Roughly one in every forty young people in Hong Kong.</em></div>
+      <div class="num rv"><b data-count="214">0</b><div class="rule"></div><small data-en="Events delivered" data-zh="已舉辦活動">Events delivered</small><em data-en="That's an event every three and a half days." data-zh="即係大約每三日半就有一場。">That's an event every three and a half days.</em></div>
+      <div class="num rv"><b data-count="46">0</b><div class="rule"></div><small data-en="Partner organisations" data-zh="合作機構">Partner organisations</small><em data-en="Venues, incubators, district councils and one very generous noodle shop." data-zh="場地、孵化器、區議會，同埋一間好慷慨嘅麵舖。">Venues, incubators, district councils and one very generous noodle shop.</em></div>
+      <div class="num rv"><b data-count="31">0</b><div class="rule"></div><small data-en="Ventures supported" data-zh="支援初創">Ventures supported</small><em data-en="Nine have raised. Four have hired other members." data-zh="九間已融資，四間請咗其他會員。">Nine have raised. Four have hired other members.</em></div>
     </div>
   </div>
 </section>
@@ -378,22 +485,51 @@ footer li a:hover{color:var(--champagne)}
   <div>
     <p class="eyebrow rv" data-en="Membership" data-zh="會籍">Membership</p>
     <h2 class="serif rv" style="font-size:clamp(30px,4.4vw,58px)" data-en="Join the Circle." data-zh="加入 The Circle。">Join the Circle.</h2>
-    <p class="muted rv" style="margin-top:20px;max-width:44ch" data-en="Membership is how the network holds together between events. Pick the tier that matches where you are right now — you can move up any time." data-zh="會籍讓網絡在活動之間持續連結。選擇最合適的級別，隨時可以升級。">Membership is how the network holds together between events. Pick the tier that matches where you are right now — you can move up any time.</p>
+    <p class="muted rv" style="margin-top:20px;max-width:46ch" data-en="Membership is what keeps the network alive between events. Start free — genuinely free, no card, no trial that quietly bills you. Move up whenever you're ready, or don't. Plenty of people stay on Open for years." data-zh="會籍令網絡喺活動之間繼續運作。由免費開始——真係免費，唔使卡，冇試用期偷偷收錢。想升級先升級，唔升都得，好多人一直用免費級都幾年。">Membership is what keeps the network alive between events. Start free — genuinely free, no card, no trial that quietly bills you. Move up whenever you're ready, or don't. Plenty of people stay on Open for years.</p>
     <div class="tiers rv">
       <div class="tier open">
-        <div class="top"><h4 data-en="Open" data-zh="開放">Open</h4><span class="price">Free</span></div>
-        <div class="body"><p class="muted" data-en="Every public event, the monthly newsletter, and first sight of new fixtures. For anyone aged 15 to 30 living in Hong Kong." data-zh="所有公開活動、每月通訊，並優先得知新賽事。適合居港 15 至 30 歲人士。">Every public event, the monthly newsletter, and first sight of new fixtures. For anyone aged 15 to 30 living in Hong Kong.</p></div>
+        <div class="top"><h4 data-en="Open" data-zh="開放">Open</h4><span class="price">Free forever</span></div>
+        <div class="body">
+          <p class="muted" data-en="For anyone aged 15 to 30 living in Hong Kong. This is where 80% of members are, and it's a complete membership, not a teaser." data-zh="適合居港 15 至 30 歲人士。八成會員都喺呢級，係完整會籍，唔係試食版。">For anyone aged 15 to 30 living in Hong Kong. This is where 80% of members are, and it's a complete membership, not a teaser.</p>
+          <ul>
+            <li data-en="Every public event, including all free fixtures" data-zh="所有公開活動，包括全部免費賽事">Every public event, including all free fixtures</li>
+            <li data-en="Monthly dispatch — new fixtures and open applications" data-zh="每月通訊——新賽事及開放申請">Monthly dispatch — new fixtures and open applications</li>
+            <li data-en="Member WhatsApp groups by district and by sport" data-zh="按地區及運動分嘅會員 WhatsApp 群組">Member WhatsApp groups by district and by sport</li>
+            <li data-en="Bursary tickets for anything paid — ask, no explanation needed" data-zh="所有收費活動都有資助門票——問就得，唔使解釋">Bursary tickets for anything paid — ask, no explanation needed</li>
+          </ul>
+        </div>
       </div>
       <div class="tier">
         <div class="top"><h4 data-en="Active" data-zh="活躍">Active</h4><span class="price">HK$480 / year</span></div>
-        <div class="body"><p class="muted" data-en="Members-only fixtures, priority registration, kit, and a seat at two Founders' Tables a year." data-zh="會員專屬賽事、優先報名、運動裝備，以及每年兩次 Founders' Table 席位。">Members-only fixtures, priority registration, kit, and a seat at two Founders' Tables a year.</p></div>
+        <div class="body">
+          <p class="muted" data-en="About HK$40 a month — one lunch. For people who are already coming to two or three things a month and want first pick." data-zh="大約每月四十蚊，一餐 lunch。適合每月已經嚟兩三次、想有優先權嘅人。">About HK$40 a month — one lunch. For people who are already coming to two or three things a month and want first pick.</p>
+          <ul>
+            <li data-en="Members-only fixtures and 48-hour early registration" data-zh="會員專屬賽事，及提早 48 小時報名">Members-only fixtures and 48-hour early registration</li>
+            <li data-en="Season kit — shirt, bag, the good water bottle" data-zh="季度裝備——球衣、袋、好用嗰個水樽">Season kit — shirt, bag, the good water bottle</li>
+            <li data-en="Two Founders' Table seats a year" data-zh="每年兩次 Founders' Table 席位">Two Founders' Table seats a year</li>
+            <li data-en="Partner discounts — gyms, climbing, physio" data-zh="夥伴優惠——健身室、攀石、物理治療">Partner discounts — gyms, climbing, physio</li>
+            <li data-en="Bring a guest free, four times a year" data-zh="每年四次免費帶朋友嚟">Bring a guest free, four times a year</li>
+          </ul>
+        </div>
       </div>
       <div class="tier">
         <div class="top"><h4 data-en="Builder" data-zh="創建者">Builder</h4><span class="price">By application</span></div>
-        <div class="body"><p class="muted" data-en="For members building something. Direct introductions to our twelve incubator partners, mentor matching, and pitch support." data-zh="為正在創業的會員而設：直接引薦十二間合作孵化器、導師配對及提案支援。">For members building something. Direct introductions to our twelve incubator partners, mentor matching, and pitch support.</p></div>
+        <div class="body">
+          <p class="muted" data-en="For members actually building something — a company, a team, a project with users. Free if you're pre-revenue. We'd rather have you in than have your money." data-zh="適合真係喺度做緊嘢嘅會員——公司、團隊、有用戶嘅項目。未有收入就免費。我哋想要你入嚟，唔係想要你啲錢。">For members actually building something — a company, a team, a project with users. Free if you're pre-revenue. We'd rather have you in than have your money.</p>
+          <ul>
+            <li data-en="Direct introductions to our twelve incubator partners" data-zh="直接引薦十二間合作孵化器">Direct introductions to our twelve incubator partners</li>
+            <li data-en="Mentor matched within two weeks of joining" data-zh="入會兩星期內配對導師">Mentor matched within two weeks of joining</li>
+            <li data-en="Pitch clinic before every partner demo day" data-zh="每次夥伴 demo day 前有提案演練">Pitch clinic before every partner demo day</li>
+            <li data-en="Desk space and legal basics through partners" data-zh="透過夥伴提供辦公桌及基本法律支援">Desk space and legal basics through partners</li>
+            <li data-en="Your venture on stage at the December gala" data-zh="十二月晚宴上台介紹你嘅項目">Your venture on stage at the December gala</li>
+          </ul>
+        </div>
       </div>
     </div>
-    <button class="btn solid mag rv" style="margin-top:34px" data-en="Apply to join" data-zh="申請加入"><i></i><span>Apply to join</span></button>
+    <div class="btnrow">
+      <button class="btn solid mag rv"><i></i><span data-en="Join free" data-zh="免費加入">Join free</span></button>
+      <button class="btn mag rv"><i></i><span data-en="Compare tiers" data-zh="比較會籍">Compare tiers</span></button>
+    </div>
   </div>
 </section>
 
@@ -402,7 +538,7 @@ footer li a:hover{color:var(--champagne)}
     <div class="head">
       <div>
         <p class="eyebrow rv" data-en="Ventures" data-zh="創業支援">Ventures</p>
-        <h2 class="serif rv" data-en="Where the network pays off." data-zh="網絡的回報。">Where the network pays off.</h2>
+        <h2 class="serif rv" data-en="Where the network pays off." data-zh="網絡回本嘅地方。">Where the network pays off.</h2>
       </div>
       <button class="btn mag rv"><i></i><span data-en="Partner with us" data-zh="成為合作夥伴">Partner with us</span></button>
     </div>
@@ -410,6 +546,50 @@ footer li a:hover{color:var(--champagne)}
       "We came for a Sunday run. We left with a co-founder, a mentor and a desk."
     </blockquote>
     <p class="muted rv" style="font-size:13px;letter-spacing:.1em;text-transform:uppercase">Lam Ho-yin · Founder, Tidal Sportswear · Cohort 2025</p>
+    <div class="vgrid">
+      <article class="vcard rv">
+        <span class="when">Cohort 2025 · Raised</span>
+        <h4>Tidal Sportswear</h4>
+        <p class="muted" data-en="Recycled-ocean-plastic kit, born on a Sai Kung paddle. Two members, one idea on the boat back, now stocked in nine Hong Kong shops." data-zh="用回收海洋塑膠做運動服，喺西貢划艇時諗到。兩個會員，返程船上諗出嚟，而家喺全港九間舖有售。">Recycled-ocean-plastic kit, born on a Sai Kung paddle. Two members, one idea on the boat back, now stocked in nine Hong Kong shops.</p>
+      </article>
+      <article class="vcard rv">
+        <span class="when">Cohort 2025 · Hiring</span>
+        <h4>Kōto Coaching</h4>
+        <p class="muted" data-en="Matches secondary students with sports coaches at rates families can actually afford. Started as a spreadsheet a member kept for her own team." data-zh="幫中學生配對負擔得起嘅運動教練。最初只係一個會員為自己隊伍整嘅 spreadsheet。">Matches secondary students with sports coaches at rates families can actually afford. Started as a spreadsheet a member kept for her own team.</p>
+      </article>
+      <article class="vcard rv">
+        <span class="when">Cohort 2026 · Incubating</span>
+        <h4>Districts</h4>
+        <p class="muted" data-en="A live map of every public court and pitch in Hong Kong, with real availability. Built by three members who got tired of turning up to locked gates." data-zh="全港公共球場實時地圖，睇到真正空檔。由三個受夠咗白行一趟嘅會員做出嚟。">A live map of every public court and pitch in Hong Kong, with real availability. Built by three members who got tired of turning up to locked gates.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="wrap stepsect" id="start">
+  <div class="head">
+    <div>
+      <p class="eyebrow rv" data-en="How to join" data-zh="點樣入會">How to join</p>
+      <h2 class="serif rv" data-en="Three steps. No interview." data-zh="三步。唔使面試。">Three steps. No interview.</h2>
+    </div>
+    <p class="muted rv" style="max-width:34ch;font-size:14px" data-en="You don't need to know anyone here. Nobody did on day one." data-zh="唔使識人先入到嚟。第一日嘅時候，個個都唔識人。">You don't need to know anyone here. Nobody did on day one.</p>
+  </div>
+  <div class="steps">
+    <div class="step rv">
+      <b>01</b>
+      <h4 data-en="Sign up in two minutes" data-zh="兩分鐘登記">Sign up in two minutes</h4>
+      <p class="muted" data-en="Name, email, age, the districts you can get to. No CV, no essay, no waiting list. You're in the same day." data-zh="姓名、電郵、年齡、你去到邊區。唔使 CV、唔使寫嘢、冇 waiting list。即日入到。">Name, email, age, the districts you can get to. No CV, no essay, no waiting list. You're in the same day.</p>
+    </div>
+    <div class="step rv">
+      <b>02</b>
+      <h4 data-en="Pick one thing and turn up" data-zh="揀一樣，然後嚟">Pick one thing and turn up</h4>
+      <p class="muted" data-en="Come alone — most people do. Every event has a host whose only job is making sure you're talking to someone within five minutes." data-zh="自己一個嚟——大部分人都係。每場活動都有主持，佢唯一工作就係確保你五分鐘內有人傾。">Come alone — most people do. Every event has a host whose only job is making sure you're talking to someone within five minutes.</p>
+    </div>
+    <div class="step rv">
+      <b>03</b>
+      <h4 data-en="Stay for what comes next" data-zh="留低睇下有咩跟住">Stay for what comes next</h4>
+      <p class="muted" data-en="The district group chat, the Sunday league, the mentor, the co-founder. None of it is planned. All of it starts the same way." data-zh="地區群組、星期日聯賽、導師、共同創辦人。全部都唔係計劃出嚟，但全部都由同一個起點開始。">The district group chat, the Sunday league, the mentor, the co-founder. None of it is planned. All of it starts the same way.</p>
+    </div>
   </div>
 </section>
 
@@ -419,30 +599,44 @@ footer li a:hover{color:var(--champagne)}
       <p class="eyebrow rv" data-en="Journal" data-zh="專欄">Journal</p>
       <h2 class="serif rv" data-en="From the network." data-zh="來自網絡。">From the network.</h2>
     </div>
+    <button class="btn mag rv"><i></i><span data-en="Read all" data-zh="睇晒全部">Read all</span></button>
   </div>
   <div class="posts">
     <article class="post rv">
       <span class="when">28 Jul 2026</span>
-      <h3 data-en="What 214 events taught us about turnout" data-zh="214 場活動教會我們的事">What 214 events taught us about turnout</h3>
-      <p class="muted" data-en="Free doesn't mean full. Here's what actually gets young people through the door on a Tuesday night." data-zh="免費不代表滿座。真正讓年輕人在平日晚上出現的原因。">Free doesn't mean full. Here's what actually gets young people through the door on a Tuesday night.</p>
+      <h3 data-en="What 214 events taught us about turnout" data-zh="214 場活動教識我哋嘅事">What 214 events taught us about turnout</h3>
+      <p class="muted" data-en="Free doesn't mean full. We looked at every sign-up we've ever taken and found the four things that actually get people through the door on a Tuesday night — none of them is price." data-zh="免費唔代表爆滿。我哋睇晒所有報名紀錄，搵到四樣真正令人喺星期二晚出門嘅嘢——冇一樣同價錢有關。">Free doesn't mean full. We looked at every sign-up we've ever taken and found the four things that actually get people through the door on a Tuesday night — none of them is price.</p>
+      <div class="pmeta"><span>Data</span><span>6 min read</span></div>
     </article>
     <article class="post rv">
       <span class="when">14 Jul 2026</span>
       <h3 data-en="Six incubators, plainly compared" data-zh="六間孵化器，坦白比較">Six incubators, plainly compared</h3>
-      <p class="muted" data-en="Equity, cohort length, what they actually give you. A straight guide for members deciding where to apply." data-zh="股權、培訓長度、實際資源。給會員的直接比較指南。">Equity, cohort length, what they actually give you. A straight guide for members deciding where to apply.</p>
+      <p class="muted" data-en="Equity taken, cohort length, what you actually get versus what the website says. Written for members deciding where to apply, with the awkward bits left in." data-zh="拎幾多股權、培訓幾長、實際攞到咩對比網站寫咩。專為決定申請邊間嘅會員而寫，尷尬嘅部分冇刪。">Equity taken, cohort length, what you actually get versus what the website says. Written for members deciding where to apply, with the awkward bits left in.</p>
+      <div class="pmeta"><span>Guide</span><span>11 min read</span></div>
     </article>
     <article class="post rv">
       <span class="when">02 Jul 2026</span>
-      <h3 data-en="The district map of youth sport" data-zh="青年體育的地區地圖">The district map of youth sport</h3>
-      <p class="muted" data-en="Where courts sit empty, where waitlists run long, and what that says about how the city is planned." data-zh="哪裡球場空置、哪裡輪候人龍最長，以及這反映了怎樣的城市規劃。">Where courts sit empty, where waitlists run long, and what that says about how the city is planned.</p>
+      <h3 data-en="The district map of youth sport" data-zh="青年運動嘅地區地圖">The district map of youth sport</h3>
+      <p class="muted" data-en="Where courts sit empty, where waitlists run six weeks deep, and what the gap between the two says about how this city gets planned." data-zh="邊度球場長期空置、邊度輪候六個星期，兩者之間嘅落差反映緊呢個城市點樣規劃。">Where courts sit empty, where waitlists run six weeks deep, and what the gap between the two says about how this city gets planned.</p>
+      <div class="pmeta"><span>Analysis</span><span>8 min read</span></div>
+    </article>
+    <article class="post rv">
+      <span class="when">19 Jun 2026</span>
+      <h3 data-en="How to walk into a room where you know nobody" data-zh="點樣行入一個你唔識人嘅場">How to walk into a room where you know nobody</h3>
+      <p class="muted" data-en="Practical, slightly unglamorous advice from the hosts who do this every week. Starts with arriving early, which nobody wants to hear." data-zh="由每星期都做緊呢件事嘅主持分享——實用但唔浪漫。第一條係早到，我知冇人想聽。">Practical, slightly unglamorous advice from the hosts who do this every week. Starts with arriving early, which nobody wants to hear.</p>
+      <div class="pmeta"><span>Members</span><span>4 min read</span></div>
     </article>
   </div>
 </section>
 
 <section class="band">
   <div class="wrap">
-    <h2 class="serif rv" data-en="Build the network with us." data-zh="與我們共建網絡。">Build the network with us.</h2>
-    <button class="btn mag rv"><i></i><span data-en="Start a conversation" data-zh="聯絡我們">Start a conversation</span></button>
+    <h2 class="serif rv" data-en="See you Thursday." data-zh="星期四見。">See you Thursday.</h2>
+    <p class="muted rv" data-en="Signing up costs nothing and commits you to nothing. Worst case, you go for one run and never come back." data-zh="登記唔使錢，亦唔使承諾任何嘢。最差情況，你跑咗一次就冇再嚟。">Signing up costs nothing and commits you to nothing. Worst case, you go for one run and never come back.</p>
+    <div class="btnrow rv">
+      <button class="btn solid mag"><i></i><span data-en="Join free" data-zh="免費加入">Join free</span></button>
+      <button class="btn mag"><i></i><span data-en="Partner or sponsor" data-zh="合作或贊助">Partner or sponsor</span></button>
+    </div>
   </div>
 </section>
 
@@ -451,14 +645,16 @@ footer li a:hover{color:var(--champagne)}
     <div class="fgrid">
       <div>
         <a href="#" class="logo">VI<b>V</b>A</a>
-        <p class="muted" style="font-size:14px;margin-top:18px;max-width:28ch" data-en="Viva Lifestyle Limited — youth, sport and recreation across Hong Kong." data-zh="活力生活有限公司——連結香港青年、體育與康樂。">Viva Lifestyle Limited — youth, sport and recreation across Hong Kong.</p>
+        <p class="muted" style="font-size:14px;margin-top:18px;max-width:30ch" data-en="Viva Lifestyle Limited — youth, sport and recreation across Hong Kong. Science Park, Shatin." data-zh="活力生活有限公司——連結香港青年、運動與康樂。沙田科學園。">Viva Lifestyle Limited — youth, sport and recreation across Hong Kong. Science Park, Shatin.</p>
       </div>
       <div>
         <h5 data-en="Explore" data-zh="瀏覽">Explore</h5>
         <ul>
-          <li><a href="#events" data-en="Events" data-zh="活動">Events</a></li>
+          <li><a href="#events" data-en="What we do" data-zh="我哋做乜">What we do</a></li>
+          <li><a href="#calendar" data-en="What's on" data-zh="近期活動">What's on</a></li>
           <li><a href="#circle" data-en="The Circle" data-zh="會員網絡">The Circle</a></li>
           <li><a href="#ventures" data-en="Ventures" data-zh="青年創業">Ventures</a></li>
+          <li><a href="#start" data-en="How to join" data-zh="點樣入會">How to join</a></li>
           <li><a href="#journal" data-en="Journal" data-zh="專欄">Journal</a></li>
         </ul>
       </div>
@@ -468,16 +664,19 @@ footer li a:hover{color:var(--champagne)}
           <li><a href="#" data-en="Sponsorship" data-zh="贊助">Sponsorship</a></li>
           <li><a href="#" data-en="Venue partners" data-zh="場地夥伴">Venue partners</a></li>
           <li><a href="#" data-en="Incubators" data-zh="孵化器">Incubators</a></li>
-          <li><a href="#" data-en="Volunteer" data-zh="義工">Volunteer</a></li>
+          <li><a href="#" data-en="Schools and NGOs" data-zh="學校及非牟利機構">Schools and NGOs</a></li>
+          <li><a href="#" data-en="Volunteer as a host" data-zh="做活動主持義工">Volunteer as a host</a></li>
+          <li><a href="#" data-en="Careers at Viva" data-zh="Viva 職位空缺">Careers at Viva</a></li>
         </ul>
       </div>
       <div>
         <h5 data-en="Monthly dispatch" data-zh="每月通訊">Monthly dispatch</h5>
-        <p class="muted" style="font-size:14px" data-en="New fixtures, open applications, one venture story." data-zh="新賽事、開放申請、一個創業故事。">New fixtures, open applications, one venture story.</p>
+        <p class="muted" style="font-size:14px" data-en="New fixtures, open applications, one venture story. Once a month, never more." data-zh="新賽事、開放申請、一個創業故事。每月一次，唔會多過。">New fixtures, open applications, one venture story. Once a month, never more.</p>
         <div class="sub">
           <input type="email" placeholder="name@email.com" aria-label="Email address">
           <button data-en="Join" data-zh="訂閱">Join</button>
         </div>
+        <p class="muted" style="font-size:12px;margin-top:14px" data-en="Unsubscribe in one click. We never sell your data." data-zh="一 click 就可以取消訂閱。我哋唔會賣你嘅資料。">Unsubscribe in one click. We never sell your data.</p>
       </div>
     </div>
     <div class="legal">
@@ -492,7 +691,7 @@ footer li a:hover{color:var(--champagne)}
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* marquee content */
-  var names=['Hong Kong Science Park','Cyberport','HKSTP Incubation','Sports Federation','Cocoon','Blueprint','Brinc','District Youth Council','Betatron','Mills Fabrica','Runway HK','Ocean Park'];
+  var names=['Hong Kong Science Park','Cyberport','HKSTP Incubation','Sports Federation','Cocoon','Blueprint','Brinc','District Youth Council','Betatron','Mills Fabrica','Runway HK','Ocean Park','Leisure & Cultural Services','Hong Kong Playground Association'];
   var tk=document.getElementById('tk');
   for(var r=0;r<2;r++) names.forEach(function(n){var s=document.createElement('span');s.textContent=n;tk.appendChild(s);});
 
@@ -515,7 +714,7 @@ footer li a:hover{color:var(--champagne)}
       var n=e.target.querySelector('[data-count]');
       if(n) count(n);
     });
-  },{threshold:.18,rootMargin:'0px 0px -8% 0px'});
+  },{threshold:.15,rootMargin:'0px 0px -6% 0px'});
   document.querySelectorAll('.rv,.rule,.line').forEach(function(el,i){
     el.style.transitionDelay=(i%4)*0.08+'s';
     io.observe(el);
@@ -541,7 +740,7 @@ footer li a:hover{color:var(--champagne)}
       dot.style.transform='translate('+mx+'px,'+my+'px)';});
     (function loop(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;
       ring.style.transform='translate('+rx+'px,'+ry+'px)';requestAnimationFrame(loop);})();
-    document.querySelectorAll('a,button,.card,.pillar,.tier').forEach(function(el){
+    document.querySelectorAll('a,button,.card,.pillar,.tier,.vcard,.step').forEach(function(el){
       el.addEventListener('mouseenter',function(){document.body.classList.add('hot')});
       el.addEventListener('mouseleave',function(){document.body.classList.remove('hot')});
     });
@@ -552,7 +751,7 @@ footer li a:hover{color:var(--champagne)}
     document.querySelectorAll('.mag').forEach(function(b){
       b.addEventListener('mousemove',function(e){
         var r=b.getBoundingClientRect();
-        b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.3)+'px,'+((e.clientY-r.top-r.height/2)*.45)+'px)';
+        b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.4)+'px)';
       });
       b.addEventListener('mouseleave',function(){b.style.transform='';});
     });
@@ -561,7 +760,7 @@ footer li a:hover{color:var(--champagne)}
       c.addEventListener('mousemove',function(e){
         var r=c.getBoundingClientRect();
         var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
-        c.style.transform='perspective(900px) rotateY('+(px*6)+'deg) rotateX('+(-py*6)+'deg)';
+        c.style.transform='perspective(900px) rotateY('+(px*5)+'deg) rotateX('+(-py*5)+'deg)';
       });
       c.addEventListener('mouseleave',function(){c.style.transform='';});
     });
