@@ -3,277 +3,159 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Viva Lifestyle — Hong Kong's most connected youth network</title>
-<meta name="description" content="Viva Lifestyle Limited runs sports and recreational events across Hong Kong and partners with youth start-up incubators to give young people support, resources and a network.">
+<title>Viva Lifestyle</title>
+<meta name="description" content="Viva Lifestyle Limited. Hong Kong. Membership by invitation.">
+<meta name="theme-color" content="#0A0E17">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,200;9..144,300;9..144,400&family=Inter:wght@300;400&family=Noto+Sans+TC:wght@300;400&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{
-  --ink:#0A0E17;
-  --navy:#121C31;
+  --ink:#080B12;
   --gold:#C9A227;
   --champagne:#E8C86A;
-  --pulse:#FF4B3E;
   --pearl:#F6F3EC;
   --display:"Fraunces","Noto Serif TC",Georgia,serif;
   --body:"Inter","Noto Sans TC",system-ui,sans-serif;
-  --pad:clamp(20px,5vw,80px);
-  --sect:clamp(88px,12vw,160px);
+  --pad:clamp(22px,6vw,96px);
+  --gap:clamp(120px,22vh,240px);
+  --line:rgba(201,162,39,.16);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{
-  background:var(--ink);color:var(--pearl);font-family:var(--body);
-  font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
-}
+body{background:var(--ink);color:var(--pearl);font-family:var(--body);font-weight:300;
+  line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body.locked{overflow:hidden}
 a{color:inherit;text-decoration:none}
-img{max-width:100%;display:block}
 ::selection{background:var(--gold);color:var(--ink)}
-:focus-visible{outline:2px solid var(--champagne);outline-offset:4px}
+:focus-visible{outline:1px solid var(--champagne);outline-offset:6px}
 
-.wrap{max-width:1440px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
-.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:400}
-.serif{font-family:var(--display);font-weight:300;letter-spacing:-.02em;line-height:1.04}
-.rule{height:1px;background:var(--gold);opacity:.45;transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.76,0,.24,1)}
-.rule.on{transform:scaleX(1)}
-.muted{color:rgba(246,243,236,.62)}
-.pearl-sect{background:var(--pearl);color:var(--ink)}
-.pearl-sect .muted{color:rgba(10,14,23,.62)}
-.pearl-sect .eyebrow{color:#8A6D12}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--pad)}
+.serif{font-family:var(--display);font-weight:200;letter-spacing:-.02em;line-height:1.05}
+.eyebrow{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:rgba(201,162,39,.8)}
+.muted{color:rgba(246,243,236,.42)}
 
-/* ---------- reveal ---------- */
-.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+/* atmosphere */
+body::after{content:"";position:fixed;inset:0;z-index:90;pointer-events:none;
+  background:radial-gradient(115% 80% at 50% 35%,transparent 38%,rgba(4,6,10,.68) 100%)}
+.grain{position:fixed;inset:0;z-index:91;pointer-events:none;opacity:.45;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E")}
+#prog{position:fixed;top:0;left:0;height:1px;background:var(--gold);z-index:95;width:0}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(20px);transition:opacity 1.6s cubic-bezier(.22,1,.36,1),transform 1.6s cubic-bezier(.22,1,.36,1)}
 .rv.on{opacity:1;transform:none}
-.line{display:block;overflow:hidden}
-.line>span{display:block;transform:translateY(105%);transition:transform 1s cubic-bezier(.76,0,.24,1)}
-.line.on>span{transform:none}
+.ln{display:block;overflow:hidden}
+.ln>span{display:block;transform:translateY(105%);transition:transform 1.5s cubic-bezier(.76,0,.24,1)}
+.ln.on>span{transform:none}
 
-/* ---------- cursor ---------- */
-#cur,#curRing{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;mix-blend-mode:difference}
-#cur{width:6px;height:6px;background:var(--champagne);margin:-3px 0 0 -3px}
-#curRing{width:44px;height:44px;border:1px solid rgba(201,162,39,.85);margin:-22px 0 0 -22px;transition:width .3s,height .3s,margin .3s,opacity .3s;opacity:.7}
-body.hot #curRing{width:72px;height:72px;margin:-36px 0 0 -36px;opacity:1}
-
-/* ---------- nav ---------- */
-header{position:fixed;inset:0 0 auto;z-index:900;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
-header.stuck{background:rgba(10,14,23,.82);backdrop-filter:blur(14px);border-bottom-color:rgba(201,162,39,.22)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:80px}
-.logo{font-family:var(--display);font-size:24px;letter-spacing:.16em;font-weight:400}
-.logo b{color:var(--gold);font-weight:400}
-.links{display:flex;gap:30px;align-items:center}
-.links a{font-size:13px;letter-spacing:.05em;position:relative;padding:4px 0}
-.links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--gold);transition:right .4s cubic-bezier(.76,0,.24,1)}
-.links a:hover::after{right:0}
-.navtools{display:flex;gap:18px;align-items:center}
-.lang{display:flex;border:1px solid rgba(201,162,39,.4);border-radius:999px;overflow:hidden}
-.lang button{background:none;border:0;color:var(--pearl);font:inherit;font-size:11px;letter-spacing:.1em;padding:6px 12px;cursor:pointer;transition:background .3s,color .3s}
-.lang button.act{background:var(--gold);color:var(--ink)}
+/* header */
+header{position:fixed;inset:0 0 auto;z-index:80;transition:background .5s,border-color .5s;border-bottom:1px solid transparent}
+header.stuck{background:rgba(8,11,18,.86);backdrop-filter:blur(16px);border-bottom-color:var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:78px}
+.logo{font-family:var(--display);font-size:20px;letter-spacing:.34em;font-weight:300}
+.logo b{color:var(--gold);font-weight:300}
+.links{display:flex;gap:34px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase}
+.links a{opacity:.55;transition:opacity .4s,color .4s}
+.links a:hover{opacity:1;color:var(--champagne)}
+.tools{display:flex;gap:16px;align-items:center}
+.lang{display:flex;gap:10px;font-size:10px;letter-spacing:.16em}
+.lang button{background:none;border:0;color:rgba(246,243,236,.35);cursor:pointer;padding:2px;transition:color .3s}
+.lang button.act{color:var(--champagne)}
 .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
-.burger span{display:block;width:26px;height:1px;background:var(--pearl);margin:6px 0;transition:transform .35s,opacity .3s}
-body.menu .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger span{display:block;width:22px;height:1px;background:var(--pearl);margin:5px 0;transition:transform .4s,opacity .3s}
+body.menu .burger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
 body.menu .burger span:nth-child(2){opacity:0}
-body.menu .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-.sheet{position:fixed;inset:0;z-index:880;background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:0 var(--pad);
-  clip-path:inset(0 0 100% 0);transition:clip-path .7s cubic-bezier(.76,0,.24,1);pointer-events:none}
+body.menu .burger span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.sheet{position:fixed;inset:0;z-index:75;background:var(--ink);display:flex;flex-direction:column;justify-content:center;
+  padding:0 var(--pad);clip-path:inset(0 0 100% 0);transition:clip-path .8s cubic-bezier(.76,0,.24,1);pointer-events:none}
 body.menu .sheet{clip-path:inset(0 0 0 0);pointer-events:auto}
-.sheet a{font-family:var(--display);font-size:clamp(28px,7vw,48px);font-weight:300;padding:8px 0;opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.sheet a{font-family:var(--display);font-weight:200;font-size:clamp(28px,9vw,50px);padding:12px 0;
+  opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
 body.menu .sheet a{opacity:1;transform:none}
+@media(max-width:820px){.links{display:none}.burger{display:block}}
 
-/* ---------- buttons ---------- */
-.btn{position:relative;display:inline-block;overflow:hidden;border:1px solid var(--gold);border-radius:999px;
-  padding:15px 34px;font-size:13px;letter-spacing:.08em;color:var(--champagne);background:none;cursor:pointer;font-family:var(--body);
-  transition:color .35s,transform .3s cubic-bezier(.2,.8,.2,1)}
-.btn i{position:absolute;inset:0;background:var(--gold);transform:translateY(101%);transition:transform .5s cubic-bezier(.76,0,.24,1);z-index:0}
-.btn span{position:relative;z-index:1}
-.btn:hover{color:var(--ink)}
-.btn:hover i{transform:translateY(0)}
-.btn.solid{border-color:var(--pulse);color:var(--pulse)}
-.btn.solid i{background:var(--pulse)}
-.btn.solid:hover{color:var(--pearl)}
-.pearl-sect .btn{border-color:var(--ink);color:var(--ink)}
-.pearl-sect .btn i{background:var(--ink)}
-.pearl-sect .btn:hover{color:var(--pearl)}
-.btnrow{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+/* link-button */
+.act-link{display:inline-flex;align-items:center;gap:14px;font-size:11.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--champagne);padding:6px 0;position:relative}
+.act-link::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:rgba(201,162,39,.4);
+  transform:scaleX(1);transform-origin:right;transition:transform .6s cubic-bezier(.76,0,.24,1)}
+.act-link:hover::after{transform:scaleX(0)}
+.act-link em{font-style:normal;transition:transform .5s}
+.act-link:hover em{transform:translateX(5px)}
 
-/* ---------- hero ---------- */
-.hero{min-height:100svh;display:flex;align-items:flex-end;position:relative;padding-bottom:clamp(48px,7vh,80px);padding-top:130px;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg::before{content:"";position:absolute;inset:0;
-  background:radial-gradient(120% 90% at 78% 18%,rgba(201,162,39,.16),transparent 62%),
-             radial-gradient(90% 70% at 12% 88%,rgba(255,75,62,.12),transparent 60%),var(--ink)}
-.ghost{position:absolute;left:0;right:0;top:36%;font-family:var(--display);font-size:min(19vw,260px);line-height:1;
-  color:rgba(246,243,236,.035);white-space:nowrap;letter-spacing:.02em;user-select:none}
-.hero-inner{position:relative;z-index:2;width:100%}
-.hero h1{font-size:clamp(44px,8.6vw,128px);margin:24px 0 0}
+/* hero */
+.hero{min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding:130px 0 90px;position:relative}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(90% 60% at 72% 26%,rgba(201,162,39,.11),transparent 60%)}
+.hero h1{font-size:clamp(42px,8vw,116px);margin:34px 0 0}
 .hero h1 em{font-style:normal;color:var(--champagne)}
-.hero-foot{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end;justify-content:space-between;margin-top:clamp(28px,4vw,44px)}
-.hero-foot p{max-width:46ch;font-size:15px}
-.hstats{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
-.chip{border:1px solid rgba(201,162,39,.32);border-radius:999px;padding:7px 16px;font-size:12px;letter-spacing:.05em;color:rgba(246,243,236,.7)}
-.chip b{color:var(--champagne);font-weight:400}
-.cue{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,243,236,.5)}
-.cue .bar{width:52px;height:1px;background:rgba(201,162,39,.6);position:relative;overflow:hidden}
-.cue .bar::after{content:"";position:absolute;inset:0;background:var(--champagne);animation:slide 2.4s infinite}
-@keyframes slide{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+.hero .sub{margin-top:clamp(34px,5vw,52px);max-width:34ch;font-size:15px;color:rgba(246,243,236,.5)}
+.hero .cta{margin-top:44px}
 
-/* ---------- marquee ---------- */
-.strip{border-top:1px solid rgba(201,162,39,.22);border-bottom:1px solid rgba(201,162,39,.22);overflow:hidden;padding:26px 0}
-.track{display:flex;gap:72px;width:max-content;animation:roll 40s linear infinite}
+/* marquee */
+.strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;padding:22px 0}
+.track{display:flex;gap:80px;width:max-content;animation:roll 56s linear infinite}
 .strip:hover .track{animation-play-state:paused}
 @keyframes roll{to{transform:translateX(-50%)}}
-.track span{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,243,236,.42);white-space:nowrap;transition:color .3s}
-.track span:hover{color:var(--champagne)}
+.track span{font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:rgba(246,243,236,.22);white-space:nowrap}
 
-/* ---------- manifesto ---------- */
-.manifesto{padding:var(--sect) 0;text-align:center}
-.manifesto p{font-family:var(--display);font-weight:300;font-size:clamp(22px,3.1vw,40px);line-height:1.34;max-width:19ch;margin:34px auto}
-.manifesto p b{font-weight:400;color:var(--champagne)}
+/* generic section */
+section.blk{padding:var(--gap) 0}
+.label{margin-bottom:clamp(40px,6vw,68px)}
+h2.big{font-size:clamp(28px,4.4vw,58px)}
 
-/* ---------- pillars ---------- */
-.pillars{padding:0 0 var(--sect)}
-.head{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:56px}
-.head h2{font-size:clamp(30px,4.6vw,64px)}
-.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;background:rgba(201,162,39,.22)}
-.pillar{background:var(--ink);padding:44px 34px 40px;position:relative;transition:background .5s;display:flex;flex-direction:column}
-.pillar:hover{background:var(--navy)}
-.pillar .stat{font-family:var(--display);font-size:44px;color:var(--gold);line-height:1;margin-bottom:6px}
-.pillar h3{font-family:var(--display);font-weight:400;font-size:26px;margin:24px 0 12px}
-.pillar>p{font-size:14px}
-.plist{list-style:none;margin:20px 0 22px;flex:1}
-.plist li{font-size:13px;padding-left:18px;position:relative;margin-bottom:9px;color:rgba(246,243,236,.58);line-height:1.55}
-.plist li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--gold)}
-.pillar .go{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--champagne);opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
-.pillar:hover .go{opacity:1;transform:none}
+/* triad */
+.triad{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:clamp(34px,5vw,64px)}
+.triad div b{display:block;font-family:var(--display);font-weight:200;font-size:clamp(40px,5.6vw,72px);
+  color:var(--gold);line-height:1}
+.triad div span{display:block;font-family:var(--display);font-weight:300;font-size:22px;margin-top:18px}
 
-/* ---------- rail ---------- */
-.rail-sect{padding:0 0 var(--sect)}
-.rail{display:flex;gap:24px;overflow-x:auto;padding:0 var(--pad) 12px;scrollbar-width:none;cursor:grab;scroll-snap-type:x proximity}
-.rail::-webkit-scrollbar{display:none}
-.rail.drag{cursor:grabbing;scroll-snap-type:none}
-.card{flex:0 0 clamp(270px,32vw,400px);scroll-snap-align:start;background:var(--navy);border:1px solid rgba(201,162,39,.2);
-  border-radius:2px;padding:32px 28px 28px;display:flex;flex-direction:column;transition:border-color .4s,transform .25s ease-out;user-select:none}
-.card:hover{border-color:var(--gold)}
-.card .when{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
-.card h3{font-family:var(--display);font-weight:300;font-size:clamp(23px,2.5vw,32px);margin:14px 0 12px;line-height:1.12}
-.card>p{font-size:14px}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 0}
-.tag{font-size:10px;letter-spacing:.13em;text-transform:uppercase;border:1px solid rgba(201,162,39,.3);border-radius:999px;padding:4px 10px;color:rgba(246,243,236,.55)}
-.det{font-size:12.5px;color:rgba(246,243,236,.5);border-top:1px solid rgba(201,162,39,.14);margin-top:18px;padding-top:14px;flex:1}
-.det span{display:block;margin-bottom:5px}
-.card .meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(201,162,39,.2);padding-top:16px;margin-top:16px;font-size:12px;letter-spacing:.06em}
-.dot{display:inline-flex;align-items:center;gap:7px;color:var(--pulse)}
-.dot::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pulse);animation:pulse 1.8s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-.railhint{display:flex;gap:10px;align-items:center;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,243,236,.4);margin-top:22px}
+/* bare list */
+.list{border-top:1px solid var(--line)}
+.list a,.list div.row{display:flex;justify-content:space-between;align-items:baseline;gap:24px;
+  padding:24px 0;border-bottom:1px solid var(--line);transition:padding-left .5s,color .4s}
+.list a:hover{padding-left:14px;color:var(--champagne)}
+.list .n{font-family:var(--display);font-weight:300;font-size:clamp(19px,2.4vw,27px);line-height:1.2}
+.list .d{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,243,236,.3);white-space:nowrap}
 
-/* ---------- impact ---------- */
-.impact{padding:var(--sect) 0}
-.inote{max-width:54ch;font-size:15px;margin-top:22px}
-.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:48px 32px;margin-top:56px}
-.num b{display:block;font-family:var(--display);font-weight:300;font-size:clamp(44px,6vw,80px);line-height:1;font-variant-numeric:tabular-nums}
-.num .rule{margin:18px 0 14px}
-.num small{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.65;display:block}
-.num em{font-style:normal;display:block;font-size:13px;margin-top:10px;color:rgba(10,14,23,.6)}
+/* withheld */
+.wh{display:flex;align-items:flex-start;gap:11px;font-size:12px;line-height:1.6;
+  color:rgba(246,243,236,.3);margin-top:26px;max-width:46ch}
+.wh::before{content:"";flex:none;width:8px;height:8px;margin-top:6px;
+  border:1px solid rgba(201,162,39,.5);
+  background:repeating-linear-gradient(45deg,rgba(201,162,39,.3) 0 2px,transparent 2px 4px)}
 
-/* ---------- split ---------- */
-.split{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,6vw,90px);align-items:center;padding:var(--sect) 0}
-.frame{aspect-ratio:4/5;background:linear-gradient(150deg,var(--navy),#1D2A45);border:1px solid rgba(201,162,39,.28);position:relative;overflow:hidden}
-.frame::after{content:"";position:absolute;inset:14px;border:1px solid rgba(201,162,39,.28)}
-.frame span{position:absolute;left:0;right:0;bottom:34px;text-align:center;font-family:var(--display);font-size:clamp(26px,3.6vw,46px);color:rgba(246,243,236,.16)}
-.tiers{border-top:1px solid rgba(201,162,39,.24);margin-top:34px}
-.tier{border-bottom:1px solid rgba(201,162,39,.24);padding:22px 0;cursor:pointer}
-.tier .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
-.tier h4{font-family:var(--display);font-weight:400;font-size:22px;transition:color .3s}
-.tier:hover h4,.tier.open h4{color:var(--champagne)}
-.tier .price{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);white-space:nowrap}
-.tier .body{max-height:0;overflow:hidden;transition:max-height .55s cubic-bezier(.76,0,.24,1)}
-.tier.open .body{max-height:520px}
-.tier .body p{font-size:14px;padding-top:14px}
-.tier .body ul{list-style:none;margin-top:14px}
-.tier .body li{font-size:13px;padding-left:18px;position:relative;margin-bottom:8px;color:rgba(246,243,236,.6)}
-.tier .body li::before{content:"";position:absolute;left:0;top:10px;width:8px;height:1px;background:var(--gold)}
+/* numbers */
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:clamp(34px,5vw,56px)}
+.nums div b{display:block;font-family:var(--display);font-weight:200;font-size:clamp(36px,5vw,64px);
+  line-height:1;font-variant-numeric:tabular-nums}
+.nums div small{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(246,243,236,.3);margin-top:16px}
 
-/* ---------- ventures ---------- */
-.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1px;background:rgba(10,14,23,.16);margin-top:52px}
-.vcard{background:var(--pearl);padding:34px 28px}
-.vcard .when{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#8A6D12}
-.vcard h4{font-family:var(--display);font-weight:400;font-size:23px;margin:12px 0 10px}
-.vcard p{font-size:14px}
+/* quote */
+.quote{font-family:var(--display);font-weight:200;font-size:clamp(24px,4vw,52px);line-height:1.28;max-width:20ch}
+.attr{margin-top:34px;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:rgba(246,243,236,.3)}
 
-/* ---------- steps ---------- */
-.stepsect{padding:var(--sect) 0}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:38px;margin-top:52px}
-.step{border-top:1px solid rgba(201,162,39,.3);padding-top:22px}
-.step b{font-family:var(--display);font-size:40px;color:var(--gold);font-weight:300;line-height:1;display:block}
-.step h4{font-family:var(--display);font-weight:400;font-size:21px;margin:16px 0 10px}
-.step p{font-size:14px}
+/* three words */
+.words{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:clamp(30px,5vw,60px)}
+.words div{border-top:1px solid var(--line);padding-top:22px}
+.words div i{font-style:normal;font-size:10px;letter-spacing:.24em;color:rgba(201,162,39,.7)}
+.words div span{display:block;font-family:var(--display);font-weight:300;font-size:clamp(20px,2.6vw,28px);margin-top:16px}
 
-/* ---------- journal ---------- */
-.journal{padding:0 0 var(--sect)}
-.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px}
-.post{border-top:1px solid rgba(201,162,39,.3);padding-top:22px;transition:border-color .4s}
-.post:hover{border-color:var(--gold)}
-.post .when{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
-.post h3{font-family:var(--display);font-weight:300;font-size:23px;margin:14px 0 12px;line-height:1.2}
-.post p{font-size:14px}
-.pmeta{display:flex;gap:14px;font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:rgba(246,243,236,.4);margin-top:14px}
+/* closing */
+.close{text-align:center;padding:var(--gap) 0;border-top:1px solid var(--line)}
+.close h2{font-size:clamp(28px,5.2vw,68px);margin-bottom:38px}
 
-/* ---------- band ---------- */
-.band{border-top:1px solid rgba(201,162,39,.35);border-bottom:1px solid rgba(201,162,39,.35);padding:clamp(56px,8vw,96px) 0;text-align:center}
-.band h2{font-size:clamp(30px,5.4vw,74px);margin-bottom:20px}
-.band p{max-width:44ch;margin:0 auto 30px;font-size:15px}
-.band .btnrow{justify-content:center}
+/* footer */
+footer{padding:56px 0 44px;border-top:1px solid var(--line)}
+.fin{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;font-size:11px;
+  letter-spacing:.12em;color:rgba(246,243,236,.26)}
+.fin a:hover{color:var(--champagne)}
 
-/* ---------- footer ---------- */
-footer{padding:var(--sect) 0 48px}
-.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:44px}
-footer h5{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:20px}
-footer ul{list-style:none}
-footer li{margin-bottom:10px;font-size:14px}
-footer li a:hover{color:var(--champagne)}
-.sub{display:flex;border-bottom:1px solid rgba(201,162,39,.45);padding-bottom:8px;margin-top:8px}
-.sub input{flex:1;background:none;border:0;color:var(--pearl);font:inherit;font-size:14px;padding:6px 0}
-.sub input::placeholder{color:rgba(246,243,236,.35)}
-.sub button{background:none;border:0;color:var(--champagne);font:inherit;font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
-.legal{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;margin-top:70px;padding-top:26px;border-top:1px solid rgba(201,162,39,.2);font-size:12px;opacity:.55}
-
-/* ---------- atmosphere ---------- */
-body::after{content:"";position:fixed;inset:0;z-index:940;pointer-events:none;
-  background:radial-gradient(120% 90% at 50% 40%,transparent 42%,rgba(5,7,12,.55) 100%)}
-.grain{position:fixed;inset:0;z-index:941;pointer-events:none;opacity:.5;mix-blend-mode:overlay;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.22'/%3E%3C/svg%3E")}
-
-/* withheld information */
-.withheld{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;line-height:1.55;
-  color:rgba(246,243,236,.38);letter-spacing:.02em;margin-top:18px}
-.withheld::before{content:"";flex:none;width:9px;height:9px;margin-top:6px;border-radius:1px;
-  border:1px solid rgba(201,162,39,.55);background:repeating-linear-gradient(45deg,rgba(201,162,39,.35) 0 2px,transparent 2px 4px)}
-.pearl-sect .withheld{color:rgba(10,14,23,.42)}
-.veil{filter:blur(4px);opacity:.45;transition:filter .7s ease,opacity .7s ease}
-.veil:hover,.veil:focus-within{filter:none;opacity:1}
-
-/* slower, deeper reveals */
-.rv{transition-duration:1.4s}
-.line>span{transition-duration:1.3s}
-
-/* ---------- progress ---------- */
-#prog{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:950;width:0}
-
-@media(max-width:1080px){.links{display:none}.burger{display:block}}
-@media(max-width:900px){
-  .navtools .btn{display:none}
-  .split{grid-template-columns:1fr}
-  .fgrid{grid-template-columns:1fr 1fr}
-  #cur,#curRing{display:none}
-}
-@media(max-width:560px){.fgrid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition-duration:.01ms!important}
-  .rv,.line>span{opacity:1;transform:none}
-  .rule{transform:scaleX(1)}
+  .rv,.ln>span{opacity:1;transform:none}
 }
 </style>
 </head>
@@ -281,357 +163,132 @@ body::after{content:"";position:fixed;inset:0;z-index:940;pointer-events:none;
 
 <div id="prog"></div>
 <div class="grain"></div>
-<div id="cur"></div><div id="curRing"></div>
 
 <header id="hd">
   <div class="wrap nav">
     <a href="#" class="logo">VI<b>V</b>A</a>
     <nav class="links">
-      <a href="#events" data-en="What we do" data-zh="我們的工作">What we do</a>
-      <a href="#calendar" data-en="The season" data-zh="本季日程">The season</a>
+      <a href="#season" data-en="The season" data-zh="本季">The season</a>
       <a href="#circle" data-en="The Circle" data-zh="會員網絡">The Circle</a>
-      <a href="#ventures" data-en="Ventures" data-zh="創業">Ventures</a>
-      <a href="#start" data-en="Invitation" data-zh="入會邀請">Invitation</a>
-      <a href="#journal" data-en="Journal" data-zh="專欄">Journal</a>
-      <a href="card.html" data-en="Member card" data-zh="會員卡">Member card</a>
+      <a href="enquiry.html" data-en="Enquiries" data-zh="查詢">Enquiries</a>
     </nav>
-    <div class="navtools">
+    <div class="tools">
       <div class="lang">
         <button class="act" data-lang="en">EN</button>
         <button data-lang="zh">繁中</button>
       </div>
-      <button data-go="enquiry.html" class="btn mag"><i></i><span data-en="Make an enquiry" data-zh="提交查詢">Make an enquiry</span></button>
       <button class="burger" id="bg" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
 <div class="sheet" id="sheet">
-  <a href="#events" data-en="What we do" data-zh="我們的工作">What we do</a>
-  <a href="#calendar" data-en="The season" data-zh="本季日程">The season</a>
+  <a href="#season" data-en="The season" data-zh="本季">The season</a>
   <a href="#circle" data-en="The Circle" data-zh="會員網絡">The Circle</a>
-  <a href="#ventures" data-en="Ventures" data-zh="創業">Ventures</a>
-  <a href="#start" data-en="Invitation" data-zh="入會邀請">Invitation</a>
-  <a href="#journal" data-en="Journal" data-zh="專欄">Journal</a>
-  <a href="card.html" data-en="Member card" data-zh="會員卡">Member card</a>
+  <a href="enquiry.html" data-en="Enquiries" data-zh="查詢">Enquiries</a>
 </div>
 
-<section class="hero">
-  <div class="hero-bg"><div class="ghost">SPORT · COMMUNITY · VENTURE · SPORT</div></div>
-  <div class="wrap hero-inner">
-    <p class="eyebrow rv" data-en="Hong Kong · By invitation · Established 2024" data-zh="香港 · 憑邀請入會 · 二〇二四年創立">Hong Kong · By invitation · Established 2024</p>
-    <h1 class="serif">
-      <span class="line"><span>The city moves</span></span>
-      <span class="line"><span>when its youth</span></span>
-      <span class="line"><span><em>connect.</em></span></span>
-    </h1>
-    <div class="hero-foot">
-      <p class="rv muted" data-en="A private network of young people in Hong Kong. Membership is by invitation. Enquiries are read by a person, and answered." data-zh="香港一個以青年為本的私人網絡。會籍憑邀請。所有查詢均由專人閱覽並回覆。">A private network of young people in Hong Kong. Membership is by invitation. Enquiries are read by a person, and answered.</p>
-      <div class="cue rv"><span class="bar"></span><span data-en="Scroll" data-zh="向下瀏覽">Scroll</span></div>
-    </div>
-    <div class="btnrow rv">
-      <button data-go="enquiry.html" class="btn solid mag"><i></i><span data-en="Make an enquiry" data-zh="提交查詢">Make an enquiry</span></button>
-    </div>
+<!-- ---------- hero ---------- -->
+<section class="hero wrap">
+  <p class="eyebrow rv" data-en="Hong Kong · By invitation" data-zh="香港 · 憑邀請入會">Hong Kong · By invitation</p>
+  <h1 class="serif">
+    <span class="ln"><span>The city moves</span></span>
+    <span class="ln"><span>when its youth</span></span>
+    <span class="ln"><span><em>connect.</em></span></span>
+  </h1>
+  <p class="sub rv" data-en="A private network of young people in Hong Kong." data-zh="香港一個以青年為本的私人網絡。">A private network of young people in Hong Kong.</p>
+  <div class="cta rv">
+    <a class="act-link" href="enquiry.html"><span data-en="Enquire" data-zh="提交查詢">Enquire</span><em>→</em></a>
   </div>
 </section>
 
-<div class="strip">
-  <div class="track" id="tk"></div>
-</div>
+<div class="strip"><div class="track" id="tk"></div></div>
 
-<section class="wrap manifesto">
-  <div class="rule"></div>
-  <p class="rv">A network isn't built in a boardroom. It's built on a court at 8pm, on a trail at sunrise, in a room where someone finally says <b>yes, I'll help you.</b></p>
-  <div class="rule"></div>
+<!-- ---------- manifesto ---------- -->
+<section class="blk wrap">
+  <p class="quote rv" style="margin:0 auto;text-align:center;max-width:22ch">A network is not built in a boardroom.</p>
 </section>
 
-<section class="wrap pillars" id="events">
-  <div class="head">
-    <div>
-      <p class="eyebrow rv" data-en="What we do" data-zh="我們的工作">What we do</p>
-      <h2 class="serif rv" data-en="Three ways in." data-zh="三個入口。">Three ways in.</h2>
-    </div>
-    <p class="muted rv" style="max-width:38ch;font-size:14px" data-en="Each leads to the same room. Most members arrive through the first and remain for the third." data-zh="三者通往同一處。多數會員由第一項開始，最終留在第三項。">Each leads to the same room. Most members arrive through the first and remain for the third.</p>
-  </div>
-  <div class="grid3">
-    <article class="pillar tilt rv">
-      <span class="stat">52</span>
-      <p class="eyebrow" data-en="Fixtures a year" data-zh="每年賽事">Fixtures a year</p>
-      <h3 data-en="Sport" data-zh="運動">Sport</h3>
-      <p class="muted" data-en="Fifty-two fixtures a year, across eighteen districts. Ability is not the qualification." data-zh="一年五十二場賽事，遍及十八區。技術水平並非入選條件。">Fifty-two fixtures a year, across eighteen districts. Ability is not the qualification.</p>
-      <p class="withheld" data-en="The calendar is circulated to members only." data-zh="日程僅向會員發放。">The calendar is circulated to members only.</p>
-      <span class="go" data-en="The season →" data-zh="本季日程 →">The season →</span>
-    </article>
-    <article class="pillar tilt rv">
-      <span class="stat">30+</span>
-      <p class="eyebrow" data-en="Venues and partners" data-zh="場地及夥伴">Venues and partners</p>
-      <h3 data-en="Recreation" data-zh="康樂">Recreation</h3>
-      <p class="muted" data-en="Rooftop rooms, ridge walks, and one evening in December the city hears about afterwards." data-zh="天台聚會、山脊漫步，以及十二月一個令全城事後談論的晚上。">Rooftop rooms, ridge walks, and one evening in December the city hears about afterwards.</p>
-      <p class="withheld" data-en="Some of it is announced. Some of it is not." data-zh="有些會公布，有些不會。">Some of it is announced. Some of it is not.</p>
-      <span class="go" data-en="This season →" data-zh="本季 →">This season →</span>
-    </article>
-    <article class="pillar tilt rv">
-      <span class="stat">12</span>
-      <p class="eyebrow" data-en="Incubator partners" data-zh="合作孵化器">Incubator partners</p>
-      <h3 data-en="Ventures" data-zh="創業">Ventures</h3>
-      <p class="muted" data-en="Twelve incubators, a bench of mentors, and introductions made quietly and followed up." data-zh="十二間孵化器、一群導師，以及低調而持續的引薦。">Twelve incubators, a bench of mentors, and introductions made quietly and followed up.</p>
-      <p class="withheld" data-en="We say which door, and when." data-zh="我們會告知敲哪一道門，以及何時。">We say which door, and when.</p>
-      <span class="go" data-en="The ventures →" data-zh="創業團隊 →">The ventures →</span>
-    </article>
+<!-- ---------- triad ---------- -->
+<section class="blk wrap">
+  <div class="triad">
+    <div class="rv"><b>52</b><span data-en="Sport" data-zh="運動">Sport</span></div>
+    <div class="rv"><b>30+</b><span data-en="Recreation" data-zh="康樂">Recreation</span></div>
+    <div class="rv"><b>12</b><span data-en="Ventures" data-zh="創業">Ventures</span></div>
   </div>
 </section>
 
-<section class="rail-sect" id="calendar">
-  <div class="wrap head">
-    <div>
-      <p class="eyebrow rv" data-en="The season" data-zh="本季">The season</p>
-      <h2 class="serif rv" data-en="The season ahead." data-zh="未來的日程。">The season ahead.</h2>
-    </div>
-    <button data-go="#calendar" class="btn mag rv"><i></i><span data-en="Full calendar" data-zh="完整日程">Full calendar</span></button>
+<!-- ---------- season ---------- -->
+<section class="blk wrap" id="season">
+  <div class="label rv">
+    <p class="eyebrow" data-en="The season" data-zh="本季">The season</p>
+    <h2 class="serif big" style="margin-top:16px" data-en="What is next." data-zh="接下來。">What is next.</h2>
   </div>
-  <div class="rail" id="rail">
-    <article class="card tilt">
-      <span class="when">Sat 23 Aug · 7:30pm · Central Harbourfront</span>
-      <h3>Harbour Night Run</h3>
-      <p class="muted" data-en="Five kilometres along the water after dark, then street food and a live set. Three pace groups, and a sweeper at the back." data-zh="入夜後沿海岸五公里，隨後為街頭美食及現場演出。設三個配速組，並有收隊人員殿後。">Five kilometres along the water after dark, then street food and a live set. Three pace groups, and a sweeper at the back.</p>
-      <p class="withheld" data-en="The meeting point is sent to members twenty-four hours before." data-zh="集合地點於二十四小時前發予會員。">The meeting point is sent to members twenty-four hours before.</p>
-      <div class="meta"><span class="dot">18 spots left</span><span class="muted">Free</span></div>
-    </article>
-    <article class="card tilt">
-      <span class="when">Sun 07 Sep · 2:00pm · Kwun Tong</span>
-      <h3>Rooftop Pickleball Social</h3>
-      <p class="muted" data-en="Rotating doubles on a rooftop court — six partners in an afternoon. Equipment is provided. Experience is not expected." data-zh="天台球場輪換雙打，一個下午六位拍檔。設備由主辦提供，不設經驗要求。">Rotating doubles on a rooftop court — six partners in an afternoon. Equipment is provided. Experience is not expected.</p>
-      <p class="withheld" data-en="Address on confirmation. Nothing to bring." data-zh="確認後另行奉告地址。無須攜帶任何物品。">Address on confirmation. Nothing to bring.</p>
-      <div class="meta"><span class="dot">6 spots left</span><span class="muted">HK$120</span></div>
-    </article>
-    <article class="card tilt">
-      <span class="when">Fri 19 Sep · 7:00pm · Science Park</span>
-      <h3>Founders' Table</h3>
-      <p class="muted" data-en="Twelve seats, four founders, one long dinner. Each guest brings a problem they have been avoiding, and leaves with three introductions." data-zh="十二個席位、四位創辦人、一頓長談的晚宴。每位賓客帶來一個一直迴避的難題，離席時獲三項引薦。">Twelve seats, four founders, one long dinner. Each guest brings a problem they have been avoiding, and leaves with three introductions.</p>
-      <p class="withheld" data-en="Twelve seats. Those who have one will know." data-zh="十二個席位。獲邀者自會知悉。">Twelve seats. Those who have one will know.</p>
-      <div class="meta"><span class="muted">Members only</span><span class="muted">Invitation</span></div>
-    </article>
-    <article class="card tilt">
-      <span class="when">Sat 11 Oct · 5:30am · Sai Kung</span>
-      <h3>Sunrise Trail &amp; Breakfast</h3>
-      <p class="muted" data-en="A nine-kilometre ridge walk beginning in darkness and ending with breakfast at the pier. Transport is arranged." data-zh="九公里山脊路線，於黑暗中出發，以碼頭早餐作結。交通已安排妥當。">A nine-kilometre ridge walk beginning in darkness and ending with breakfast at the pier. Transport is arranged.</p>
-      <p class="withheld" data-en="The coach leaves once. The departure point is not yet disclosed." data-zh="旅遊巴只開出一班。上車地點暫不公布。">The coach leaves once. The departure point is not yet disclosed.</p>
-      <div class="meta"><span class="dot">31 spots left</span><span class="muted">HK$80</span></div>
-    </article>
-    <article class="card tilt">
-      <span class="when">Thu 30 Oct · 7:00pm · Sheung Wan</span>
-      <h3>First Job, Real Talk</h3>
-      <p class="muted" data-en="Six people five years into the careers you are considering, answering the questions an interview does not permit." data-zh="六位在你所考慮的行業任職五年的人，回答面試場合不容許的問題。">Six people five years into the careers you are considering, answering the questions an interview does not permit.</p>
-      <p class="withheld" data-en="The six speakers are not named in advance." data-zh="六位講者事前不予公布。">The six speakers are not named in advance.</p>
-      <div class="meta"><span class="dot">44 spots left</span><span class="muted">Free</span></div>
-    </article>
-    <article class="card tilt">
-      <span class="when">Sat 06 Dec · 7:00pm · TBC</span>
-      <h3>The Viva Gala</h3>
-      <p class="muted" data-en="One evening, six hundred members, the year's ventures on stage. Tables of ten. Black tie." data-zh="一個晚上、六百位會員、全年創業團隊登台。十人一席。正式禮服。">One evening, six hundred members, the year's ventures on stage. Tables of ten. Black tie.</p>
-      <p class="withheld" data-en="The venue is announced in September, and not before." data-zh="場地於九月公布，不會提前。">The venue is announced in September, and not before.</p>
-      <div class="meta"><span class="muted">Registration opens Oct</span><span class="muted">—</span></div>
-    </article>
+  <div class="list rv">
+    <div class="row"><span class="n">Harbour Night Run</span><span class="d">23 Aug</span></div>
+    <div class="row"><span class="n">Rooftop Social</span><span class="d">07 Sep</span></div>
+    <div class="row"><span class="n">Founders' Table</span><span class="d">19 Sep</span></div>
+    <div class="row"><span class="n">Sunrise Trail</span><span class="d">11 Oct</span></div>
+    <div class="row"><span class="n">The Viva Gala</span><span class="d">06 Dec</span></div>
   </div>
-  <div class="wrap railhint"><span>← →</span><span data-en="Drag" data-zh="拖曳瀏覽">Drag</span></div>
+  <p class="wh rv" data-en="Places, times and everything else are sent to members." data-zh="地點、時間及其餘細節，均只發予會員。">Places, times and everything else are sent to members.</p>
 </section>
 
-<section class="pearl-sect" id="impact">
-  <div class="wrap impact">
-    <p class="eyebrow rv" data-en="Since 2024" data-zh="自二〇二四年起">Since 2024</p>
-    <h2 class="serif rv" style="font-size:clamp(30px,4.6vw,64px);max-width:16ch" data-en="Two years, in numbers." data-zh="兩年，以數字記錄。">Two years, in numbers.</h2>
-    <p class="muted rv inote" data-en="We count only those who returned." data-zh="我們只計算再度出席的人。">We count only those who returned.</p>
-    <div class="nums">
-      <div class="num rv"><b data-count="12480">0</b><div class="rule"></div><small data-en="Members connected" data-zh="已連結會員">Members connected</small></div>
-      <div class="num rv"><b data-count="214">0</b><div class="rule"></div><small data-en="Events delivered" data-zh="已舉辦活動">Events delivered</small></div>
-      <div class="num rv"><b data-count="46">0</b><div class="rule"></div><small data-en="Partner organisations" data-zh="合作機構">Partner organisations</small></div>
-      <div class="num rv"><b data-count="31">0</b><div class="rule"></div><small data-en="Ventures supported" data-zh="支援初創">Ventures supported</small></div>
-    </div>
+<!-- ---------- numbers ---------- -->
+<section class="blk wrap">
+  <div class="nums">
+    <div class="rv"><b data-count="12480">0</b><small data-en="Members" data-zh="會員">Members</small></div>
+    <div class="rv"><b data-count="214">0</b><small data-en="Gatherings" data-zh="聚會">Gatherings</small></div>
+    <div class="rv"><b data-count="46">0</b><small data-en="Partners" data-zh="夥伴">Partners</small></div>
+    <div class="rv"><b data-count="31">0</b><small data-en="Ventures" data-zh="初創">Ventures</small></div>
   </div>
 </section>
 
-<section class="wrap split" id="circle">
-  <div class="frame rv"><span>The Circle</span></div>
-  <div>
-    <p class="eyebrow rv" data-en="Membership" data-zh="會籍">Membership</p>
-    <h2 class="serif rv" style="font-size:clamp(30px,4.4vw,58px)" data-en="The Circle." data-zh="The Circle。">The Circle.</h2>
-    <p class="muted rv" style="margin-top:20px;max-width:46ch" data-en="Membership is by invitation. Members are introduced by an existing member, or found by us. Enquiries are welcome, and are answered by a person." data-zh="會籍憑邀請。新會員由現任會員引薦，或由我們主動物色。歡迎提交查詢，均由專人回覆。">Membership is by invitation. Members are introduced by an existing member, or found by us. Enquiries are welcome, and are answered by a person.</p>
-    <div class="tiers rv">
-      <div class="tier open">
-        <div class="top"><h4 data-en="Associate" data-zh="準會員">Associate</h4><span class="price">By invitation</span></div>
-        <div class="body">
-          <p class="muted" data-en="For those recently introduced. The greater part of the network is here." data-zh="適用於初獲引薦者。網絡中大部分成員屬此級別。">For those recently introduced. The greater part of the network is here.</p>
-          <p class="withheld" data-en="What Associate includes is stated. What it leads to is not." data-zh="此級別的內容已列明，其後的發展則不然。">What Associate includes is stated. What it leads to is not.</p>
-        </div>
-      </div>
-      <div class="tier">
-        <div class="top"><h4 data-en="Member" data-zh="正式會員">Member</h4><span class="price">Annual dues HK$480</span></div>
-        <div class="body">
-          <p class="muted" data-en="For those who are here often. Dues cover kit, priority, and a seat at two tables a year." data-zh="適用於經常出席者。年費涵蓋裝備、優先權，以及每年兩個席位。">For those who are here often. Dues cover kit, priority, and a seat at two tables a year.</p>
-          <p class="withheld" data-en="Priority, and two seats at a table you have not seen." data-zh="優先權，以及兩個你尚未見過的席位。">Priority, and two seats at a table you have not seen.</p>
-        </div>
-      </div>
-      <div class="tier">
-        <div class="top"><h4 data-en="Fellow" data-zh="創建會員">Fellow</h4><span class="price">By nomination</span></div>
-        <div class="body">
-          <p class="muted" data-en="By nomination, for members building something of consequence. There is no fee." data-zh="由提名產生，適用於正在建立重要事業的會員。不設費用。">By nomination, for members building something of consequence. There is no fee.</p>
-          <p class="withheld" data-en="If you are building something, we are likely already aware." data-zh="若你正在建立事業，我們大概已經知道。">If you are building something, we are likely already aware.</p>
-        </div>
-      </div>
-    </div>
-    <div class="btnrow">
-      <button data-go="enquiry.html" class="btn solid mag rv"><i></i><span data-en="Make an enquiry" data-zh="提交查詢">Make an enquiry</span></button>
-      <button data-go="enquiry.html" class="btn mag rv"><i></i><span data-en="About membership" data-zh="關於會籍">About membership</span></button>
-    </div>
+<!-- ---------- circle ---------- -->
+<section class="blk wrap" id="circle">
+  <div class="label rv">
+    <p class="eyebrow" data-en="Membership" data-zh="會籍">Membership</p>
+    <h2 class="serif big" style="margin-top:16px" data-en="The Circle." data-zh="The Circle。">The Circle.</h2>
   </div>
+  <div class="list rv">
+    <div class="row"><span class="n" data-en="Associate" data-zh="準會員">Associate</span><span class="d" data-en="By invitation" data-zh="憑邀請">By invitation</span></div>
+    <div class="row"><span class="n" data-en="Member" data-zh="正式會員">Member</span><span class="d" data-en="Annual dues HK$480" data-zh="年費港幣 480 元">Annual dues HK$480</span></div>
+    <div class="row"><span class="n" data-en="Fellow" data-zh="創建會員">Fellow</span><span class="d" data-en="By nomination" data-zh="由提名產生">By nomination</span></div>
+  </div>
+  <p class="wh rv" data-en="What membership includes is described to those who are invited." data-zh="會籍所包含的內容，只向獲邀者說明。">What membership includes is described to those who are invited.</p>
 </section>
 
-<section class="pearl-sect" id="ventures">
-  <div class="wrap" style="padding-top:var(--sect);padding-bottom:var(--sect)">
-    <div class="head">
-      <div>
-        <p class="eyebrow rv" data-en="Ventures" data-zh="創業">Ventures</p>
-        <h2 class="serif rv" data-en="Where the network proves itself." data-zh="網絡證明自身之處。">Where the network proves itself.</h2>
-      </div>
-      <button class="btn mag rv"><i></i><span data-en="Partner with us" data-zh="成為合作夥伴">Partner with us</span></button>
-    </div>
-    <blockquote class="rv" style="font-family:var(--display);font-weight:300;font-size:clamp(22px,3vw,38px);line-height:1.32;max-width:24ch;margin-bottom:28px">
-      "We came for a Sunday run. We left with a co-founder, a mentor and a desk."
-    </blockquote>
-    <p class="muted rv" style="font-size:13px;letter-spacing:.1em;text-transform:uppercase">Lam Ho-yin · Founder, Tidal Sportswear · Cohort 2025</p>
-    <div class="vgrid">
-      <article class="vcard rv">
-        <span class="when">Cohort 2025 · Raised</span>
-        <h4>Tidal Sportswear</h4>
-        <p class="muted" data-en="Kit made from recycled ocean plastic, conceived on the return leg of a Sai Kung paddle. Now stocked in nine Hong Kong shops." data-zh="以回收海洋塑膠製成的運動服，構思於西貢划艇的回程。現於全港九間店舖有售。">Kit made from recycled ocean plastic, conceived on the return leg of a Sai Kung paddle. Now stocked in nine Hong Kong shops.</p>
-      </article>
-      <article class="vcard rv">
-        <span class="when">Cohort 2025 · Hiring</span>
-        <h4>Kōto Coaching</h4>
-        <p class="muted" data-en="Matches secondary students with coaches at rates families can meet. It began as a spreadsheet one member kept for her own team." data-zh="為中學生配對家庭負擔得起的教練。最初只是一位會員為自己隊伍所建的表格。">Matches secondary students with coaches at rates families can meet. It began as a spreadsheet one member kept for her own team.</p>
-      </article>
-      <article class="vcard rv">
-        <span class="when">Cohort 2026 · Incubating</span>
-        <h4>Districts</h4>
-        <p class="muted" data-en="A live map of every public court and pitch in Hong Kong, with genuine availability. Built by three members tired of locked gates." data-zh="全港公共球場的即時地圖，顯示真實空檔。由三位厭倦白走一趟的會員建立。">A live map of every public court and pitch in Hong Kong, with genuine availability. Built by three members tired of locked gates.</p>
-      </article>
-    </div>
-  </div>
+<!-- ---------- quote ---------- -->
+<section class="blk wrap">
+  <blockquote class="quote rv">"We came for a Sunday run. We left with a co-founder."</blockquote>
+  <p class="attr rv">Cohort 2025</p>
 </section>
 
-<section class="wrap stepsect" id="start">
-  <div class="head">
-    <div>
-      <p class="eyebrow rv" data-en="Invitation" data-zh="入會邀請">Invitation</p>
-      <h2 class="serif rv" data-en="How members are found." data-zh="我們如何物色會員。">How members are found.</h2>
-    </div>
-    <p class="muted rv" style="max-width:34ch;font-size:14px" data-en="Most members were introduced. A few wrote to us first." data-zh="多數會員由人引薦，少數則先來信。">Most members were introduced. A few wrote to us first.</p>
+<!-- ---------- invitation ---------- -->
+<section class="blk wrap">
+  <div class="label rv">
+    <p class="eyebrow" data-en="Invitation" data-zh="入會邀請">Invitation</p>
   </div>
-  <div class="steps">
-    <div class="step rv">
-      <b>01</b>
-      <h4 data-en="An introduction" data-zh="引薦">An introduction</h4>
-      <p class="muted" data-en="From a member, a partner, or an enquiry you send yourself." data-zh="來自會員、合作夥伴，或你自行提交的查詢。">From a member, a partner, or an enquiry you send yourself.</p>
-    </div>
-    <div class="step rv">
-      <b>02</b>
-      <h4 data-en="A conversation" data-zh="一次交談">A conversation</h4>
-      <p class="muted" data-en="Short, and in person where possible. There is no application form." data-zh="簡短，並盡可能面談。並無申請表格。">Short, and in person where possible. There is no application form.</p>
-    </div>
-    <div class="step rv">
-      <b>03</b>
-      <h4 data-en="An invitation" data-zh="一封邀請">An invitation</h4>
-      <p class="muted" data-en="What follows is not described on this page." data-zh="其後的內容，不會寫在此頁。">What follows is not described on this page.</p>
-    </div>
+  <div class="words">
+    <div class="rv"><i>01</i><span data-en="An introduction" data-zh="引薦">An introduction</span></div>
+    <div class="rv"><i>02</i><span data-en="A conversation" data-zh="一次交談">A conversation</span></div>
+    <div class="rv"><i>03</i><span data-en="An invitation" data-zh="一封邀請">An invitation</span></div>
   </div>
+  <p class="wh rv" data-en="Most members were introduced. A few wrote to us first." data-zh="多數會員由人引薦，少數則先來信。">Most members were introduced. A few wrote to us first.</p>
 </section>
 
-<section class="wrap journal" id="journal">
-  <div class="head">
-    <div>
-      <p class="eyebrow rv" data-en="Journal" data-zh="專欄">Journal</p>
-      <h2 class="serif rv" data-en="From the network." data-zh="來自網絡。">From the network.</h2>
-    </div>
-    <button class="btn mag rv"><i></i><span data-en="The archive" data-zh="文章庫">The archive</span></button>
-  </div>
-  <div class="posts">
-    <article class="post rv">
-      <span class="when">28 Jul 2026</span>
-      <h3 data-en="What 214 events taught us about turnout" data-zh="二百一十四場活動關於出席率的啟示">What 214 events taught us about turnout</h3>
-      <div class="pmeta"><span>Data</span><span>6 min read</span></div>
-    </article>
-    <article class="post rv">
-      <span class="when">14 Jul 2026</span>
-      <h3 data-en="Six incubators, plainly compared" data-zh="六間孵化器，坦白比較">Six incubators, plainly compared</h3>
-      <div class="pmeta"><span>Guide</span><span>11 min read</span></div>
-    </article>
-    <article class="post rv">
-      <span class="when">02 Jul 2026</span>
-      <h3 data-en="The district map of youth sport" data-zh="青年運動的地區地圖">The district map of youth sport</h3>
-      <div class="pmeta"><span>Analysis</span><span>8 min read</span></div>
-    </article>
-    <article class="post rv">
-      <span class="when">19 Jun 2026</span>
-      <h3 data-en="How to walk into a room where you know nobody" data-zh="如何走進一個無人相識的房間">How to walk into a room where you know nobody</h3>
-      <div class="pmeta"><span>Members</span><span>4 min read</span></div>
-    </article>
-  </div>
-</section>
-
-<section class="band">
+<!-- ---------- closing ---------- -->
+<section class="close">
   <div class="wrap">
     <h2 class="serif rv" data-en="Enquiries are welcome." data-zh="歡迎提交查詢。">Enquiries are welcome.</h2>
-    <p class="muted rv" data-en="Write to us. A person will read it, and reply." data-zh="來函必有專人閱覽並回覆。">Write to us. A person will read it, and reply.</p>
-    <div class="btnrow rv">
-      <button data-go="enquiry.html" class="btn solid mag"><i></i><span data-en="Make an enquiry" data-zh="提交查詢">Make an enquiry</span></button>
-    </div>
+    <div class="rv"><a class="act-link" href="enquiry.html"><span data-en="Write to us" data-zh="來函查詢">Write to us</span><em>→</em></a></div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">
-    <div class="fgrid">
-      <div>
-        <a href="#" class="logo">VI<b>V</b>A</a>
-        <p class="muted" style="font-size:14px;margin-top:18px;max-width:30ch" data-en="Viva Lifestyle Limited — a private youth network in Hong Kong. Science Park, Shatin." data-zh="活力生活有限公司——香港的私人青年網絡。沙田科學園。">Viva Lifestyle Limited — a private youth network in Hong Kong. Science Park, Shatin.</p>
-      </div>
-      <div>
-        <h5 data-en="Explore" data-zh="瀏覽">Explore</h5>
-        <ul>
-          <li><a href="#events" data-en="What we do" data-zh="我們的工作">What we do</a></li>
-          <li><a href="#calendar" data-en="The season" data-zh="本季日程">The season</a></li>
-          <li><a href="#circle" data-en="The Circle" data-zh="會員網絡">The Circle</a></li>
-          <li><a href="#ventures" data-en="Ventures" data-zh="創業">Ventures</a></li>
-          <li><a href="#start" data-en="Invitation" data-zh="入會邀請">Invitation</a></li>
-          <li><a href="#journal" data-en="Journal" data-zh="專欄">Journal</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 data-en="Work with us" data-zh="合作">Work with us</h5>
-        <ul>
-          <li><a href="#" data-en="Sponsorship" data-zh="贊助">Sponsorship</a></li>
-          <li><a href="#" data-en="Venue partners" data-zh="場地夥伴">Venue partners</a></li>
-          <li><a href="#" data-en="Incubators" data-zh="孵化器">Incubators</a></li>
-          <li><a href="#" data-en="Schools and NGOs" data-zh="學校及非牟利機構">Schools and NGOs</a></li>
-          <li><a href="#" data-en="Volunteer as a host" data-zh="擔任活動主持">Volunteer as a host</a></li>
-          <li><a href="#" data-en="Careers at Viva" data-zh="Viva 職位空缺">Careers at Viva</a></li>
-          <li><a href="admin.html" data-en="Staff console" data-zh="職員後台">Staff console</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 data-en="Monthly dispatch" data-zh="每月通訊">Monthly dispatch</h5>
-        <p class="muted" style="font-size:14px" data-en="Sent to members, and to those who have written to us." data-zh="發送予會員，以及曾來函者。">Sent to members, and to those who have written to us.</p>
-        <div class="sub">
-          <input type="email" placeholder="name@email.com" aria-label="Email address">
-          <button data-en="Subscribe" data-zh="訂閱">Subscribe</button>
-        </div>
-        <p class="muted" style="font-size:12px;margin-top:14px" data-en="One click to unsubscribe. We do not sell your data." data-zh="一鍵取消訂閱。我們不會出售你的資料。">One click to unsubscribe. We do not sell your data.</p>
-      </div>
-    </div>
-    <div class="legal">
-      <span>© 2026 Viva Lifestyle Limited · Hong Kong</span>
-      <span data-en="Privacy · PDPO statement · Terms" data-zh="私隱政策 · 個人資料收集聲明 · 條款">Privacy · PDPO statement · Terms</span>
-    </div>
+  <div class="wrap fin">
+    <span>© 2026 Viva Lifestyle Limited · Hong Kong</span>
+    <span><a href="card.html" data-en="Member card" data-zh="會員卡">Member card</a> · <a href="admin.html" data-en="Staff" data-zh="職員">Staff</a> · <span data-en="Privacy" data-zh="私隱">Privacy</span></span>
   </div>
 </footer>
 
@@ -639,117 +296,53 @@ body::after{content:"";position:fixed;inset:0;z-index:940;pointer-events:none;
 (function(){
   var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* marquee content */
-  var names=['Hong Kong Science Park','Cyberport','HKSTP Incubation','Sports Federation','Cocoon','Blueprint','Brinc','District Youth Council','Betatron','Mills Fabrica','Runway HK','Ocean Park','Leisure & Cultural Services','Hong Kong Playground Association'];
+  var names=['Hong Kong Science Park','Cyberport','HKSTP','Brinc','Betatron','Cocoon','Mills Fabrica','Blueprint','Runway HK'];
   var tk=document.getElementById('tk');
   for(var r=0;r<2;r++) names.forEach(function(n){var s=document.createElement('span');s.textContent=n;tk.appendChild(s);});
 
-  /* scroll progress + sticky header */
   var hd=document.getElementById('hd'),prog=document.getElementById('prog');
   function onScroll(){
-    var y=window.scrollY;
-    hd.classList.toggle('stuck',y>60);
+    var y=scrollY;
+    hd.classList.toggle('stuck',y>50);
     var h=document.documentElement.scrollHeight-innerHeight;
     prog.style.width=(h>0?(y/h)*100:0)+'%';
   }
   addEventListener('scroll',onScroll,{passive:true});onScroll();
 
-  /* reveals */
+  function count(el){
+    var t=+el.dataset.count,t0=null;
+    if(reduce){el.textContent=t.toLocaleString();return;}
+    requestAnimationFrame(function s(ts){
+      if(!t0)t0=ts;
+      var p=Math.min((ts-t0)/2200,1),e=1-Math.pow(1-p,4);
+      el.textContent=Math.round(t*e).toLocaleString();
+      if(p<1)requestAnimationFrame(s);
+    });
+  }
+
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e){
-      if(!e.isIntersecting) return;
+      if(!e.isIntersecting)return;
       e.target.classList.add('on');
       io.unobserve(e.target);
       var n=e.target.querySelector('[data-count]');
-      if(n) count(n);
+      if(n)count(n);
     });
-  },{threshold:.15,rootMargin:'0px 0px -6% 0px'});
-  document.querySelectorAll('.rv,.rule,.line').forEach(function(el,i){
-    el.style.transitionDelay=(i%4)*0.08+'s';
+  },{threshold:.2,rootMargin:'0px 0px -5% 0px'});
+  document.querySelectorAll('.rv,.ln').forEach(function(el,i){
+    el.style.transitionDelay=(i%3)*0.12+'s';
     io.observe(el);
   });
 
-  /* counters */
-  function count(el){
-    var target=+el.dataset.count, t0=null;
-    if(reduce){el.textContent=target.toLocaleString();return;}
-    requestAnimationFrame(function step(ts){
-      if(!t0)t0=ts;
-      var p=Math.min((ts-t0)/1800,1), e=1-Math.pow(1-p,3);
-      el.textContent=Math.round(target*e).toLocaleString();
-      if(p<1)requestAnimationFrame(step);
-    });
-  }
-
-  /* custom cursor */
-  var dot=document.getElementById('cur'),ring=document.getElementById('curRing');
-  if(!reduce && matchMedia('(pointer:fine)').matches){
-    var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
-    addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;
-      dot.style.transform='translate('+mx+'px,'+my+'px)';});
-    (function loop(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;
-      ring.style.transform='translate('+rx+'px,'+ry+'px)';requestAnimationFrame(loop);})();
-    document.querySelectorAll('a,button,.card,.pillar,.tier,.vcard,.step').forEach(function(el){
-      el.addEventListener('mouseenter',function(){document.body.classList.add('hot')});
-      el.addEventListener('mouseleave',function(){document.body.classList.remove('hot')});
-    });
-  }else{dot.style.display=ring.style.display='none';}
-
-  /* magnetic buttons */
-  if(!reduce && matchMedia('(pointer:fine)').matches){
-    document.querySelectorAll('.mag').forEach(function(b){
-      b.addEventListener('mousemove',function(e){
-        var r=b.getBoundingClientRect();
-        b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.25)+'px,'+((e.clientY-r.top-r.height/2)*.4)+'px)';
-      });
-      b.addEventListener('mouseleave',function(){b.style.transform='';});
-    });
-    /* tilt */
-    document.querySelectorAll('.tilt').forEach(function(c){
-      c.addEventListener('mousemove',function(e){
-        var r=c.getBoundingClientRect();
-        var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
-        c.style.transform='perspective(900px) rotateY('+(px*5)+'deg) rotateX('+(-py*5)+'deg)';
-      });
-      c.addEventListener('mouseleave',function(){c.style.transform='';});
-    });
-  }
-
-  /* drag rail */
-  var rail=document.getElementById('rail'),down=false,sx=0,sl=0;
-  rail.addEventListener('mousedown',function(e){down=true;rail.classList.add('drag');sx=e.pageX;sl=rail.scrollLeft;});
-  addEventListener('mouseup',function(){down=false;rail.classList.remove('drag');});
-  rail.addEventListener('mousemove',function(e){if(!down)return;e.preventDefault();rail.scrollLeft=sl-(e.pageX-sx)*1.6;});
-
-  /* tiers accordion */
-  document.querySelectorAll('.tier').forEach(function(t){
-    t.addEventListener('click',function(){
-      var was=t.classList.contains('open');
-      document.querySelectorAll('.tier').forEach(function(o){o.classList.remove('open')});
-      if(!was)t.classList.add('open');
-    });
-  });
-
-  /* mobile sheet */
   var bg=document.getElementById('bg'),sheet=document.getElementById('sheet');
   bg.addEventListener('click',function(){
     document.body.classList.toggle('menu');
     document.body.classList.toggle('locked');
-    sheet.querySelectorAll('a').forEach(function(a,i){a.style.transitionDelay=(i*.06+.1)+'s'});
+    sheet.querySelectorAll('a').forEach(function(a,i){a.style.transitionDelay=(i*.08+.15)+'s'});
   });
   sheet.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){
     document.body.classList.remove('menu','locked');});});
 
-  /* route CTA buttons to the membership pages */
-  document.querySelectorAll('[data-go]').forEach(function(el){
-    el.addEventListener('click',function(){
-      var t=el.dataset.go;
-      if(t.charAt(0)==='#'){var n=document.querySelector(t); if(n) n.scrollIntoView({behavior:'smooth'});}
-      else location.href=t;
-    });
-  });
-
-  /* language toggle */
   document.querySelectorAll('.lang button').forEach(function(b){
     b.addEventListener('click',function(){
       var l=b.dataset.lang;
