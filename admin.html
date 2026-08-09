@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Membership admin — Viva Lifestyle</title>
+<meta name="description" content="Viva Lifestyle membership management console: members, tiers, check-ins and events.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0E17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap topin">
+    <a href="index.html" class="logo">VI<b>V</b>A</a>
+    <nav class="topnav">
+      <a href="index.html">Home</a>
+      <a href="card.html">My card</a>
+      <a href="join.html">Join</a>
+      <a href="admin.html" aria-current="page">Staff</a>
+    </nav>
+    <div class="toptools">
+      <span class="badge gold">Staff · A. Wu</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap page">
+
+  <div class="notice">
+    <b>Prototype</b> — every member below is fabricated and generated in your browser. No database, no authentication,
+    no real personal data. A production build would put this behind staff login with role-based access, and an audit log
+    on every record change.
+  </div>
+
+  <p class="crumb">Membership · Console</p>
+  <div class="phead">
+    <h1 class="serif">Membership management.</h1>
+    <div class="btnrow">
+      <button class="btn sm ghost" id="expAll"><i></i><span>Export CSV</span></button>
+      <button class="btn sm"><i></i><span>Add member</span></button>
+    </div>
+  </div>
+
+  <div class="kpis rv" id="kpis"></div>
+
+  <div class="tabs" style="margin-top:44px">
+    <button class="tab on" data-tab="members">Members</button>
+    <button class="tab" data-tab="checkin">Check-in console</button>
+    <button class="tab" data-tab="events">Events</button>
+    <button class="tab" data-tab="data">Data &amp; retention</button>
+  </div>
+
+  <!-- ---------- members ---------- -->
+  <section data-panel="members">
+    <div class="toolbar">
+      <input type="search" id="q" placeholder="Search name, member number or email…" aria-label="Search members">
+      <select id="fTier" aria-label="Filter by tier">
+        <option value="">All tiers</option><option value="open">Open</option>
+        <option value="active">Active</option><option value="builder">Builder</option>
+      </select>
+      <select id="fStatus" aria-label="Filter by status">
+        <option value="">All statuses</option><option value="active">Active</option>
+        <option value="lapsed">Lapsed</option><option value="pending">Pending</option>
+      </select>
+      <span class="spacer"></span>
+      <span class="tiny muted" id="count"></span>
+    </div>
+
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th data-sort="name">Member <span class="ar">▲▼</span></th>
+          <th data-sort="id">Number <span class="ar">▲▼</span></th>
+          <th data-sort="tier">Tier <span class="ar">▲▼</span></th>
+          <th data-sort="status">Status <span class="ar">▲▼</span></th>
+          <th data-sort="district">District <span class="ar">▲▼</span></th>
+          <th data-sort="checkins">Check-ins <span class="ar">▲▼</span></th>
+          <th data-sort="joined">Joined <span class="ar">▲▼</span></th>
+          <th data-sort="renews">Renews <span class="ar">▲▼</span></th>
+        </tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="empty" id="none" hidden>No members match those filters.</div>
+    </div>
+    <div class="pager">
+      <span id="pinfo"></span>
+      <span class="btnrow">
+        <button class="btn sm ghost" id="prev"><i></i><span>Previous</span></button>
+        <button class="btn sm ghost" id="next"><i></i><span>Next</span></button>
+      </span>
+    </div>
+  </section>
+
+  <!-- ---------- check-in ---------- -->
+  <section data-panel="checkin" hidden>
+    <div class="scanner">
+      <div>
+        <div class="viewfinder">
+          <div class="frame"><div class="laser"></div></div>
+          <div class="hintxt">Camera would appear here</div>
+        </div>
+        <div class="btnrow" style="margin-top:18px">
+          <button class="btn sm solid" id="simOk"><i></i><span>Simulate valid scan</span></button>
+          <button class="btn sm ghost" id="simNo"><i></i><span>Simulate expired code</span></button>
+        </div>
+        <p class="tiny muted" style="margin-top:14px">
+          Production: the host scans the member's rotating code, the server validates the token against the member
+          record and the event's eligibility rule, then writes an attendance row. Codes expire every 30 seconds so a
+          screenshot can't be passed around.
+        </p>
+      </div>
+      <div>
+        <div class="field">
+          <label>Checking in to</label>
+          <select id="evSel"></select>
+        </div>
+        <div class="scanres" id="scanres">
+          <p class="muted tiny">Waiting for a scan…</p>
+        </div>
+        <h2 style="font-family:var(--display);font-weight:400;font-size:19px;margin:30px 0 12px">Recent check-ins</h2>
+        <div class="rows" id="recent"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- events ---------- -->
+  <section data-panel="events" hidden>
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th>Event</th><th>Date</th><th>Venue</th><th>Eligibility</th>
+          <th>Registered</th><th>Capacity</th><th>Fill</th><th>Price</th>
+        </tr></thead>
+        <tbody id="evRows"></tbody>
+      </table>
+    </div>
+    <p class="tiny muted" style="margin-top:16px">
+      Fill rate is registrations against capacity. Members-only events are gated on tier at scan time, not at
+      registration, so an upgrade on the night still gets someone in.
+    </p>
+  </section>
+
+  <!-- ---------- data ---------- -->
+  <section data-panel="data" hidden>
+    <div class="panel">
+      <h2 style="font-family:var(--display);font-weight:400;font-size:22px;margin-bottom:16px">Personal data handling</h2>
+      <p class="muted" style="font-size:14px">
+        Viva collects personal data from members in Hong Kong, so the Personal Data (Privacy) Ordinance applies.
+        These are the decisions a production build has to make explicit — they are listed here as a checklist, not as
+        implemented behaviour.
+      </p>
+      <div class="rows" style="margin-top:22px">
+        <div class="row"><div class="l"><b>Collection statement</b><small>Shown at sign-up, stating purpose, classes of transferee and access rights</small></div><div class="r"><span class="badge red">Not drafted</span></div></div>
+        <div class="row"><div class="l"><b>Guardian consent under 18</b><small>Captured at sign-up, verified before first event</small></div><div class="r"><span class="badge gold">Flow built, unverified</span></div></div>
+        <div class="row"><div class="l"><b>Attendance retention</b><small>Proposed: 24 months, then automatic deletion</small></div><div class="r"><span class="badge gold">Policy needed</span></div></div>
+        <div class="row"><div class="l"><b>Marketing consent</b><small>Separate opt-in, withdrawable in one click</small></div><div class="r"><span class="badge green">Separated at sign-up</span></div></div>
+        <div class="row"><div class="l"><b>Photo consent</b><small>Optional, withdrawable, tracked per member</small></div><div class="r"><span class="badge green">Separated at sign-up</span></div></div>
+        <div class="row"><div class="l"><b>Data access requests</b><small>Member can export or erase their own record</small></div><div class="r"><span class="badge red">Not built</span></div></div>
+        <div class="row"><div class="l"><b>Staff access log</b><small>Who viewed or changed which member record, and when</small></div><div class="r"><span class="badge red">Not built</span></div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="scrim" id="scrim"></div>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Member detail">
+  <button class="x" id="closeDrawer" aria-label="Close">×</button>
+  <div id="dbody"></div>
+</aside>
+
+<footer class="foot">
+  <div class="wrap in">
+    <span>© 2026 Viva Lifestyle Limited · Hong Kong</span>
+    <span>Prototype — fabricated data, no backend</span>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+<script>
+VIVA.ready(function () {
+  var M = VIVA.MEMBERS, T = VIVA.TIERS, page = 0, per = 12, sortKey = 'joined', sortDir = -1;
+
+  /* ---------- KPIs ---------- */
+  var active = M.filter(function (m) { return m.status === 'active'; }).length;
+  var paid = M.filter(function (m) { return m.tier === 'active'; }).length;
+  var lapsed = M.filter(function (m) { return m.status === 'lapsed'; }).length;
+  var revenue = paid * 480;
+  var newThisMonth = M.filter(function (m) { return m.joined.slice(0, 7) === '2026-08'; }).length;
+  var kpis = [
+    ['Total members', M.length.toLocaleString(), '+' + newThisMonth + ' this month', false],
+    ['Active', active.toLocaleString(), Math.round(active / M.length * 100) + '% of base', false],
+    ['Paying (Active tier)', paid.toLocaleString(), 'HK$' + revenue.toLocaleString() + ' annualised', false],
+    ['Lapsed', lapsed.toLocaleString(), 'Renewal reminders due', true],
+    ['Check-ins today', '41', '+12 vs last Thursday', false],
+    ['Wallet passes', M.filter(function (m) { return m.walletPass; }).length.toLocaleString(), 'of ' + M.length + ' members', false]
+  ];
+  document.getElementById('kpis').innerHTML = kpis.map(function (k) {
+    return '<div class="kpi"><b>' + k[1] + '</b><small>' + k[0] + '</small>' +
+      '<div class="delta' + (k[3] ? ' down' : '') + '">' + k[2] + '</div></div>';
+  }).join('');
+
+  /* ---------- tabs ---------- */
+  document.querySelectorAll('.tab').forEach(function (t) {
+    t.addEventListener('click', function () {
+      document.querySelectorAll('.tab').forEach(function (o) { o.classList.toggle('on', o === t); });
+      document.querySelectorAll('[data-panel]').forEach(function (p) {
+        p.hidden = p.dataset.panel !== t.dataset.tab;
+      });
+    });
+  });
+
+  /* ---------- members table ---------- */
+  function filtered() {
+    var q = document.getElementById('q').value.trim().toLowerCase();
+    var ft = document.getElementById('fTier').value, fs = document.getElementById('fStatus').value;
+    return M.filter(function (m) {
+      if (ft && m.tier !== ft) return false;
+      if (fs && m.status !== fs) return false;
+      if (!q) return true;
+      return (m.name + ' ' + m.id + ' ' + m.email).toLowerCase().indexOf(q) > -1;
+    }).sort(function (a, b) {
+      var x = a[sortKey], y = b[sortKey];
+      if (typeof x === 'string') return x.localeCompare(y) * sortDir;
+      return (x - y) * sortDir;
+    });
+  }
+
+  function statusBadge(s) {
+    var c = s === 'active' ? 'green' : (s === 'lapsed' ? 'red' : '');
+    return '<span class="badge ' + c + '">' + s.charAt(0).toUpperCase() + s.slice(1) + '</span>';
+  }
+
+  function draw() {
+    var list = filtered(), total = list.length, maxPage = Math.max(0, Math.ceil(total / per) - 1);
+    if (page > maxPage) page = maxPage;
+    var slice = list.slice(page * per, page * per + per);
+    document.getElementById('rows').innerHTML = slice.map(function (m) {
+      return '<tr data-id="' + m.id + '">' +
+        '<td>' + VIVA.esc(m.name) + '</td>' +
+        '<td><span class="mono">' + m.id + '</span></td>' +
+        '<td><span class="badge gold">' + T[m.tier].en + '</span></td>' +
+        '<td>' + statusBadge(m.status) + '</td>' +
+        '<td class="muted">' + VIVA.esc(m.district) + '</td>' +
+        '<td class="mono">' + m.checkins + '</td>' +
+        '<td class="muted">' + VIVA.fmtDate(m.joined) + '</td>' +
+        '<td class="muted">' + (m.tier === 'open' ? '—' : VIVA.fmtDate(m.renews)) + '</td></tr>';
+    }).join('');
+    document.getElementById('none').hidden = total > 0;
+    document.getElementById('count').textContent = total + ' of ' + M.length + ' members';
+    document.getElementById('pinfo').textContent = total ? ('Showing ' + (page * per + 1) + '–' +
+      Math.min(total, page * per + per) + ' of ' + total) : '';
+    document.getElementById('prev').disabled = page === 0;
+    document.getElementById('next').disabled = page >= maxPage;
+    document.querySelectorAll('#rows tr').forEach(function (tr) {
+      tr.addEventListener('click', function () { openDrawer(tr.dataset.id); });
+    });
+  }
+
+  ['q','fTier','fStatus'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', function () { page = 0; draw(); });
+  });
+  document.getElementById('prev').addEventListener('click', function () { if (page > 0) { page--; draw(); } });
+  document.getElementById('next').addEventListener('click', function () { page++; draw(); });
+  document.querySelectorAll('th[data-sort]').forEach(function (th) {
+    th.addEventListener('click', function () {
+      var k = th.dataset.sort;
+      if (sortKey === k) sortDir *= -1; else { sortKey = k; sortDir = 1; }
+      draw();
+    });
+  });
+
+  /* ---------- drawer ---------- */
+  var scrim = document.getElementById('scrim'), drawer = document.getElementById('drawer');
+  function closeDrawer() { scrim.classList.remove('on'); drawer.classList.remove('on'); }
+  scrim.addEventListener('click', closeDrawer);
+  document.getElementById('closeDrawer').addEventListener('click', closeDrawer);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeDrawer(); });
+
+  function openDrawer(id) {
+    var m = M.filter(function (x) { return x.id === id; })[0];
+    if (!m) return;
+    document.getElementById('dbody').innerHTML =
+      '<p class="crumb">Member record</p>' +
+      '<h2 class="serif" style="font-size:30px">' + VIVA.esc(m.name) + '</h2>' +
+      '<p class="mono muted" style="margin-top:6px">' + m.id + '</p>' +
+      '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">' +
+        '<span class="badge gold">' + T[m.tier].en + '</span>' + statusBadge(m.status) +
+        (m.walletPass ? '<span class="badge green">Wallet pass issued</span>' : '<span class="badge">No wallet pass</span>') +
+        (m.age < 18 ? '<span class="badge red">Under 18</span>' : '') +
+      '</div>' +
+      '<div class="rows" style="margin-top:26px">' +
+        row('Email', m.email) + row('Phone', m.phone) + row('Age', m.age) +
+        row('District', m.district) + row('Sports', m.sports.join(', ')) +
+        row('Joined', VIVA.fmtDate(m.joined)) +
+        row('Renews', m.tier === 'open' ? '—' : VIVA.fmtDate(m.renews)) +
+        row('Check-ins', m.checkins) + row('Last seen', VIVA.fmtDate(m.lastSeen)) +
+        row('Marketing consent', m.consentMarketing ? 'Yes' : 'No') +
+        (m.age < 18 ? row('Guardian consent', m.guardianConsent ? 'On file' : 'MISSING') : '') +
+      '</div>' +
+      '<div class="btnrow" style="margin-top:26px">' +
+        '<button class="btn sm"><i></i><span>Change tier</span></button>' +
+        '<button class="btn sm ghost"><i></i><span>Reissue card</span></button>' +
+        '<button class="btn sm ghost"><i></i><span>Export record</span></button>' +
+        '<button class="btn sm ghost"><i></i><span>Suspend</span></button>' +
+      '</div>' +
+      '<p class="tiny muted" style="margin-top:18px">Actions are inert in this prototype. In production each one would ' +
+      'write to an audit log with the staff member, timestamp and previous value.</p>';
+    scrim.classList.add('on'); drawer.classList.add('on');
+  }
+  function row(k, v) {
+    return '<div class="row"><div class="l"><small>' + k + '</small></div><div class="r">' + VIVA.esc(v) + '</div></div>';
+  }
+
+  /* ---------- CSV export ---------- */
+  document.getElementById('expAll').addEventListener('click', function () {
+    var cols = ['id','name','email','tier','status','district','joined','renews','checkins'];
+    var csv = [cols.join(',')].concat(filtered().map(function (m) {
+      return cols.map(function (c) { return '"' + String(m[c]).replace(/"/g, '""') + '"'; }).join(',');
+    })).join('\n');
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([csv], { type: 'text/csv' }));
+    a.download = 'viva-members-prototype.csv'; a.click();
+  });
+
+  /* ---------- events tab ---------- */
+  document.getElementById('evRows').innerHTML = VIVA.EVENTS.map(function (e) {
+    var reg = Math.min(e.cap, Math.round(e.cap * (0.42 + (e.cap % 7) / 12)));
+    var pct = Math.round(reg / e.cap * 100);
+    return '<tr><td>' + VIVA.esc(e.name) + '</td><td class="muted">' + VIVA.fmtDate(e.date) + '</td>' +
+      '<td class="muted">' + VIVA.esc(e.venue) + '</td>' +
+      '<td>' + (e.tier === 'open' ? '<span class="badge">All members</span>' : '<span class="badge gold">Active+</span>') + '</td>' +
+      '<td class="mono">' + reg + '</td><td class="mono">' + e.cap + '</td>' +
+      '<td><span class="badge ' + (pct > 85 ? 'red' : (pct > 60 ? 'gold' : 'green')) + '">' + pct + '%</span></td>' +
+      '<td class="muted">' + VIVA.money(e.price) + '</td></tr>';
+  }).join('');
+
+  /* ---------- check-in console ---------- */
+  var evSel = document.getElementById('evSel');
+  VIVA.EVENTS.forEach(function (e) {
+    var o = document.createElement('option'); o.value = e.id;
+    o.textContent = e.name + ' — ' + VIVA.fmtDate(e.date); evSel.appendChild(o);
+  });
+  function renderRecent() {
+    document.getElementById('recent').innerHTML = VIVA.CHECKINS.slice(0, 8).map(function (c) {
+      return '<div class="row"><div class="l"><b>' + VIVA.esc(c.name) + '</b><small>' + c.memberId + ' · ' + VIVA.esc(c.event) + '</small></div>' +
+        '<div class="r">' + c.at + ' ' + (c.result === 'ok' ? '<span class="badge green">In</span>' : '<span class="badge red">Denied</span>') + '</div></div>';
+    }).join('');
+  }
+  renderRecent();
+
+  function scan(ok) {
+    var m = M[Math.floor(Math.random() * M.length)];
+    var ev = VIVA.EVENTS.filter(function (e) { return e.id === evSel.value; })[0];
+    var eligible = ev.tier === 'open' || m.tier !== 'open';
+    var box = document.getElementById('scanres');
+    if (!ok) {
+      box.className = 'scanres no';
+      box.innerHTML = '<span class="badge red">Code expired</span><p style="margin-top:12px;font-size:14px">' +
+        'This code was generated more than 30 seconds ago. Ask the member to reopen their card.</p>';
+      return;
+    }
+    if (!eligible) {
+      box.className = 'scanres no';
+      box.innerHTML = '<span class="badge red">Not eligible</span>' +
+        '<h3 class="serif" style="font-size:24px;margin:12px 0 4px">' + VIVA.esc(m.name) + '</h3>' +
+        '<p class="mono muted">' + m.id + '</p>' +
+        '<p style="margin-top:12px;font-size:14px">' + VIVA.esc(ev.name) + ' is Active tier and above. ' +
+        'Offer an upgrade at the door — it takes about thirty seconds.</p>';
+      return;
+    }
+    box.className = 'scanres ok';
+    box.innerHTML = '<span class="badge green dot">Checked in</span>' +
+      '<h3 class="serif" style="font-size:24px;margin:12px 0 4px">' + VIVA.esc(m.name) + '</h3>' +
+      '<p class="mono muted">' + m.id + ' · ' + T[m.tier].en + '</p>' +
+      '<p style="margin-top:12px;font-size:14px">' + VIVA.esc(ev.name) + ' · check-in ' + (m.checkins + 1) +
+      ' for this member.' + (m.age < 18 && !m.guardianConsent ?
+      ' <span style="color:var(--pulse)">Guardian consent missing — collect before they take part.</span>' : '') + '</p>';
+    VIVA.CHECKINS.unshift({ memberId: m.id, name: m.name, tier: m.tier, event: ev.name, eventId: ev.id,
+      at: new Date().toTimeString().slice(0, 5), result: 'ok' });
+    renderRecent();
+  }
+  document.getElementById('simOk').addEventListener('click', function () { scan(true); });
+  document.getElementById('simNo').addEventListener('click', function () { scan(false); });
+
+  draw();
+});
+</script>
+</body>
+</html>

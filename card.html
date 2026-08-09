@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Membership card — Viva Lifestyle</title>
+<meta name="description" content="Your Viva Lifestyle virtual membership card: rotating QR check-in code, wallet pass, tier perks and attendance history.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0E17">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap topin">
+    <a href="index.html" class="logo">VI<b>V</b>A</a>
+    <nav class="topnav">
+      <a href="index.html" data-en="Home" data-zh="主頁">Home</a>
+      <a href="card.html" aria-current="page" data-en="My card" data-zh="我嘅會員卡">My card</a>
+      <a href="join.html" data-en="Join" data-zh="加入">Join</a>
+      <a href="admin.html" data-en="Staff" data-zh="職員">Staff</a>
+    </nav>
+    <div class="toptools">
+      <div class="lang">
+        <button class="act" data-lang="en">EN</button>
+        <button data-lang="zh">繁中</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap page">
+
+  <div class="notice">
+    <b data-en="Prototype" data-zh="原型">Prototype</b>
+    <span data-en=" — this card is a demonstration. The member record is fabricated, the QR code is not connected to any check-in system, and no data leaves your browser." data-zh="——呢張卡係示範用。會員資料係虛構，QR code 未連接任何簽到系統，亦冇任何資料離開你部機。"> — this card is a demonstration. The member record is fabricated, the QR code is not connected to any check-in system, and no data leaves your browser.</span>
+  </div>
+
+  <p class="crumb" data-en="The Circle · Membership" data-zh="The Circle · 會籍">The Circle · Membership</p>
+  <div class="phead">
+    <h1 class="serif" data-en="Your membership card." data-zh="你嘅會員卡。">Your membership card.</h1>
+  </div>
+
+  <div style="display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start">
+
+    <!-- ---------- card column ---------- -->
+    <div>
+      <div class="cardwrap rv">
+        <div class="mcard" id="mcard" role="button" tabindex="0" aria-label="Membership card — activate to show QR code">
+          <div class="face front">
+            <div class="top">
+              <span class="mark">VI<b>V</b>A</span>
+              <span class="tiermark" id="cTier">Active</span>
+            </div>
+            <div>
+              <div class="name" id="cName">Alan Wu</div>
+              <div class="no" id="cNo">VL-2026-04821</div>
+            </div>
+            <div class="foot">
+              <span><span data-en="Member since" data-zh="入會日期">Member since</span><b id="cSince">14 Mar 2026</b></span>
+              <span style="text-align:right"><span data-en="Renews" data-zh="續會">Renews</span><b id="cRenew">14 Mar 2027</b></span>
+            </div>
+          </div>
+          <div class="face back">
+            <div class="qrbox"><canvas id="qrc" width="150" height="150"></canvas></div>
+            <div class="qrmeta">
+              <div id="qrCode" style="letter-spacing:.18em">VL-2026-04821</div>
+              <div style="margin-top:6px"><span data-en="Refreshes in" data-zh="重新產生倒數">Refreshes in</span> <b id="qrTick">30</b>s</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="fliphint" data-en="Tap the card to show your check-in code" data-zh="㩒一下張卡顯示簽到碼">Tap the card to show your check-in code</p>
+
+      <div class="wallets">
+        <button class="wbtn" id="wApple">
+          <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M16.4 12.8c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.8-.9-3-.8c-1.5 0-2.9.9-3.7 2.3-1.6 2.7-.4 6.8 1.1 9 .8 1.1 1.6 2.3 2.8 2.3 1.1 0 1.6-.7 3-.7s1.8.7 3 .7 2-1.1 2.7-2.2c.9-1.2 1.2-2.4 1.2-2.5 0 0-2.2-.9-2.2-3.7zM14.2 5.9c.6-.8 1-1.8.9-2.9-.9 0-2 .6-2.6 1.4-.6.7-1.1 1.8-1 2.8 1 .1 2.1-.5 2.7-1.3z"/></svg>
+          <span><small>Add to</small>Apple Wallet</span>
+        </button>
+        <button class="wbtn" id="wGoogle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.9h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.4z"/><path fill="#34A853" d="M12 22c2.7 0 5-.9 6.6-2.4l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22z"/><path fill="#FBBC05" d="M6.4 14c-.2-.6-.3-1.3-.3-2s.1-1.4.3-2V7.4H3.1a10 10 0 0 0 0 9.2L6.4 14z"/><path fill="#EA4335" d="M12 6c1.5 0 2.8.5 3.8 1.5l2.8-2.8A10 10 0 0 0 3.1 7.4L6.4 10c.8-2.3 3-4 5.6-4z"/></svg>
+          <span><small>Add to</small>Google Wallet</span>
+        </button>
+      </div>
+      <p class="tiny muted" style="margin-top:12px" id="wNote" data-en="Wallet passes need an Apple Developer certificate and a signed .pkpass — not wired up in this prototype." data-zh="Wallet pass 需要 Apple Developer 證書及已簽署嘅 .pkpass，呢個原型未接。">Wallet passes need an Apple Developer certificate and a signed .pkpass — not wired up in this prototype.</p>
+    </div>
+
+    <!-- ---------- detail column ---------- -->
+    <div>
+      <div class="panel rv">
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:6px">
+          <span class="badge green dot" data-en="Active" data-zh="生效中">Active</span>
+          <span class="badge gold" id="bTier">Active tier</span>
+          <span class="badge" id="bCheckins">17 check-ins</span>
+        </div>
+        <p class="muted" style="font-size:14px;margin-top:14px" data-en="Show this card at the door, or let a host scan the code. Check-in takes about two seconds and updates your attendance straight away." data-zh="喺門口出示呢張卡，或者畀主持掃個碼。簽到大概兩秒，出席紀錄即時更新。">Show this card at the door, or let a host scan the code. Check-in takes about two seconds and updates your attendance straight away.</p>
+      </div>
+
+      <div class="sect">
+        <h2 data-en="What your tier includes" data-zh="你嘅級別包括">What your tier includes</h2>
+        <div class="rows" id="perks"></div>
+        <div class="btnrow" style="margin-top:20px">
+          <button class="btn sm" id="btnUp"><i></i><span data-en="Upgrade to Builder" data-zh="升級做創建者">Upgrade to Builder</span></button>
+          <button class="btn sm ghost"><i></i><span data-en="Manage membership" data-zh="管理會籍">Manage membership</span></button>
+        </div>
+      </div>
+
+      <div class="sect">
+        <h2 data-en="Your next events" data-zh="你嘅下一個活動">Your next events</h2>
+        <div class="rows" id="next"></div>
+      </div>
+
+      <div class="sect">
+        <h2 data-en="Check-in history" data-zh="簽到紀錄">Check-in history</h2>
+        <div class="rows" id="hist"></div>
+        <p class="tiny muted" style="margin-top:14px" data-en="Attendance is kept for two years, then deleted. You can export or erase it at any time." data-zh="出席紀錄保留兩年後刪除。你隨時可以匯出或刪除。">Attendance is kept for two years, then deleted. You can export or erase it at any time.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap in">
+    <span>© 2026 Viva Lifestyle Limited · Hong Kong</span>
+    <span data-en="Prototype — not for production use" data-zh="原型 — 未可用於實際運作">Prototype — not for production use</span>
+  </div>
+</footer>
+
+<!-- qrcodejs by davidshimjs, MIT licence — vendored so the card works offline -->
+<script src="qrcode.min.js"></script>
+<script src="app.js"></script>
+<script>
+VIVA.ready(function () {
+  var me = VIVA.ME, T = VIVA.TIERS[me.tier];
+
+  document.getElementById('cName').textContent = me.name;
+  document.getElementById('cNo').textContent = me.id;
+  document.getElementById('cTier').textContent = T.en;
+  document.getElementById('cTier').setAttribute('data-en', T.en);
+  document.getElementById('cTier').setAttribute('data-zh', T.zh);
+  document.getElementById('cSince').textContent = VIVA.fmtDate(me.joined);
+  document.getElementById('cRenew').textContent = VIVA.fmtDate(me.renews);
+  document.getElementById('bTier').textContent = T.en + ' tier · ' + T.priceLabel;
+  document.getElementById('bCheckins').textContent = me.checkins + ' check-ins';
+
+  /* ---------- flip ---------- */
+  var card = document.getElementById('mcard');
+  function flip() { card.classList.toggle('flip'); }
+  card.addEventListener('click', flip);
+  card.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+  });
+
+  /* ---------- rotating check-in code ---------- */
+  var cv = document.getElementById('qrc'), left = 30, token = '';
+  function newToken() {
+    var s = '';
+    for (var i = 0; i < 6; i++) s += '0123456789ABCDEFGHJKMNPQRSTUVWXYZ'[Math.floor(Math.random() * 33)];
+    return s;
+  }
+  function drawFallback(text) {
+    /* Deterministic block pattern so the card still reads as a scannable object
+       if the QR library is unavailable. Not a real QR code. */
+    var ctx = cv.getContext('2d'), n = 25, s = cv.width / n, h = 0;
+    for (var i = 0; i < text.length; i++) h = (h * 31 + text.charCodeAt(i)) >>> 0;
+    ctx.fillStyle = '#F6F3EC'; ctx.fillRect(0, 0, cv.width, cv.height);
+    ctx.fillStyle = '#0A0E17';
+    for (var y = 0; y < n; y++) for (var x = 0; x < n; x++) {
+      h = (h * 1103515245 + 12345) >>> 0;
+      if ((h >>> 16) & 1) ctx.fillRect(x * s, y * s, s, s);
+    }
+    [[0,0],[n-7,0],[0,n-7]].forEach(function (p) {
+      ctx.fillStyle = '#F6F3EC'; ctx.fillRect(p[0]*s, p[1]*s, 7*s, 7*s);
+      ctx.fillStyle = '#0A0E17'; ctx.fillRect(p[0]*s, p[1]*s, 7*s, s);
+      ctx.fillRect(p[0]*s, (p[1]+6)*s, 7*s, s);
+      ctx.fillRect(p[0]*s, p[1]*s, s, 7*s);
+      ctx.fillRect((p[0]+6)*s, p[1]*s, s, 7*s);
+      ctx.fillRect((p[0]+2)*s, (p[1]+2)*s, 3*s, 3*s);
+    });
+  }
+  var qrHolder = null;
+  function render(payload) {
+    if (typeof QRCode === 'function') {
+      if (!qrHolder) {
+        qrHolder = document.createElement('div');
+        cv.parentNode.replaceChild(qrHolder, cv);
+        qrHolder.className = '';
+        window._qr = new QRCode(qrHolder, {
+          text: payload, width: 150, height: 150,
+          colorDark: '#0A0E17', colorLight: '#F6F3EC',
+          correctLevel: QRCode.CorrectLevel.M
+        });
+      } else { window._qr.clear(); window._qr.makeCode(payload); }
+    } else {
+      drawFallback(payload);
+    }
+  }
+  function cycle() {
+    token = newToken();
+    render('VIVA:' + me.id + ':' + token);
+    document.getElementById('qrCode').textContent = me.id + ' · ' + token;
+    left = 30;
+  }
+  cycle();
+  setInterval(function () {
+    left--;
+    if (left <= 0) cycle();
+    document.getElementById('qrTick').textContent = left;
+  }, 1000);
+
+  /* ---------- perks ---------- */
+  document.getElementById('perks').innerHTML = VIVA.PERKS[me.tier].map(function (p) {
+    return '<div class="row"><div class="l"><b data-en="' + VIVA.esc(p[0]) + '" data-zh="' + VIVA.esc(p[2]) + '">' +
+      VIVA.esc(p[0]) + '</b><small>' + VIVA.esc(p[1]) + '</small></div>' +
+      '<div class="r"><span class="badge green">Included</span></div></div>';
+  }).join('');
+
+  /* ---------- next events ---------- */
+  document.getElementById('next').innerHTML = VIVA.EVENTS.slice(0, 4).map(function (e) {
+    var locked = e.tier === 'active' && me.tier === 'open';
+    return '<div class="row"><div class="l"><b>' + VIVA.esc(e.name) + '</b>' +
+      '<small>' + VIVA.fmtDate(e.date) + ' · ' + VIVA.esc(e.venue) + '</small></div>' +
+      '<div class="r">' + (locked ? '<span class="badge">Members only</span>' :
+      '<span class="badge gold">' + VIVA.money(e.price) + '</span>') + '</div></div>';
+  }).join('');
+
+  /* ---------- history ---------- */
+  var hist = [
+    ['Harbour Night Run', '2026-07-26', 'Central Harbourfront'],
+    ['Rooftop Social', '2026-07-11', 'Sheung Wan'],
+    ['Sunday League — Round 9', '2026-06-28', 'Sha Tin'],
+    ['Sunrise Trail', '2026-06-14', 'Lantau'],
+    ['Pickleball Social', '2026-05-31', 'Kwun Tong']
+  ];
+  document.getElementById('hist').innerHTML = hist.map(function (h) {
+    return '<div class="row"><div class="l"><b>' + VIVA.esc(h[0]) + '</b><small>' + VIVA.esc(h[2]) + '</small></div>' +
+      '<div class="r">' + VIVA.fmtDate(h[1]) + '</div></div>';
+  }).join('');
+
+  /* ---------- wallet buttons ---------- */
+  function walletNote(which) {
+    var n = document.getElementById('wNote');
+    n.textContent = which + ' pass generation is not wired up in this prototype. A production build signs a .pkpass ' +
+      '(Apple) or a JWT-signed pass object (Google) on the server, so the card updates when the tier or expiry changes.';
+    n.style.color = 'var(--champagne)';
+  }
+  document.getElementById('wApple').addEventListener('click', function () { walletNote('Apple Wallet'); });
+  document.getElementById('wGoogle').addEventListener('click', function () { walletNote('Google Wallet'); });
+
+  document.getElementById('btnUp').addEventListener('click', function () {
+    location.href = 'join.html#builder';
+  });
+});
+</script>
+</body>
+</html>

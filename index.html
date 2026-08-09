@@ -273,13 +273,14 @@ footer li a:hover{color:var(--champagne)}
       <a href="#ventures" data-en="Ventures" data-zh="青年創業">Ventures</a>
       <a href="#start" data-en="How to join" data-zh="點樣入會">How to join</a>
       <a href="#journal" data-en="Journal" data-zh="專欄">Journal</a>
+      <a href="card.html" data-en="My card" data-zh="我嘅會員卡">My card</a>
     </nav>
     <div class="navtools">
       <div class="lang">
         <button class="act" data-lang="en">EN</button>
         <button data-lang="zh">繁中</button>
       </div>
-      <button class="btn mag"><i></i><span data-en="Join free" data-zh="免費加入">Join free</span></button>
+      <button data-go="join.html" class="btn mag"><i></i><span data-en="Join free" data-zh="免費加入">Join free</span></button>
       <button class="burger" id="bg" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
@@ -292,6 +293,7 @@ footer li a:hover{color:var(--champagne)}
   <a href="#ventures" data-en="Ventures" data-zh="青年創業">Ventures</a>
   <a href="#start" data-en="How to join" data-zh="點樣入會">How to join</a>
   <a href="#journal" data-en="Journal" data-zh="專欄">Journal</a>
+  <a href="card.html" data-en="My card" data-zh="我嘅會員卡">My card</a>
 </div>
 
 <section class="hero">
@@ -314,8 +316,8 @@ footer li a:hover{color:var(--champagne)}
       <span class="chip"><b>0</b> <span data-en="experience needed" data-zh="經驗要求">experience needed</span></span>
     </div>
     <div class="btnrow rv">
-      <button class="btn solid mag"><i></i><span data-en="Join free — takes 2 minutes" data-zh="免費加入 — 兩分鐘搞掂">Join free — takes 2 minutes</span></button>
-      <button class="btn mag"><i></i><span data-en="See what's on" data-zh="睇下有咩玩">See what's on</span></button>
+      <button data-go="join.html" class="btn solid mag"><i></i><span data-en="Join free — takes 2 minutes" data-zh="免費加入 — 兩分鐘搞掂">Join free — takes 2 minutes</span></button>
+      <button data-go="#calendar" class="btn mag"><i></i><span data-en="See what's on" data-zh="睇下有咩玩">See what's on</span></button>
     </div>
   </div>
 </section>
@@ -387,7 +389,7 @@ footer li a:hover{color:var(--champagne)}
       <p class="eyebrow rv" data-en="Coming up" data-zh="即將舉行">Coming up</p>
       <h2 class="serif rv" data-en="Free your weekend." data-zh="留返個周末。">Free your weekend.</h2>
     </div>
-    <button class="btn mag rv"><i></i><span data-en="All events" data-zh="所有活動">All events</span></button>
+    <button data-go="#calendar" class="btn mag rv"><i></i><span data-en="All events" data-zh="所有活動">All events</span></button>
   </div>
   <div class="rail" id="rail">
     <article class="card tilt">
@@ -527,8 +529,8 @@ footer li a:hover{color:var(--champagne)}
       </div>
     </div>
     <div class="btnrow">
-      <button class="btn solid mag rv"><i></i><span data-en="Join free" data-zh="免費加入">Join free</span></button>
-      <button class="btn mag rv"><i></i><span data-en="Compare tiers" data-zh="比較會籍">Compare tiers</span></button>
+      <button data-go="join.html" class="btn solid mag rv"><i></i><span data-en="Join free" data-zh="免費加入">Join free</span></button>
+      <button data-go="join.html" class="btn mag rv"><i></i><span data-en="Compare tiers" data-zh="比較會籍">Compare tiers</span></button>
     </div>
   </div>
 </section>
@@ -634,7 +636,7 @@ footer li a:hover{color:var(--champagne)}
     <h2 class="serif rv" data-en="See you Thursday." data-zh="星期四見。">See you Thursday.</h2>
     <p class="muted rv" data-en="Signing up costs nothing and commits you to nothing. Worst case, you go for one run and never come back." data-zh="登記唔使錢，亦唔使承諾任何嘢。最差情況，你跑咗一次就冇再嚟。">Signing up costs nothing and commits you to nothing. Worst case, you go for one run and never come back.</p>
     <div class="btnrow rv">
-      <button class="btn solid mag"><i></i><span data-en="Join free" data-zh="免費加入">Join free</span></button>
+      <button data-go="join.html" class="btn solid mag"><i></i><span data-en="Join free" data-zh="免費加入">Join free</span></button>
       <button class="btn mag"><i></i><span data-en="Partner or sponsor" data-zh="合作或贊助">Partner or sponsor</span></button>
     </div>
   </div>
@@ -667,6 +669,7 @@ footer li a:hover{color:var(--champagne)}
           <li><a href="#" data-en="Schools and NGOs" data-zh="學校及非牟利機構">Schools and NGOs</a></li>
           <li><a href="#" data-en="Volunteer as a host" data-zh="做活動主持義工">Volunteer as a host</a></li>
           <li><a href="#" data-en="Careers at Viva" data-zh="Viva 職位空缺">Careers at Viva</a></li>
+          <li><a href="admin.html" data-en="Staff console" data-zh="職員後台">Staff console</a></li>
         </ul>
       </div>
       <div>
@@ -790,6 +793,15 @@ footer li a:hover{color:var(--champagne)}
   });
   sheet.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){
     document.body.classList.remove('menu','locked');});});
+
+  /* route CTA buttons to the membership pages */
+  document.querySelectorAll('[data-go]').forEach(function(el){
+    el.addEventListener('click',function(){
+      var t=el.dataset.go;
+      if(t.charAt(0)==='#'){var n=document.querySelector(t); if(n) n.scrollIntoView({behavior:'smooth'});}
+      else location.href=t;
+    });
+  });
 
   /* language toggle */
   document.querySelectorAll('.lang button').forEach(function(b){

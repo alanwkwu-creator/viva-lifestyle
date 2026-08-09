@@ -73,6 +73,55 @@ the production build:
 - The newsletter input has no submit handling.
 - No routing — the nav links are in-page anchors only.
 
+## Membership prototype
+
+Beyond the homepage, the repo now contains a clickable prototype of the membership
+system. **It is a front-end demonstration only** — there is no database, no
+authentication and no server. All member data is fabricated in the browser by
+`app.js` from a fixed seed, so the demo looks identical on every load, and nothing
+is transmitted anywhere.
+
+| File | What it is |
+|------|------------|
+| `index.html` | Public homepage (self-contained) |
+| `join.html` | Four-step sign-up: details → tier → interests and consent → issued card |
+| `card.html` | Virtual membership card — flips to a rotating QR check-in code |
+| `admin.html` | Staff console: members, check-in, events, data-retention checklist |
+| `app.css` | Shared design system for the three application pages |
+| `app.js` | Mock data (64 members, 6 events, check-in log) and shared helpers |
+| `qrcode.min.js` | qrcodejs by davidshimjs, MIT — vendored so the card works offline |
+
+### Virtual card
+
+Real, scannable QR codes. The payload is `VIVA:<member-id>:<token>` and the token
+regenerates every 30 seconds, so a screenshot of someone else's card stops working
+almost immediately. Apple and Google Wallet buttons are present but inert: a
+production build signs a `.pkpass` (Apple) or a JWT pass object (Google) server-side,
+which needs an Apple Developer certificate and cannot be done from static hosting.
+
+### Admin console
+
+Searchable, sortable, filterable member table with pagination and CSV export; a
+member detail drawer; a check-in console with scan simulation that enforces tier
+eligibility and flags missing guardian consent; event fill rates; and a data
+retention checklist.
+
+### What a production build still needs
+
+- Real authentication, staff roles, and an audit log on every record change
+- A database (members, tiers, events, attendance, consents) and payment handling
+- Server-side QR token issuance and validation — the current tokens are cosmetic
+- Wallet pass signing, and push updates when a tier or expiry changes
+- A PDPO collection statement, a retention policy, and member data access/erasure
+
+### Personal data note
+
+Viva's members are aged 15–30 and based in Hong Kong, so the Personal Data (Privacy)
+Ordinance applies, and under-18 members need guardian consent. The sign-up flow
+captures guardian email and separates marketing and photo consent from the mandatory
+terms — but consent capture is not the same as a compliance review. Treat the
+`Data & retention` tab in `admin.html` as a checklist, not as evidence.
+
 ## Licence
 
 © 2026 Viva Lifestyle Limited. All rights reserved.
