@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viva Lifestyle — Hong Kong's most connected youth network</title>
+<meta name="description" content="Viva Lifestyle Limited runs sports and recreational events across Hong Kong and partners with youth start-up incubators to give young people support, resources and a network.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0E17;
+  --navy:#121C31;
+  --gold:#C9A227;
+  --champagne:#E8C86A;
+  --pulse:#FF4B3E;
+  --pearl:#F6F3EC;
+  --display:"Fraunces","Noto Serif TC",Georgia,serif;
+  --body:"Inter","Noto Sans TC",system-ui,sans-serif;
+  --pad:clamp(20px,5vw,80px);
+  --sect:clamp(88px,12vw,160px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--pearl);font-family:var(--body);
+  font-weight:300;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body.locked{overflow:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:var(--gold);color:var(--ink)}
+:focus-visible{outline:2px solid var(--champagne);outline-offset:4px}
+
+.wrap{max-width:1440px;margin:0 auto;padding-left:var(--pad);padding-right:var(--pad)}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:400}
+.serif{font-family:var(--display);font-weight:300;letter-spacing:-.02em;line-height:1.04}
+.rule{height:1px;background:var(--gold);opacity:.45;transform:scaleX(0);transform-origin:left;transition:transform 1s cubic-bezier(.76,0,.24,1)}
+.rule.on{transform:scaleX(1)}
+.muted{color:rgba(246,243,236,.62)}
+.pearl-sect{background:var(--pearl);color:var(--ink)}
+.pearl-sect .muted{color:rgba(10,14,23,.62)}
+.pearl-sect .eyebrow{color:#8A6D12}
+
+/* ---------- reveal ---------- */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .9s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1)}
+.rv.on{opacity:1;transform:none}
+.line{display:block;overflow:hidden}
+.line>span{display:block;transform:translateY(105%);transition:transform 1s cubic-bezier(.76,0,.24,1)}
+.line.on>span{transform:none}
+
+/* ---------- cursor ---------- */
+#cur,#curRing{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;border-radius:50%;mix-blend-mode:difference}
+#cur{width:6px;height:6px;background:var(--champagne);margin:-3px 0 0 -3px}
+#curRing{width:44px;height:44px;border:1px solid rgba(201,162,39,.85);margin:-22px 0 0 -22px;transition:width .3s,height .3s,margin .3s,opacity .3s;opacity:.7}
+body.hot #curRing{width:72px;height:72px;margin:-36px 0 0 -36px;opacity:1}
+
+/* ---------- nav ---------- */
+header{position:fixed;inset:0 0 auto;z-index:900;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+header.stuck{background:rgba(10,14,23,.82);backdrop-filter:blur(14px);border-bottom-color:rgba(201,162,39,.22)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:80px}
+.logo{font-family:var(--display);font-size:24px;letter-spacing:.16em;font-weight:400}
+.logo b{color:var(--gold);font-weight:400}
+.links{display:flex;gap:34px;align-items:center}
+.links a{font-size:13px;letter-spacing:.05em;position:relative;padding:4px 0}
+.links a::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--gold);transition:right .4s cubic-bezier(.76,0,.24,1)}
+.links a:hover::after{right:0}
+.navtools{display:flex;gap:18px;align-items:center}
+.lang{display:flex;border:1px solid rgba(201,162,39,.4);border-radius:999px;overflow:hidden}
+.lang button{background:none;border:0;color:var(--pearl);font:inherit;font-size:11px;letter-spacing:.1em;padding:6px 12px;cursor:pointer;transition:background .3s,color .3s}
+.lang button.act{background:var(--gold);color:var(--ink)}
+.burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{display:block;width:26px;height:1px;background:var(--pearl);margin:6px 0;transition:transform .35s,opacity .3s}
+body.menu .burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+body.menu .burger span:nth-child(2){opacity:0}
+body.menu .burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.sheet{position:fixed;inset:0;z-index:880;background:var(--ink);display:flex;flex-direction:column;justify-content:center;padding:0 var(--pad);
+  clip-path:inset(0 0 100% 0);transition:clip-path .7s cubic-bezier(.76,0,.24,1);pointer-events:none}
+body.menu .sheet{clip-path:inset(0 0 0 0);pointer-events:auto}
+.sheet a{font-family:var(--display);font-size:clamp(30px,8vw,52px);font-weight:300;padding:10px 0;opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+body.menu .sheet a{opacity:1;transform:none}
+
+/* ---------- buttons ---------- */
+.btn{position:relative;display:inline-block;overflow:hidden;border:1px solid var(--gold);border-radius:999px;
+  padding:15px 34px;font-size:13px;letter-spacing:.08em;color:var(--champagne);background:none;cursor:pointer;font-family:var(--body);
+  transition:color .35s,transform .3s cubic-bezier(.2,.8,.2,1)}
+.btn i{position:absolute;inset:0;background:var(--gold);transform:translateY(101%);transition:transform .5s cubic-bezier(.76,0,.24,1);z-index:0}
+.btn span{position:relative;z-index:1}
+.btn:hover{color:var(--ink)}
+.btn:hover i{transform:translateY(0)}
+.btn.solid{border-color:var(--pulse);color:var(--pulse)}
+.btn.solid i{background:var(--pulse)}
+.btn.solid:hover{color:var(--pearl)}
+.pearl-sect .btn{border-color:var(--ink);color:var(--ink)}
+.pearl-sect .btn i{background:var(--ink)}
+.pearl-sect .btn:hover{color:var(--pearl)}
+
+/* ---------- hero ---------- */
+.hero{min-height:100svh;display:flex;align-items:flex-end;position:relative;padding-bottom:clamp(48px,8vh,90px);padding-top:140px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg::before{content:"";position:absolute;inset:0;
+  background:radial-gradient(120% 90% at 78% 18%,rgba(201,162,39,.16),transparent 62%),
+             radial-gradient(90% 70% at 12% 88%,rgba(255,75,62,.12),transparent 60%),var(--ink)}
+.ghost{position:absolute;left:0;right:0;top:38%;font-family:var(--display);font-size:min(19vw,260px);line-height:1;
+  color:rgba(246,243,236,.035);white-space:nowrap;letter-spacing:.02em;user-select:none}
+.hero-inner{position:relative;z-index:2;width:100%}
+.hero h1{font-size:clamp(46px,9.2vw,138px);margin:26px 0 0}
+.hero h1 em{font-style:normal;color:var(--champagne)}
+.hero-foot{display:flex;flex-wrap:wrap;gap:40px;align-items:flex-end;justify-content:space-between;margin-top:clamp(32px,5vw,56px)}
+.hero-foot p{max-width:40ch;font-size:15px}
+.cue{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,243,236,.5)}
+.cue .bar{width:52px;height:1px;background:rgba(201,162,39,.6);position:relative;overflow:hidden}
+.cue .bar::after{content:"";position:absolute;inset:0;background:var(--champagne);animation:slide 2.4s infinite}
+@keyframes slide{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+
+/* ---------- marquee ---------- */
+.strip{border-top:1px solid rgba(201,162,39,.22);border-bottom:1px solid rgba(201,162,39,.22);overflow:hidden;padding:26px 0}
+.track{display:flex;gap:72px;width:max-content;animation:roll 34s linear infinite}
+.strip:hover .track{animation-play-state:paused}
+@keyframes roll{to{transform:translateX(-50%)}}
+.track span{font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:rgba(246,243,236,.42);white-space:nowrap;transition:color .3s}
+.track span:hover{color:var(--champagne)}
+
+/* ---------- manifesto ---------- */
+.manifesto{padding:var(--sect) 0;text-align:center}
+.manifesto p{font-family:var(--display);font-weight:300;font-size:clamp(22px,3.1vw,40px);line-height:1.34;max-width:19ch;margin:34px auto}
+.manifesto p b{font-weight:400;color:var(--champagne)}
+
+/* ---------- pillars ---------- */
+.pillars{padding:0 0 var(--sect)}
+.head{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;margin-bottom:56px}
+.head h2{font-size:clamp(30px,4.6vw,64px)}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:rgba(201,162,39,.22)}
+.pillar{background:var(--ink);padding:44px 34px 40px;position:relative;transition:background .5s;min-height:340px;display:flex;flex-direction:column}
+.pillar:hover{background:var(--navy)}
+.pillar .stat{font-family:var(--display);font-size:44px;color:var(--gold);line-height:1;margin-bottom:6px}
+.pillar h3{font-family:var(--display);font-weight:400;font-size:26px;margin:26px 0 12px}
+.pillar p{font-size:14px;flex:1}
+.pillar .go{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--champagne);opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.pillar:hover .go{opacity:1;transform:none}
+
+/* ---------- rail ---------- */
+.rail-sect{padding:0 0 var(--sect)}
+.rail{display:flex;gap:24px;overflow-x:auto;padding:0 var(--pad) 12px;scrollbar-width:none;cursor:grab;scroll-snap-type:x proximity}
+.rail::-webkit-scrollbar{display:none}
+.rail.drag{cursor:grabbing;scroll-snap-type:none}
+.card{flex:0 0 clamp(260px,32vw,400px);scroll-snap-align:start;background:var(--navy);border:1px solid rgba(201,162,39,.2);
+  border-radius:2px;padding:32px 28px 28px;min-height:400px;display:flex;flex-direction:column;transition:border-color .4s,transform .25s ease-out;user-select:none}
+.card:hover{border-color:var(--gold)}
+.card .when{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.card h3{font-family:var(--display);font-weight:300;font-size:clamp(24px,2.6vw,34px);margin:16px 0 14px;line-height:1.12}
+.card p{font-size:14px;flex:1}
+.card .meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(201,162,39,.2);padding-top:16px;margin-top:20px;font-size:12px;letter-spacing:.06em}
+.dot{display:inline-flex;align-items:center;gap:7px;color:var(--pulse)}
+.dot::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--pulse);animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.railhint{display:flex;gap:10px;align-items:center;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(246,243,236,.4);margin-top:22px}
+
+/* ---------- impact ---------- */
+.impact{padding:var(--sect) 0}
+.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:48px 32px;margin-top:56px}
+.num b{display:block;font-family:var(--display);font-weight:300;font-size:clamp(44px,6vw,80px);line-height:1;font-variant-numeric:tabular-nums}
+.num .rule{margin:18px 0 14px}
+.num small{font-size:12px;letter-spacing:.16em;text-transform:uppercase;opacity:.65}
+
+/* ---------- split ---------- */
+.split{display:grid;grid-template-columns:5fr 7fr;gap:clamp(32px,6vw,90px);align-items:center;padding:var(--sect) 0}
+.frame{aspect-ratio:4/5;background:linear-gradient(150deg,var(--navy),#1D2A45);border:1px solid rgba(201,162,39,.28);position:relative;overflow:hidden}
+.frame::after{content:"";position:absolute;inset:14px;border:1px solid rgba(201,162,39,.28)}
+.frame span{position:absolute;left:0;right:0;bottom:34px;text-align:center;font-family:var(--display);font-size:clamp(26px,3.6vw,46px);color:rgba(246,243,236,.16)}
+.tiers{border-top:1px solid rgba(201,162,39,.24);margin-top:34px}
+.tier{border-bottom:1px solid rgba(201,162,39,.24);padding:22px 0;cursor:pointer}
+.tier .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px}
+.tier h4{font-family:var(--display);font-weight:400;font-size:22px;transition:color .3s}
+.tier:hover h4,.tier.open h4{color:var(--champagne)}
+.tier .price{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.tier .body{max-height:0;overflow:hidden;transition:max-height .55s cubic-bezier(.76,0,.24,1)}
+.tier.open .body{max-height:200px}
+.tier .body p{font-size:14px;padding-top:14px}
+
+/* ---------- journal ---------- */
+.journal{padding:var(--sect) 0}
+.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px}
+.post{border-top:1px solid rgba(201,162,39,.3);padding-top:22px;transition:border-color .4s}
+.post:hover{border-color:var(--gold)}
+.post .when{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.post h3{font-family:var(--display);font-weight:300;font-size:24px;margin:14px 0 12px;line-height:1.2}
+.post p{font-size:14px}
+
+/* ---------- band ---------- */
+.band{border-top:1px solid rgba(201,162,39,.35);border-bottom:1px solid rgba(201,162,39,.35);padding:clamp(56px,8vw,96px) 0;text-align:center}
+.band h2{font-size:clamp(30px,5.4vw,74px);margin-bottom:32px}
+
+/* ---------- footer ---------- */
+footer{padding:var(--sect) 0 48px}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:44px}
+footer h5{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:400;margin-bottom:20px}
+footer ul{list-style:none}
+footer li{margin-bottom:10px;font-size:14px}
+footer li a:hover{color:var(--champagne)}
+.sub{display:flex;border-bottom:1px solid rgba(201,162,39,.45);padding-bottom:8px;margin-top:8px}
+.sub input{flex:1;background:none;border:0;color:var(--pearl);font:inherit;font-size:14px;padding:6px 0}
+.sub input::placeholder{color:rgba(246,243,236,.35)}
+.sub button{background:none;border:0;color:var(--champagne);font:inherit;font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+.legal{display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;margin-top:70px;padding-top:26px;border-top:1px solid rgba(201,162,39,.2);font-size:12px;opacity:.55}
+
+/* ---------- progress ---------- */
+#prog{position:fixed;top:0;left:0;height:2px;background:var(--gold);z-index:950;width:0}
+
+@media(max-width:900px){
+  .links,.navtools .btn{display:none}
+  .burger{display:block}
+  .split{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+  #cur,#curRing{display:none}
+}
+@media(max-width:560px){.fgrid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  .rv,.line>span{opacity:1;transform:none}
+  .rule{transform:scaleX(1)}
+}
+</style>
+</head>
+<body>
+
+<div id="prog"></div>
+<div id="cur"></div><div id="curRing"></div>
+
+<header id="hd">
+  <div class="wrap nav">
+    <a href="#" class="logo">VI<b>V</b>A</a>
+    <nav class="links">
+      <a href="#events" data-en="Events" data-zh="活動">Events</a>
+      <a href="#circle" data-en="The Circle" data-zh="會員網絡">The Circle</a>
+      <a href="#ventures" data-en="Ventures" data-zh="青年創業">Ventures</a>
+      <a href="#impact" data-en="Impact" data-zh="社會影響">Impact</a>
+      <a href="#journal" data-en="Journal" data-zh="專欄">Journal</a>
+    </nav>
+    <div class="navtools">
+      <div class="lang">
+        <button class="act" data-lang="en">EN</button>
+        <button data-lang="zh">繁中</button>
+      </div>
+      <button class="btn mag" data-en="Apply to join" data-zh="申請加入"><i></i><span>Apply to join</span></button>
+      <button class="burger" id="bg" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="sheet" id="sheet">
+  <a href="#events" data-en="Events" data-zh="活動">Events</a>
+  <a href="#circle" data-en="The Circle" data-zh="會員網絡">The Circle</a>
+  <a href="#ventures" data-en="Ventures" data-zh="青年創業">Ventures</a>
+  <a href="#impact" data-en="Impact" data-zh="社會影響">Impact</a>
+  <a href="#journal" data-en="Journal" data-zh="專欄">Journal</a>
+</div>
+
+<section class="hero">
+  <div class="hero-bg"><div class="ghost">SPORT · COMMUNITY · VENTURE · SPORT</div></div>
+  <div class="wrap hero-inner">
+    <p class="eyebrow rv" data-en="Hong Kong · Est. 2024" data-zh="香港 · 二〇二四年創立">Hong Kong · Est. 2024</p>
+    <h1 class="serif">
+      <span class="line"><span>The city moves</span></span>
+      <span class="line"><span>when its youth</span></span>
+      <span class="line"><span><em>connect.</em></span></span>
+    </h1>
+    <div class="hero-foot">
+      <p class="rv muted" data-en="Viva Lifestyle runs the sports and recreational events that bring young Hong Kong together — then opens the doors that come next: incubators, mentors, funding, work." data-zh="Viva Lifestyle 舉辦體育及康樂活動，凝聚香港青年，並為他們打開下一道門——創業孵化、導師、資金與工作機會。">Viva Lifestyle runs the sports and recreational events that bring young Hong Kong together — then opens the doors that come next: incubators, mentors, funding, work.</p>
+      <div class="cue rv"><span class="bar"></span><span data-en="Scroll" data-zh="向下滑動">Scroll</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="track" id="tk"></div>
+</div>
+
+<section class="wrap manifesto">
+  <div class="rule"></div>
+  <p class="rv">A network isn't built in a boardroom. It's built on a court at 8pm, on a trail at sunrise, in a room where someone finally says <b>yes, I'll help you.</b></p>
+  <div class="rule"></div>
+</section>
+
+<section class="wrap pillars" id="events">
+  <div class="head">
+    <div>
+      <p class="eyebrow rv" data-en="What we do" data-zh="業務範疇">What we do</p>
+      <h2 class="serif rv" data-en="Three ways in." data-zh="三個入口。">Three ways in.</h2>
+    </div>
+    <p class="muted rv" style="max-width:34ch;font-size:14px" data-en="Every programme feeds the same network. Play, gather, build." data-zh="每個項目都連結同一個網絡：運動、聚會、創造。">Every programme feeds the same network. Play, gather, build.</p>
+  </div>
+  <div class="grid3">
+    <article class="pillar tilt rv">
+      <span class="stat">52</span>
+      <p class="eyebrow" data-en="Fixtures a year" data-zh="每年賽事">Fixtures a year</p>
+      <h3 data-en="Sport" data-zh="體育">Sport</h3>
+      <p class="muted" data-en="Leagues, night runs, harbour paddles and open courts across all eighteen districts. Beginners welcome, always." data-zh="聯賽、夜跑、海濱獨木舟及開放球場，遍及全港十八區。永遠歡迎新手。">Leagues, night runs, harbour paddles and open courts across all eighteen districts. Beginners welcome, always.</p>
+      <span class="go" data-en="See the calendar →" data-zh="查看日程 →">See the calendar →</span>
+    </article>
+    <article class="pillar tilt rv">
+      <span class="stat">30+</span>
+      <p class="eyebrow" data-en="Venues and partners" data-zh="場地及夥伴">Venues and partners</p>
+      <h3 data-en="Recreation" data-zh="康樂">Recreation</h3>
+      <p class="muted" data-en="Rooftop socials, hiking weekends, night markets and the annual Viva gala. The part where strangers become contacts." data-zh="天台聚會、遠足周末、夜市及年度 Viva 晚宴——陌生人成為夥伴的地方。">Rooftop socials, hiking weekends, night markets and the annual Viva gala. The part where strangers become contacts.</p>
+      <span class="go" data-en="What's on →" data-zh="近期活動 →">What's on →</span>
+    </article>
+    <article class="pillar tilt rv">
+      <span class="stat">12</span>
+      <p class="eyebrow" data-en="Incubator partners" data-zh="合作孵化器">Incubator partners</p>
+      <h3 data-en="Ventures" data-zh="創業">Ventures</h3>
+      <p class="muted" data-en="We hand members to the incubators, mentors and funds who can take their idea further — and stay with them after the pitch." data-zh="我們把會員引薦給孵化器、導師及基金，並在提案之後繼續陪伴。">We hand members to the incubators, mentors and funds who can take their idea further — and stay with them after the pitch.</p>
+      <span class="go" data-en="Meet the ventures →" data-zh="認識創業團隊 →">Meet the ventures →</span>
+    </article>
+  </div>
+</section>
+
+<section class="rail-sect">
+  <div class="wrap head">
+    <div>
+      <p class="eyebrow rv" data-en="Coming up" data-zh="即將舉行">Coming up</p>
+      <h2 class="serif rv" data-en="Next on the calendar." data-zh="下一場活動。">Next on the calendar.</h2>
+    </div>
+    <button class="btn mag rv" data-en="All events" data-zh="所有活動"><i></i><span>All events</span></button>
+  </div>
+  <div class="rail" id="rail">
+    <article class="card tilt">
+      <span class="when">Sat 23 Aug · Central Harbourfront</span>
+      <h3>Harbour Night Run</h3>
+      <p class="muted">Five kilometres along the waterfront after dark, finishing with street food and a live set. Pace groups from 4:30 to 8:00.</p>
+      <div class="meta"><span class="dot">18 spots left</span><span class="muted">Free</span></div>
+    </article>
+    <article class="card tilt">
+      <span class="when">Sun 07 Sep · Kwun Tong</span>
+      <h3>Rooftop Pickleball Social</h3>
+      <p class="muted">Open courts, rotating doubles, no experience needed. Paddles provided. Stay for drinks and introductions afterwards.</p>
+      <div class="meta"><span class="dot">6 spots left</span><span class="muted">HK$120</span></div>
+    </article>
+    <article class="card tilt">
+      <span class="when">Fri 19 Sep · Science Park</span>
+      <h3>Founders' Table</h3>
+      <p class="muted">Twelve seats, four founders, one long dinner. Members put a real problem on the table and leave with three introductions.</p>
+      <div class="meta"><span class="muted">Members only</span><span class="muted">Invitation</span></div>
+    </article>
+    <article class="card tilt">
+      <span class="when">Sat 11 Oct · Sai Kung</span>
+      <h3>Sunrise Trail &amp; Breakfast</h3>
+      <p class="muted">A gentle 9km ridge walk starting at 5:30am, ending with breakfast at the pier. Transport from Choi Hung included.</p>
+      <div class="meta"><span class="dot">31 spots left</span><span class="muted">HK$80</span></div>
+    </article>
+    <article class="card tilt">
+      <span class="when">Sat 06 Dec · TBC</span>
+      <h3>The Viva Gala</h3>
+      <p class="muted">One night, six hundred members, the year's ventures on stage. Black tie optional, energy compulsory.</p>
+      <div class="meta"><span class="muted">Registration opens Oct</span><span class="muted">—</span></div>
+    </article>
+  </div>
+  <div class="wrap railhint"><span>← →</span><span data-en="Drag to explore" data-zh="拖曳瀏覽">Drag to explore</span></div>
+</section>
+
+<section class="pearl-sect" id="impact">
+  <div class="wrap impact">
+    <p class="eyebrow rv" data-en="Since 2024" data-zh="自二〇二四年起">Since 2024</p>
+    <h2 class="serif rv" style="font-size:clamp(30px,4.6vw,64px);max-width:16ch" data-en="The network, in numbers." data-zh="數字中的網絡。">The network, in numbers.</h2>
+    <div class="nums">
+      <div class="num rv"><b data-count="12480">0</b><div class="rule"></div><small data-en="Members connected" data-zh="連結會員">Members connected</small></div>
+      <div class="num rv"><b data-count="214">0</b><div class="rule"></div><small data-en="Events delivered" data-zh="已舉辦活動">Events delivered</small></div>
+      <div class="num rv"><b data-count="46">0</b><div class="rule"></div><small data-en="Partner organisations" data-zh="合作機構">Partner organisations</small></div>
+      <div class="num rv"><b data-count="31">0</b><div class="rule"></div><small data-en="Ventures supported" data-zh="支援初創">Ventures supported</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap split" id="circle">
+  <div class="frame rv"><span>The Circle</span></div>
+  <div>
+    <p class="eyebrow rv" data-en="Membership" data-zh="會籍">Membership</p>
+    <h2 class="serif rv" style="font-size:clamp(30px,4.4vw,58px)" data-en="Join the Circle." data-zh="加入 The Circle。">Join the Circle.</h2>
+    <p class="muted rv" style="margin-top:20px;max-width:44ch" data-en="Membership is how the network holds together between events. Pick the tier that matches where you are right now — you can move up any time." data-zh="會籍讓網絡在活動之間持續連結。選擇最合適的級別，隨時可以升級。">Membership is how the network holds together between events. Pick the tier that matches where you are right now — you can move up any time.</p>
+    <div class="tiers rv">
+      <div class="tier open">
+        <div class="top"><h4 data-en="Open" data-zh="開放">Open</h4><span class="price">Free</span></div>
+        <div class="body"><p class="muted" data-en="Every public event, the monthly newsletter, and first sight of new fixtures. For anyone aged 15 to 30 living in Hong Kong." data-zh="所有公開活動、每月通訊，並優先得知新賽事。適合居港 15 至 30 歲人士。">Every public event, the monthly newsletter, and first sight of new fixtures. For anyone aged 15 to 30 living in Hong Kong.</p></div>
+      </div>
+      <div class="tier">
+        <div class="top"><h4 data-en="Active" data-zh="活躍">Active</h4><span class="price">HK$480 / year</span></div>
+        <div class="body"><p class="muted" data-en="Members-only fixtures, priority registration, kit, and a seat at two Founders' Tables a year." data-zh="會員專屬賽事、優先報名、運動裝備，以及每年兩次 Founders' Table 席位。">Members-only fixtures, priority registration, kit, and a seat at two Founders' Tables a year.</p></div>
+      </div>
+      <div class="tier">
+        <div class="top"><h4 data-en="Builder" data-zh="創建者">Builder</h4><span class="price">By application</span></div>
+        <div class="body"><p class="muted" data-en="For members building something. Direct introductions to our twelve incubator partners, mentor matching, and pitch support." data-zh="為正在創業的會員而設：直接引薦十二間合作孵化器、導師配對及提案支援。">For members building something. Direct introductions to our twelve incubator partners, mentor matching, and pitch support.</p></div>
+      </div>
+    </div>
+    <button class="btn solid mag rv" style="margin-top:34px" data-en="Apply to join" data-zh="申請加入"><i></i><span>Apply to join</span></button>
+  </div>
+</section>
+
+<section class="pearl-sect" id="ventures">
+  <div class="wrap" style="padding-top:var(--sect);padding-bottom:var(--sect)">
+    <div class="head">
+      <div>
+        <p class="eyebrow rv" data-en="Ventures" data-zh="創業支援">Ventures</p>
+        <h2 class="serif rv" data-en="Where the network pays off." data-zh="網絡的回報。">Where the network pays off.</h2>
+      </div>
+      <button class="btn mag rv"><i></i><span data-en="Partner with us" data-zh="成為合作夥伴">Partner with us</span></button>
+    </div>
+    <blockquote class="rv" style="font-family:var(--display);font-weight:300;font-size:clamp(22px,3vw,38px);line-height:1.32;max-width:24ch;margin-bottom:28px">
+      "We came for a Sunday run. We left with a co-founder, a mentor and a desk."
+    </blockquote>
+    <p class="muted rv" style="font-size:13px;letter-spacing:.1em;text-transform:uppercase">Lam Ho-yin · Founder, Tidal Sportswear · Cohort 2025</p>
+  </div>
+</section>
+
+<section class="wrap journal" id="journal">
+  <div class="head">
+    <div>
+      <p class="eyebrow rv" data-en="Journal" data-zh="專欄">Journal</p>
+      <h2 class="serif rv" data-en="From the network." data-zh="來自網絡。">From the network.</h2>
+    </div>
+  </div>
+  <div class="posts">
+    <article class="post rv">
+      <span class="when">28 Jul 2026</span>
+      <h3 data-en="What 214 events taught us about turnout" data-zh="214 場活動教會我們的事">What 214 events taught us about turnout</h3>
+      <p class="muted" data-en="Free doesn't mean full. Here's what actually gets young people through the door on a Tuesday night." data-zh="免費不代表滿座。真正讓年輕人在平日晚上出現的原因。">Free doesn't mean full. Here's what actually gets young people through the door on a Tuesday night.</p>
+    </article>
+    <article class="post rv">
+      <span class="when">14 Jul 2026</span>
+      <h3 data-en="Six incubators, plainly compared" data-zh="六間孵化器，坦白比較">Six incubators, plainly compared</h3>
+      <p class="muted" data-en="Equity, cohort length, what they actually give you. A straight guide for members deciding where to apply." data-zh="股權、培訓長度、實際資源。給會員的直接比較指南。">Equity, cohort length, what they actually give you. A straight guide for members deciding where to apply.</p>
+    </article>
+    <article class="post rv">
+      <span class="when">02 Jul 2026</span>
+      <h3 data-en="The district map of youth sport" data-zh="青年體育的地區地圖">The district map of youth sport</h3>
+      <p class="muted" data-en="Where courts sit empty, where waitlists run long, and what that says about how the city is planned." data-zh="哪裡球場空置、哪裡輪候人龍最長，以及這反映了怎樣的城市規劃。">Where courts sit empty, where waitlists run long, and what that says about how the city is planned.</p>
+    </article>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <h2 class="serif rv" data-en="Build the network with us." data-zh="與我們共建網絡。">Build the network with us.</h2>
+    <button class="btn mag rv"><i></i><span data-en="Start a conversation" data-zh="聯絡我們">Start a conversation</span></button>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a href="#" class="logo">VI<b>V</b>A</a>
+        <p class="muted" style="font-size:14px;margin-top:18px;max-width:28ch" data-en="Viva Lifestyle Limited — youth, sport and recreation across Hong Kong." data-zh="活力生活有限公司——連結香港青年、體育與康樂。">Viva Lifestyle Limited — youth, sport and recreation across Hong Kong.</p>
+      </div>
+      <div>
+        <h5 data-en="Explore" data-zh="瀏覽">Explore</h5>
+        <ul>
+          <li><a href="#events" data-en="Events" data-zh="活動">Events</a></li>
+          <li><a href="#circle" data-en="The Circle" data-zh="會員網絡">The Circle</a></li>
+          <li><a href="#ventures" data-en="Ventures" data-zh="青年創業">Ventures</a></li>
+          <li><a href="#journal" data-en="Journal" data-zh="專欄">Journal</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 data-en="Work with us" data-zh="合作">Work with us</h5>
+        <ul>
+          <li><a href="#" data-en="Sponsorship" data-zh="贊助">Sponsorship</a></li>
+          <li><a href="#" data-en="Venue partners" data-zh="場地夥伴">Venue partners</a></li>
+          <li><a href="#" data-en="Incubators" data-zh="孵化器">Incubators</a></li>
+          <li><a href="#" data-en="Volunteer" data-zh="義工">Volunteer</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 data-en="Monthly dispatch" data-zh="每月通訊">Monthly dispatch</h5>
+        <p class="muted" style="font-size:14px" data-en="New fixtures, open applications, one venture story." data-zh="新賽事、開放申請、一個創業故事。">New fixtures, open applications, one venture story.</p>
+        <div class="sub">
+          <input type="email" placeholder="name@email.com" aria-label="Email address">
+          <button data-en="Join" data-zh="訂閱">Join</button>
+        </div>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Viva Lifestyle Limited · Hong Kong</span>
+      <span data-en="Privacy · PDPO statement · Terms" data-zh="私隱政策 · 個人資料收集聲明 · 條款">Privacy · PDPO statement · Terms</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* marquee content */
+  var names=['Hong Kong Science Park','Cyberport','HKSTP Incubation','Sports Federation','Cocoon','Blueprint','Brinc','District Youth Council','Betatron','Mills Fabrica','Runway HK','Ocean Park'];
+  var tk=document.getElementById('tk');
+  for(var r=0;r<2;r++) names.forEach(function(n){var s=document.createElement('span');s.textContent=n;tk.appendChild(s);});
+
+  /* scroll progress + sticky header */
+  var hd=document.getElementById('hd'),prog=document.getElementById('prog');
+  function onScroll(){
+    var y=window.scrollY;
+    hd.classList.toggle('stuck',y>60);
+    var h=document.documentElement.scrollHeight-innerHeight;
+    prog.style.width=(h>0?(y/h)*100:0)+'%';
+  }
+  addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  /* reveals */
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      e.target.classList.add('on');
+      io.unobserve(e.target);
+      var n=e.target.querySelector('[data-count]');
+      if(n) count(n);
+    });
+  },{threshold:.18,rootMargin:'0px 0px -8% 0px'});
+  document.querySelectorAll('.rv,.rule,.line').forEach(function(el,i){
+    el.style.transitionDelay=(i%4)*0.08+'s';
+    io.observe(el);
+  });
+
+  /* counters */
+  function count(el){
+    var target=+el.dataset.count, t0=null;
+    if(reduce){el.textContent=target.toLocaleString();return;}
+    requestAnimationFrame(function step(ts){
+      if(!t0)t0=ts;
+      var p=Math.min((ts-t0)/1800,1), e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(target*e).toLocaleString();
+      if(p<1)requestAnimationFrame(step);
+    });
+  }
+
+  /* custom cursor */
+  var dot=document.getElementById('cur'),ring=document.getElementById('curRing');
+  if(!reduce && matchMedia('(pointer:fine)').matches){
+    var mx=innerWidth/2,my=innerHeight/2,rx=mx,ry=my;
+    addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;
+      dot.style.transform='translate('+mx+'px,'+my+'px)';});
+    (function loop(){rx+=(mx-rx)*.14;ry+=(my-ry)*.14;
+      ring.style.transform='translate('+rx+'px,'+ry+'px)';requestAnimationFrame(loop);})();
+    document.querySelectorAll('a,button,.card,.pillar,.tier').forEach(function(el){
+      el.addEventListener('mouseenter',function(){document.body.classList.add('hot')});
+      el.addEventListener('mouseleave',function(){document.body.classList.remove('hot')});
+    });
+  }else{dot.style.display=ring.style.display='none';}
+
+  /* magnetic buttons */
+  if(!reduce && matchMedia('(pointer:fine)').matches){
+    document.querySelectorAll('.mag').forEach(function(b){
+      b.addEventListener('mousemove',function(e){
+        var r=b.getBoundingClientRect();
+        b.style.transform='translate('+((e.clientX-r.left-r.width/2)*.3)+'px,'+((e.clientY-r.top-r.height/2)*.45)+'px)';
+      });
+      b.addEventListener('mouseleave',function(){b.style.transform='';});
+    });
+    /* tilt */
+    document.querySelectorAll('.tilt').forEach(function(c){
+      c.addEventListener('mousemove',function(e){
+        var r=c.getBoundingClientRect();
+        var px=(e.clientX-r.left)/r.width-.5, py=(e.clientY-r.top)/r.height-.5;
+        c.style.transform='perspective(900px) rotateY('+(px*6)+'deg) rotateX('+(-py*6)+'deg)';
+      });
+      c.addEventListener('mouseleave',function(){c.style.transform='';});
+    });
+  }
+
+  /* drag rail */
+  var rail=document.getElementById('rail'),down=false,sx=0,sl=0;
+  rail.addEventListener('mousedown',function(e){down=true;rail.classList.add('drag');sx=e.pageX;sl=rail.scrollLeft;});
+  addEventListener('mouseup',function(){down=false;rail.classList.remove('drag');});
+  rail.addEventListener('mousemove',function(e){if(!down)return;e.preventDefault();rail.scrollLeft=sl-(e.pageX-sx)*1.6;});
+
+  /* tiers accordion */
+  document.querySelectorAll('.tier').forEach(function(t){
+    t.addEventListener('click',function(){
+      var was=t.classList.contains('open');
+      document.querySelectorAll('.tier').forEach(function(o){o.classList.remove('open')});
+      if(!was)t.classList.add('open');
+    });
+  });
+
+  /* mobile sheet */
+  var bg=document.getElementById('bg'),sheet=document.getElementById('sheet');
+  bg.addEventListener('click',function(){
+    document.body.classList.toggle('menu');
+    document.body.classList.toggle('locked');
+    sheet.querySelectorAll('a').forEach(function(a,i){a.style.transitionDelay=(i*.06+.1)+'s'});
+  });
+  sheet.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){
+    document.body.classList.remove('menu','locked');});});
+
+  /* language toggle */
+  document.querySelectorAll('.lang button').forEach(function(b){
+    b.addEventListener('click',function(){
+      var l=b.dataset.lang;
+      document.querySelectorAll('.lang button').forEach(function(o){o.classList.toggle('act',o===b)});
+      document.documentElement.lang = l==='zh' ? 'zh-Hant' : 'en';
+      document.querySelectorAll('[data-'+l+']').forEach(function(el){
+        el.textContent = el.getAttribute('data-'+l);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
