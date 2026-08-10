@@ -77,8 +77,8 @@ the production build:
 
 Membership is **by invitation**. Members are introduced by an existing member or found
 by Viva; anyone else writes an enquiry, which is answered by a person. The three tiers
-are **Associate** (by invitation), **Member** (annual dues HK$480) and **Fellow** (by
-nomination, no fee). Copy is written in a formal register in both languages — the
+are **Diamond** (by invitation), **Platinum** (by introduction) and **Black Gold** (by
+nomination). Dues are not published on the site. Copy is written in a formal register in both languages — the
 Traditional Chinese is written Chinese, not colloquial Cantonese, because the
 colloquial register undercuts the invitation framing.
 
@@ -103,22 +103,26 @@ is transmitted anywhere.
 
 ### The Circle card
 
-The card is part of the homepage, in **The Circle** section — three of them, one per
-tier, side by side. There is no separate card page and no member's card on the public
-site: each is rendered as an emblem rather than an issued credential, so no fabricated
-member name or number appears.
+The cards live on the homepage, in **The Circle** — three of them, one per tier. There
+is no separate card page and no member's card on the public site: each is an emblem
+rather than an issued credential, so no fabricated member name or number appears. No
+prices are shown; each card states only how one is admitted.
 
-| Tier | Seal | Finish | Terms |
-|------|------|--------|-------|
-| Associate | I | Graphite | By invitation |
-| Member | II | Deep navy, brighter gold | Annual dues HK$480 |
-| Fellow | III | Near-black and bronze, double gold edge | By nomination |
+| Tier | Seal | Material | Admission |
+|------|------|----------|-----------|
+| Diamond | I | Pale ice-blue with cut facets and a raking highlight | By invitation |
+| Platinum | II | Brushed silver-grey metal | By introduction |
+| Black Gold | III | Near-black and bronze, guilloché, double gold edge | By nomination |
 
-`VIVA CIRCLE` is a gold-foil gradient clipped to the glyphs with a nine-second sheen,
-with a flat-gold fallback where `background-clip: text` is unsupported. A guilloché
-engraving underlies each face; on hover a card lifts slightly and a specular highlight
-sweeps across it. Tier names and terms both carry Chinese, so the cards follow the
-language toggle.
+`VIVA CIRCLE` appears on every card. On **Black Gold** it is gold foil — a gradient
+clipped to the glyphs with a nine-second sheen. On **Diamond** and **Platinum** it is
+*engraved* instead: a dark steel gradient, because a light metallic foil on a pale
+ground is illegible. That is why the two pale cards carry dark markings and the black
+card carries gold.
+
+On hover a card lifts 7px and a specular highlight rakes across it. Tier names and
+admission routes both carry Chinese (鑽石 / 白金 / 黑金), so the cards follow the
+language toggle. `background-clip: text` has a flat-colour fallback.
 
 ### Admin console
 

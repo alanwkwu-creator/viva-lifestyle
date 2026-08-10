@@ -13,9 +13,9 @@
 
   /* ---------- reference data ---------- */
   var TIERS = {
-    open:    { key:'open',    en:'Associate', zh:'準會員',   price:0,   priceLabel:'By invitation', term:'—' },
-    active:  { key:'active',  en:'Member',    zh:'正式會員', price:480, priceLabel:'Annual dues HK$480', term:'12 months' },
-    builder: { key:'builder', en:'Fellow',    zh:'創建會員', price:0,   priceLabel:'By nomination', term:'12 months' }
+    open:    { key:'open',    en:'Diamond',    zh:'鑽石', price:0,   priceLabel:'By invitation',  term:'—' },
+    active:  { key:'active',  en:'Platinum',   zh:'白金', price:480, priceLabel:'By introduction', term:'12 months' },
+    builder: { key:'builder', en:'Black Gold', zh:'黑金', price:0,   priceLabel:'By nomination',   term:'12 months' }
   };
 
   /* Benefits are deliberately withholding: what a member receives is named,

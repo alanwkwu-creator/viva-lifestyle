@@ -60,8 +60,8 @@
     <div class="toolbar">
       <input type="search" id="q" placeholder="Search name, member number or email…" aria-label="Search members">
       <select id="fTier" aria-label="Filter by tier">
-        <option value="">All tiers</option><option value="open">Associate</option>
-        <option value="active">Member</option><option value="builder">Fellow</option>
+        <option value="">All tiers</option><option value="open">Diamond</option>
+        <option value="active">Platinum</option><option value="builder">Black Gold</option>
       </select>
       <select id="fStatus" aria-label="Filter by status">
         <option value="">All statuses</option><option value="active">Active</option>
@@ -194,7 +194,7 @@ VIVA.ready(function () {
   var kpis = [
     ['Total members', M.length.toLocaleString(), '+' + newThisMonth + ' this month', false],
     ['Active', active.toLocaleString(), Math.round(active / M.length * 100) + '% of base', false],
-    ['Paying (Active tier)', paid.toLocaleString(), 'HK$' + revenue.toLocaleString() + ' annualised', false],
+    ['Platinum', paid.toLocaleString(), 'HK$' + revenue.toLocaleString() + ' annualised', false],
     ['Lapsed', lapsed.toLocaleString(), 'Renewal reminders due', true],
     ['Check-ins today', '41', '+12 vs last Thursday', false],
     ['Wallet passes', M.filter(function (m) { return m.walletPass; }).length.toLocaleString(), 'of ' + M.length + ' members', false]
