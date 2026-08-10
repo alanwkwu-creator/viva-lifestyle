@@ -95,7 +95,7 @@ is transmitted anywhere.
 | `index.html` | Public homepage (self-contained) |
 | `enquiry.html` | Enquiry letter — membership is by invitation, so there is no self-service sign-up |
 | `join.html` | Redirect to `enquiry.html`, kept so older links do not break |
-| `card.html` | Virtual membership card — flips to a rotating QR check-in code |
+| `card.html` | Redirect to `index.html#circle` — the card now lives on the main page |
 | `admin.html` | Staff console: members, check-in, events, data-retention checklist |
 | `app.css` | Shared design system for the three application pages |
 | `app.js` | Mock data (64 members, 6 events, check-in log) and shared helpers |
@@ -103,30 +103,22 @@ is transmitted anywhere.
 
 ### The Circle card
 
-Three finishes, one per tier, switchable on the page for demonstration:
+The card is part of the homepage, in **The Circle** section — three of them, one per
+tier, side by side. There is no separate card page and no member's card on the public
+site: each is rendered as an emblem rather than an issued credential, so no fabricated
+member name or number appears.
 
-| Tier | Seal | Finish |
-|------|------|--------|
-| Associate | I | Graphite, single gold hairline |
-| Member | II | Deep navy, brighter gold |
-| Fellow | III | Near-black and bronze, double gold edge, weighted seal |
+| Tier | Seal | Finish | Terms |
+|------|------|--------|-------|
+| Associate | I | Graphite | By invitation |
+| Member | II | Deep navy, brighter gold | Annual dues HK$480 |
+| Fellow | III | Near-black and bronze, double gold edge | By nomination |
 
-The `VIVA CIRCLE` wordmark is a gold-foil gradient clipped to the glyphs with an animated
-sheen; there is a flat-gold fallback for browsers without `background-clip: text`. A
-guilloché engraving underlies each face, and on fine-pointer devices the card tilts with
-the cursor while a specular highlight tracks across it. Flip and tilt write the same
-inline transform so they cannot conflict.
-
-Benefits are tier-specific and written to withhold — what a member receives is named,
-what it amounts to is not ("Twelve names — you will be given them, and expected to use
-them"). The tier above is shown but sealed: titles blurred, detail redacted, marked
-*Sealed* / 未披露. Fellow has nothing above it, so that section disappears.
-
-Real, scannable QR codes. The payload is `VIVA:<member-id>:<token>` and the token
-regenerates every 30 seconds, so a screenshot of someone else's card stops working
-almost immediately. Apple and Google Wallet buttons are present but inert: a
-production build signs a `.pkpass` (Apple) or a JWT pass object (Google) server-side,
-which needs an Apple Developer certificate and cannot be done from static hosting.
+`VIVA CIRCLE` is a gold-foil gradient clipped to the glyphs with a nine-second sheen,
+with a flat-gold fallback where `background-clip: text` is unsupported. A guilloché
+engraving underlies each face; on hover a card lifts slightly and a specular highlight
+sweeps across it. Tier names and terms both carry Chinese, so the cards follow the
+language toggle.
 
 ### Admin console
 
