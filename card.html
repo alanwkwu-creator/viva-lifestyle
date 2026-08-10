@@ -3,23 +3,123 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Membership card — Viva Lifestyle</title>
-<meta name="description" content="Your Viva Lifestyle virtual membership card: rotating QR check-in code, wallet pass, tier perks and attendance history.">
+<title>The Circle — Viva Lifestyle</title>
+<meta name="description" content="The Viva Circle card.">
 <meta name="robots" content="noindex">
-<meta name="theme-color" content="#0A0E17">
+<meta name="theme-color" content="#080B12">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+TC:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,200;9..144,300;9..144,400;9..144,500&family=Inter:wght@300;400&family=Noto+Sans+TC:wght@300;400&family=Noto+Serif+TC:wght@300;400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="app.css">
+<style>
+body{background:#080B12}
+
+/* ---------- foil ---------- */
+.foil{
+  color:#C9A227;
+  background-image:linear-gradient(100deg,
+    #7A5F0E 0%, #C9A227 14%, #F1DC96 26%, #FFFBE8 34%,
+    #EBCD73 44%, #C9A227 58%, #8A6D12 74%, #C9A227 88%, #F1DC96 100%);
+  background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:sheen 9s linear infinite;
+}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){
+  .foil{-webkit-text-fill-color:#C9A227;background-image:none}
+}
+@keyframes sheen{to{background-position:300% 0}}
+
+/* ---------- card ---------- */
+.stage{perspective:1500px;max-width:430px;width:100%}
+.crd{position:relative;width:100%;aspect-ratio:1.586/1;transform-style:preserve-3d;
+  transition:transform .9s cubic-bezier(.76,0,.24,1);cursor:pointer;will-change:transform}
+.crd.flip{transform:rotateY(180deg)}
+.side{position:absolute;inset:0;backface-visibility:hidden;border-radius:16px;overflow:hidden;
+  padding:26px 26px 22px;display:flex;flex-direction:column;justify-content:space-between;
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.95), 0 0 0 1px rgba(201,162,39,.3) inset}
+.side.back{transform:rotateY(180deg);align-items:center;justify-content:center;gap:16px}
+
+/* engraved guilloché + specular sweep, shared */
+.side::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:
+    repeating-radial-gradient(circle at 22% 78%, rgba(201,162,39,.09) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(58deg, rgba(246,243,236,.035) 0 1px, transparent 1px 7px)}
+.side::after{content:"";position:absolute;top:-60%;left:-30%;width:60%;height:220%;pointer-events:none;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.09),transparent);
+  transform:rotate(16deg) translateX(var(--sx,-60%));transition:transform .25s ease-out}
+
+/* tier finishes */
+.crd[data-tier="open"] .side{background:linear-gradient(150deg,#161B24 0%,#0C1017 58%,#191F29 100%)}
+.crd[data-tier="active"] .side{background:linear-gradient(150deg,#14203A 0%,#0A0E17 52%,#1B2A48 100%)}
+.crd[data-tier="builder"] .side{background:linear-gradient(150deg,#100D07 0%,#07070A 50%,#1A1408 100%);
+  box-shadow:0 30px 70px -28px rgba(0,0,0,.95), 0 0 0 1px rgba(201,162,39,.62) inset,
+             0 0 0 5px rgba(201,162,39,.09) inset}
+.crd[data-tier="builder"] .side::before{opacity:.75}
+
+.chead{display:flex;justify-content:space-between;align-items:flex-start;position:relative;z-index:2}
+.mark{font-family:var(--display);font-weight:400;font-size:17px;letter-spacing:.3em;line-height:1.35}
+.mark small{display:block;font-size:9.5px;letter-spacing:.42em;font-weight:300;margin-top:5px;opacity:.85}
+
+/* seal */
+.seal{width:52px;height:52px;border-radius:50%;flex:none;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:1px;
+  border:1px solid rgba(201,162,39,.5);position:relative}
+.seal::before{content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid rgba(201,162,39,.22)}
+.seal i{font-style:normal;font-family:var(--display);font-size:17px;letter-spacing:.08em;line-height:1}
+.crd[data-tier="builder"] .seal{border-color:rgba(201,162,39,.85);background-color:rgba(201,162,39,.07)}
+
+.cname{font-family:var(--display);font-weight:300;font-size:clamp(21px,5.2vw,27px);line-height:1.15;
+  position:relative;z-index:2}
+.cno{font-size:11.5px;letter-spacing:.3em;color:rgba(246,243,236,.45);margin-top:7px;font-variant-numeric:tabular-nums}
+.cfoot{display:flex;justify-content:space-between;align-items:flex-end;position:relative;z-index:2;
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(246,243,236,.32)}
+.cfoot b{display:block;color:rgba(246,243,236,.8);font-weight:400;font-size:11px;letter-spacing:.12em;margin-top:4px}
+.tiertext{font-size:9.5px;letter-spacing:.28em;text-transform:uppercase}
+
+.qrbox{background:#F6F3EC;padding:11px;border-radius:9px;width:152px;height:152px;
+  display:flex;align-items:center;justify-content:center;position:relative;z-index:2}
+.qrbox canvas,.qrbox img{width:100%!important;height:100%!important;display:block}
+.qmeta{position:relative;z-index:2;text-align:center;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(246,243,236,.4)}
+.qmeta b{color:var(--champagne);font-weight:400}
+
+.hint{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(246,243,236,.26);
+  text-align:center;margin-top:20px}
+
+/* ---------- tier switch ---------- */
+.switch{display:flex;gap:0;border:1px solid var(--line);border-radius:999px;overflow:hidden;margin-bottom:30px}
+.switch button{flex:1;background:none;border:0;padding:11px 8px;font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:rgba(246,243,236,.4);cursor:pointer;transition:background .35s,color .35s}
+.switch button.on{background:rgba(201,162,39,.13);color:var(--champagne)}
+
+/* ---------- benefits ---------- */
+.ben{border-top:1px solid var(--line)}
+.ben .r{display:flex;justify-content:space-between;align-items:baseline;gap:20px;padding:19px 0;
+  border-bottom:1px solid var(--line)}
+.ben .r b{font-family:var(--display);font-weight:300;font-size:18px;display:block}
+.ben .r small{display:block;font-size:12.5px;color:rgba(246,243,236,.38);margin-top:5px;line-height:1.55}
+.ben .r .k{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:rgba(201,162,39,.6);white-space:nowrap}
+
+/* locked rows */
+.ben .r.lk b,.ben .r.lk small{color:rgba(246,243,236,.16)}
+.ben .r.lk b{filter:blur(4.5px);user-select:none}
+.ben .r.lk .k{color:rgba(246,243,236,.2)}
+.cardgrid{display:grid;grid-template-columns:minmax(0,430px) minmax(0,1fr);gap:clamp(30px,6vw,76px);align-items:start}
+@media(max-width:900px){.cardgrid{grid-template-columns:minmax(0,1fr)}}
+.redact{display:inline-block;height:11px;border-radius:1px;vertical-align:middle;
+  background:repeating-linear-gradient(45deg,rgba(201,162,39,.24) 0 3px,rgba(201,162,39,.06) 3px 6px)}
+</style>
 </head>
 <body>
+<div class="grain" style="position:fixed;inset:0;z-index:91;pointer-events:none;opacity:.45;mix-blend-mode:overlay;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.2'/%3E%3C/svg%3E&quot;)"></div>
 
 <header class="top">
   <div class="wrap topin">
     <a href="index.html" class="logo">VI<b>V</b>A</a>
     <nav class="topnav">
       <a href="index.html" data-en="Home" data-zh="主頁">Home</a>
-      <a href="card.html" aria-current="page" data-en="Member card" data-zh="會員卡">Member card</a>
+      <a href="card.html" aria-current="page" data-en="The card" data-zh="會員卡">The card</a>
       <a href="enquiry.html" data-en="Enquiries" data-zh="查詢">Enquiries</a>
       <a href="admin.html" data-en="Staff" data-zh="職員">Staff</a>
     </nav>
@@ -36,44 +136,50 @@
 
   <div class="notice">
     <b data-en="Prototype" data-zh="原型">Prototype</b>
-    <span data-en=" — this card is a demonstration. The member record is fabricated, the QR code is not connected to any check-in system, and no data leaves your browser." data-zh="——此卡僅作示範。會員資料為虛構，二維碼未連接任何簽到系統，亦無任何資料離開此瀏覽器。"> — this card is a demonstration. The member record is fabricated, the QR code is not connected to any check-in system, and no data leaves your browser.</span>
+    <span data-en=" — a demonstration. The record is fabricated and the code is connected to nothing." data-zh="——僅作示範。會員資料為虛構，二維碼未連接任何系統。"> — a demonstration. The record is fabricated and the code is connected to nothing.</span>
   </div>
 
-  <p class="crumb" data-en="The Circle · Membership" data-zh="The Circle · 會籍">The Circle · Membership</p>
+  <p class="crumb" data-en="The Circle" data-zh="The Circle">The Circle</p>
   <div class="phead">
-    <h1 class="serif" data-en="Your membership card." data-zh="閣下的會員卡。">Your membership card.</h1>
+    <h1 class="serif" data-en="The card." data-zh="會員卡。">The card.</h1>
   </div>
 
-  <div style="display:grid;grid-template-columns:minmax(0,400px) minmax(0,1fr);gap:clamp(28px,5vw,64px);align-items:start">
+  <div class="cardgrid">
 
-    <!-- ---------- card column ---------- -->
+    <!-- ---------- card ---------- -->
     <div>
-      <div class="cardwrap rv">
-        <div class="mcard" id="mcard" role="button" tabindex="0" aria-label="Membership card — activate to show QR code">
-          <div class="face front">
-            <div class="top">
-              <span class="mark">VI<b>V</b>A</span>
-              <span class="tiermark" id="cTier">Active</span>
+      <div class="switch" id="switch" role="group" aria-label="View tier">
+        <button data-t="open">Associate</button>
+        <button data-t="active" class="on">Member</button>
+        <button data-t="builder">Fellow</button>
+      </div>
+
+      <div class="stage rv">
+        <div class="crd" id="crd" data-tier="active" role="button" tabindex="0" aria-label="Membership card — activate to reveal the code">
+          <div class="side front">
+            <div class="chead">
+              <span class="mark"><span class="foil">VIVA</span><small class="foil">CIRCLE</small></span>
+              <span class="seal" id="seal"><i class="foil">II</i></span>
             </div>
             <div>
-              <div class="name" id="cName">Alan Wu</div>
-              <div class="no" id="cNo">VL-2026-04821</div>
+              <div class="cname" id="cName">Alan Wu</div>
+              <div class="cno" id="cNo">VL·2026·04821</div>
             </div>
-            <div class="foot">
-              <span><span data-en="Member since" data-zh="入會日期">Member since</span><b id="cSince">14 Mar 2026</b></span>
-              <span style="text-align:right"><span data-en="Renews" data-zh="續會">Renews</span><b id="cRenew">14 Mar 2027</b></span>
+            <div class="cfoot">
+              <span><span data-en="Admitted" data-zh="獲納日期">Admitted</span><b id="cSince">MMM 2026</b></span>
+              <span class="tiertext foil" id="cTier">MEMBER</span>
             </div>
           </div>
-          <div class="face back">
-            <div class="qrbox"><canvas id="qrc" width="150" height="150"></canvas></div>
-            <div class="qrmeta">
-              <div id="qrCode" style="letter-spacing:.18em">VL-2026-04821</div>
-              <div style="margin-top:6px"><span data-en="Refreshes in" data-zh="重新產生倒數">Refreshes in</span> <b id="qrTick">30</b>s</div>
+          <div class="side back">
+            <div class="qrbox"><canvas id="qrc" width="152" height="152"></canvas></div>
+            <div class="qmeta">
+              <div id="qrCode">VL·2026·04821</div>
+              <div style="margin-top:6px"><span data-en="Renews in" data-zh="更新倒數">Renews in</span> <b id="qrTick">30</b>s</div>
             </div>
           </div>
         </div>
       </div>
-      <p class="fliphint" data-en="Tap the card to reveal your check-in code" data-zh="輕觸卡片以顯示簽到碼">Tap the card to reveal your check-in code</p>
+      <p class="hint" data-en="Touch the card" data-zh="輕觸卡片">Touch the card</p>
 
       <div class="wallets">
         <button class="wbtn" id="wApple">
@@ -85,38 +191,27 @@
           <span><small>Add to</small>Google Wallet</span>
         </button>
       </div>
-      <p class="tiny muted" style="margin-top:12px" id="wNote" data-en="Wallet passes need an Apple Developer certificate and a signed .pkpass — not wired up in this prototype." data-zh="Wallet pass 需要 Apple Developer 證書及已簽署的 .pkpass，此原型尚未接通。">Wallet passes need an Apple Developer certificate and a signed .pkpass — not wired up in this prototype.</p>
+      <p class="tiny muted" style="margin-top:12px" id="wNote" data-en="Wallet passes are signed on a server. Not in this prototype." data-zh="Wallet pass 須於伺服器簽署，此原型未接通。">Wallet passes are signed on a server. Not in this prototype.</p>
     </div>
 
-    <!-- ---------- detail column ---------- -->
+    <!-- ---------- benefits ---------- -->
     <div>
-      <div class="panel rv">
-        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:6px">
-          <span class="badge green dot" data-en="Active" data-zh="生效中">Active</span>
-          <span class="badge gold" id="bTier">Active tier</span>
-          <span class="badge" id="bCheckins">17 check-ins</span>
+      <div class="sect" style="margin-top:0">
+        <p class="eyebrow" id="tierName" style="margin-bottom:14px">Member · 正式會員</p>
+        <h2 class="serif" style="font-weight:300;font-size:clamp(22px,3vw,30px)" data-en="What is held." data-zh="所持之物。">What is held.</h2>
+        <div class="ben" id="ben" style="margin-top:26px"></div>
+      </div>
+
+      <div class="sect" id="beyondWrap">
+        <h2 class="serif" style="font-weight:300;font-size:clamp(20px,2.6vw,26px)" data-en="Beyond." data-zh="其外。">Beyond.</h2>
+        <div class="ben" id="beyond" style="margin-top:22px"></div>
+        <p class="tiny" style="color:rgba(246,243,236,.3);margin-top:16px" data-en="Disclosed on admission to the tier above." data-zh="晉升上一級別後方予披露。">Disclosed on admission to the tier above.</p>
+      </div>
+
+      <div class="sect">
+        <div class="btnrow">
+          <a class="btn sm" href="enquiry.html"><i></i><span data-en="Enquire" data-zh="提交查詢">Enquire</span></a>
         </div>
-        <p class="muted" style="font-size:14px;margin-top:14px" data-en="Present this card at the door, or allow a host to scan the code. Attendance is recorded immediately." data-zh="請於入口出示此卡，或交由主持掃描。出席紀錄將即時登錄。">Present this card at the door, or allow a host to scan the code. Attendance is recorded immediately.</p>
-      </div>
-
-      <div class="sect">
-        <h2 data-en="What your tier includes" data-zh="此級別包括">What your tier includes</h2>
-        <div class="rows" id="perks"></div>
-        <div class="btnrow" style="margin-top:20px">
-          <button class="btn sm" id="btnUp"><i></i><span data-en="Enquire about Fellow" data-zh="查詢創建會員資格">Enquire about Fellow</span></button>
-          <button class="btn sm ghost"><i></i><span data-en="Manage membership" data-zh="管理會籍">Manage membership</span></button>
-        </div>
-      </div>
-
-      <div class="sect">
-        <h2 data-en="Your next events" data-zh="即將出席">Your next events</h2>
-        <div class="rows" id="next"></div>
-      </div>
-
-      <div class="sect">
-        <h2 data-en="Check-in history" data-zh="簽到紀錄">Check-in history</h2>
-        <div class="rows" id="hist"></div>
-        <p class="tiny muted" style="margin-top:14px" data-en="Attendance is kept for two years, then deleted. You can export or erase it at any time." data-zh="出席紀錄保留兩年後刪除，你可隨時匯出或刪除。">Attendance is kept for two years, then deleted. You can export or erase it at any time.</p>
       </div>
     </div>
   </div>
@@ -125,7 +220,7 @@
 <footer class="foot">
   <div class="wrap in">
     <span>© 2026 Viva Lifestyle Limited · Hong Kong</span>
-    <span data-en="Prototype — not for production use" data-zh="原型 — 未可用於實際運作">Prototype — not for production use</span>
+    <span data-en="Prototype" data-zh="原型">Prototype</span>
   </div>
 </footer>
 
@@ -134,125 +229,126 @@
 <script src="app.js"></script>
 <script>
 VIVA.ready(function () {
-  var me = VIVA.ME, T = VIVA.TIERS[me.tier];
+  var ORDER = ['open', 'active', 'builder'];
+  var ROMAN = { open: 'I', active: 'II', builder: 'III' };
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var lang = function () { return document.documentElement.lang === 'zh-Hant' ? 'zh' : 'en'; };
+  var current = 'active';
 
-  document.getElementById('cName').textContent = me.name;
-  document.getElementById('cNo').textContent = me.id;
-  document.getElementById('cTier').textContent = T.en;
-  document.getElementById('cTier').setAttribute('data-en', T.en);
-  document.getElementById('cTier').setAttribute('data-zh', T.zh);
-  document.getElementById('cSince').textContent = VIVA.fmtDate(me.joined);
-  document.getElementById('cRenew').textContent = VIVA.fmtDate(me.renews);
-  document.getElementById('bTier').textContent = T.en + ' tier · ' + T.priceLabel;
-  document.getElementById('bCheckins').textContent = me.checkins + ' check-ins';
+  var crd = document.getElementById('crd');
 
-  /* ---------- flip ---------- */
-  var card = document.getElementById('mcard');
-  function flip() { card.classList.toggle('flip'); }
-  card.addEventListener('click', flip);
-  card.addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+  /* ---------- render ---------- */
+  function render() {
+    var T = VIVA.TIERS[current], L = lang();
+    crd.dataset.tier = current;
+    document.getElementById('cName').textContent = VIVA.ME.name;
+    document.getElementById('cNo').textContent = VIVA.ME.id.replace(/-/g, '·');
+    document.getElementById('cSince').textContent = VIVA.fmtDate(VIVA.ME.joined).toUpperCase();
+    document.getElementById('cTier').textContent = (L === 'zh' ? T.zh : T.en).toUpperCase();
+    document.getElementById('seal').querySelector('i').textContent = ROMAN[current];
+    document.getElementById('tierName').textContent = T.en + ' · ' + T.zh + ' — ' + T.priceLabel;
+
+    document.getElementById('ben').innerHTML = VIVA.PERKS[current].map(function (p) {
+      var t = p[L];
+      return '<div class="r"><div><b>' + VIVA.esc(t[0]) + '</b><small>' + VIVA.esc(t[1]) + '</small></div>' +
+             '<div class="k">' + (L === 'zh' ? '已持有' : 'Held') + '</div></div>';
+    }).join('');
+
+    /* what the next tier holds, named but obscured */
+    var next = ORDER[ORDER.indexOf(current) + 1];
+    var wrap = document.getElementById('beyondWrap');
+    if (!next) { wrap.hidden = true; document.getElementById('beyond').innerHTML = ''; return; }
+    wrap.hidden = false;
+    document.getElementById('beyond').innerHTML = VIVA.PERKS[next].map(function (p) {
+      var t = p[L], w = 40 + (t[0].length % 5) * 16;
+      return '<div class="r lk"><div><b>' + VIVA.esc(t[0]) + '</b>' +
+             '<small><span class="redact" style="width:' + w + 'px"></span> ' +
+             '<span class="redact" style="width:' + (w * 0.7 | 0) + 'px"></span></small></div>' +
+             '<div class="k">' + (L === 'zh' ? '未披露' : 'Sealed') + '</div></div>';
+    }).join('');
+  }
+
+  /* ---------- tier switch ---------- */
+  document.querySelectorAll('#switch button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('#switch button').forEach(function (o) { o.classList.toggle('on', o === b); });
+      current = b.dataset.t;
+      flipped = false; crd.classList.remove('flip'); apply();
+      render();
+    });
   });
 
-  /* ---------- rotating check-in code ---------- */
-  var cv = document.getElementById('qrc'), left = 30, token = '';
-  function newToken() {
+  /* ---------- flip + tilt ----------
+     Both write the same inline transform so they cannot fight each other. Previously the
+     tilt handler clobbered the .flip rotation, so the reverse never actually showed. */
+  var flipped = false, px = 0, py = 0, tilt = !reduce && matchMedia('(pointer:fine)').matches;
+  function apply() {
+    crd.style.transform = 'rotateY(' + ((flipped ? 180 : 0) + px * 13) + 'deg) rotateX(' + (-py * 10) + 'deg)';
+  }
+  function flip() { flipped = !flipped; crd.classList.toggle('flip', flipped); apply(); }
+  crd.addEventListener('click', flip);
+  crd.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+  });
+  if (tilt) {
+    var stage = crd.parentNode;
+    stage.addEventListener('mousemove', function (e) {
+      var r = stage.getBoundingClientRect();
+      px = (e.clientX - r.left) / r.width - .5;
+      py = (e.clientY - r.top) / r.height - .5;
+      apply();
+      crd.querySelectorAll('.side').forEach(function (s) {
+        s.style.setProperty('--sx', (-60 + (px + .5) * 190) + '%');
+      });
+    });
+    stage.addEventListener('mouseleave', function () {
+      px = py = 0; apply();
+      crd.querySelectorAll('.side').forEach(function (s) { s.style.setProperty('--sx', '-60%'); });
+    });
+  }
+  apply();
+
+  /* ---------- rotating code ---------- */
+  var cv = document.getElementById('qrc'), left = 30, holder = null, qr = null;
+  function token() {
     var s = '';
     for (var i = 0; i < 6; i++) s += '0123456789ABCDEFGHJKMNPQRSTUVWXYZ'[Math.floor(Math.random() * 33)];
     return s;
   }
-  function drawFallback(text) {
-    /* Deterministic block pattern so the card still reads as a scannable object
-       if the QR library is unavailable. Not a real QR code. */
-    var ctx = cv.getContext('2d'), n = 25, s = cv.width / n, h = 0;
-    for (var i = 0; i < text.length; i++) h = (h * 31 + text.charCodeAt(i)) >>> 0;
-    ctx.fillStyle = '#F6F3EC'; ctx.fillRect(0, 0, cv.width, cv.height);
-    ctx.fillStyle = '#0A0E17';
-    for (var y = 0; y < n; y++) for (var x = 0; x < n; x++) {
-      h = (h * 1103515245 + 12345) >>> 0;
-      if ((h >>> 16) & 1) ctx.fillRect(x * s, y * s, s, s);
-    }
-    [[0,0],[n-7,0],[0,n-7]].forEach(function (p) {
-      ctx.fillStyle = '#F6F3EC'; ctx.fillRect(p[0]*s, p[1]*s, 7*s, 7*s);
-      ctx.fillStyle = '#0A0E17'; ctx.fillRect(p[0]*s, p[1]*s, 7*s, s);
-      ctx.fillRect(p[0]*s, (p[1]+6)*s, 7*s, s);
-      ctx.fillRect(p[0]*s, p[1]*s, s, 7*s);
-      ctx.fillRect((p[0]+6)*s, p[1]*s, s, 7*s);
-      ctx.fillRect((p[0]+2)*s, (p[1]+2)*s, 3*s, 3*s);
-    });
-  }
-  var qrHolder = null;
-  function render(payload) {
+  function paint(payload) {
     if (typeof QRCode === 'function') {
-      if (!qrHolder) {
-        qrHolder = document.createElement('div');
-        cv.parentNode.replaceChild(qrHolder, cv);
-        qrHolder.className = '';
-        window._qr = new QRCode(qrHolder, {
-          text: payload, width: 150, height: 150,
-          colorDark: '#0A0E17', colorLight: '#F6F3EC',
-          correctLevel: QRCode.CorrectLevel.M
-        });
-      } else { window._qr.clear(); window._qr.makeCode(payload); }
-    } else {
-      drawFallback(payload);
+      if (!holder) {
+        holder = document.createElement('div');
+        cv.parentNode.replaceChild(holder, cv);
+        qr = new QRCode(holder, { text: payload, width: 152, height: 152,
+          colorDark: '#080B12', colorLight: '#F6F3EC', correctLevel: QRCode.CorrectLevel.M });
+      } else { qr.clear(); qr.makeCode(payload); }
     }
   }
   function cycle() {
-    token = newToken();
-    render('VIVA:' + me.id + ':' + token);
-    document.getElementById('qrCode').textContent = me.id + ' · ' + token;
+    var t = token();
+    paint('VIVA:' + VIVA.ME.id + ':' + t);
+    document.getElementById('qrCode').textContent = VIVA.ME.id.replace(/-/g, '·') + ' · ' + t;
     left = 30;
   }
   cycle();
-  setInterval(function () {
-    left--;
-    if (left <= 0) cycle();
-    document.getElementById('qrTick').textContent = left;
-  }, 1000);
+  setInterval(function () { left--; if (left <= 0) cycle(); document.getElementById('qrTick').textContent = left; }, 1000);
 
-  /* ---------- perks ---------- */
-  document.getElementById('perks').innerHTML = VIVA.PERKS[me.tier].map(function (p) {
-    return '<div class="row"><div class="l"><b data-en="' + VIVA.esc(p[0]) + '" data-zh="' + VIVA.esc(p[2]) + '">' +
-      VIVA.esc(p[0]) + '</b><small>' + VIVA.esc(p[1]) + '</small></div>' +
-      '<div class="r"><span class="badge green">Included</span></div></div>';
-  }).join('');
-
-  /* ---------- next events ---------- */
-  document.getElementById('next').innerHTML = VIVA.EVENTS.slice(0, 4).map(function (e) {
-    var locked = e.tier === 'active' && me.tier === 'open';
-    return '<div class="row"><div class="l"><b>' + VIVA.esc(e.name) + '</b>' +
-      '<small>' + VIVA.fmtDate(e.date) + ' · ' + VIVA.esc(e.venue) + '</small></div>' +
-      '<div class="r">' + (locked ? '<span class="badge">Members only</span>' :
-      '<span class="badge gold">' + VIVA.money(e.price) + '</span>') + '</div></div>';
-  }).join('');
-
-  /* ---------- history ---------- */
-  var hist = [
-    ['Harbour Night Run', '2026-07-26', 'Central Harbourfront'],
-    ['Rooftop Social', '2026-07-11', 'Sheung Wan'],
-    ['Sunday League — Round 9', '2026-06-28', 'Sha Tin'],
-    ['Sunrise Trail', '2026-06-14', 'Lantau'],
-    ['Pickleball Social', '2026-05-31', 'Kwun Tong']
-  ];
-  document.getElementById('hist').innerHTML = hist.map(function (h) {
-    return '<div class="row"><div class="l"><b>' + VIVA.esc(h[0]) + '</b><small>' + VIVA.esc(h[2]) + '</small></div>' +
-      '<div class="r">' + VIVA.fmtDate(h[1]) + '</div></div>';
-  }).join('');
-
-  /* ---------- wallet buttons ---------- */
-  function walletNote(which) {
+  /* ---------- wallet ---------- */
+  function note(which) {
     var n = document.getElementById('wNote');
-    n.textContent = which + ' pass generation is not wired up in this prototype. A production build signs a .pkpass ' +
-      '(Apple) or a JWT-signed pass object (Google) on the server, so the card updates when the tier or expiry changes.';
+    n.textContent = which + ' passes are signed server-side and pushed when a tier changes. Not wired up here.';
     n.style.color = 'var(--champagne)';
   }
-  document.getElementById('wApple').addEventListener('click', function () { walletNote('Apple Wallet'); });
-  document.getElementById('wGoogle').addEventListener('click', function () { walletNote('Google Wallet'); });
+  document.getElementById('wApple').addEventListener('click', function () { note('Apple Wallet'); });
+  document.getElementById('wGoogle').addEventListener('click', function () { note('Google Wallet'); });
 
-  document.getElementById('btnUp').addEventListener('click', function () {
-    location.href = 'enquiry.html';
+  /* re-render on language change so benefits follow */
+  document.querySelectorAll('.lang button').forEach(function (b) {
+    b.addEventListener('click', function () { setTimeout(render, 0); });
   });
+
+  render();
 });
 </script>
 </body>

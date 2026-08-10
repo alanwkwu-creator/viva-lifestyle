@@ -18,26 +18,42 @@
     builder: { key:'builder', en:'Fellow',    zh:'創建會員', price:0,   priceLabel:'By nomination', term:'12 months' }
   };
 
+  /* Benefits are deliberately withholding: what a member receives is named,
+     what it amounts to is not. Order matters — it is the order shown on the card. */
   var PERKS = {
     open: [
-      ['Every public event', 'All free fixtures, no booking fee', '所有公開活動'],
-      ['Monthly dispatch', 'New fixtures and open applications', '每月通訊'],
-      ['District group chats', 'By district and by sport', '地區群組'],
-      ['Bursary tickets', 'For any paid event — just ask', '資助門票']
+      { en:['The calendar','Circulated to members. Nothing is posted publicly.'],
+        zh:['日程','僅向會員發放，不作公開張貼。'] },
+      { en:['The rooms','You will be told where, and when.'],
+        zh:['場所','屆時自會告知地點與時間。'] },
+      { en:['The channels','One for your district. One for your sport.'],
+        zh:['群組','按地區一個，按運動一個。'] },
+      { en:['Nothing is asked of you','Come once. Come fifty times. Both are acceptable.'],
+        zh:['無所要求','來一次，或來五十次，皆可。'] }
     ],
     active: [
-      ['Members-only fixtures', 'Plus 48-hour early registration', '會員專屬賽事'],
-      ['Season kit', 'Shirt, bag and water bottle', '季度裝備'],
-      ["Founders' Table", 'Two seats a year', 'Founders\' Table 席位'],
-      ['Partner discounts', 'Gyms, climbing, physio', '夥伴優惠'],
-      ['Guest passes', 'Bring a friend free, 4× a year', '訪客通行證']
+      { en:['Forty-eight hours','You see the season before it opens.'],
+        zh:['四十八小時','你在日程開放之前先看見它。'] },
+      { en:['The mark','Kit that is not sold.'],
+        zh:['標記','不對外售賣的裝備。'] },
+      { en:['Two seats','At a table of twelve. Twice a year.'],
+        zh:['兩個席位','十二人一席，每年兩次。'] },
+      { en:['Doors already open','Certain partners recognise the card.'],
+        zh:['已開的門','若干合作夥伴認得此卡。'] },
+      { en:['One guest','Four times a year. Choose carefully.'],
+        zh:['一位客人','每年四次。請慎選。'] }
     ],
     builder: [
-      ['Incubator introductions', 'Direct, to all twelve partners', '孵化器引薦'],
-      ['Mentor matching', 'Within two weeks of joining', '導師配對'],
-      ['Pitch clinics', 'Before every partner demo day', '提案演練'],
-      ['Desk space', 'Through partner venues', '辦公桌'],
-      ['Gala stage slot', 'Your venture, December', '晚宴上台介紹']
+      { en:['Twelve names','You will be given them, and expected to use them.'],
+        zh:['十二個名字','我們會交給你，並期望你用得上。'] },
+      { en:['A mentor','Assigned within two weeks. Not chosen by you.'],
+        zh:['一位導師','兩星期內配對，並非由你挑選。'] },
+      { en:['The room before the room','Rehearsal, before every demo day.'],
+        zh:['正式場合之前','每次 demo day 前的預演。'] },
+      { en:['A desk','Somewhere. It changes.'],
+        zh:['一張桌','在某處。位置會變。'] },
+      { en:['The stage in December','Six hundred people. Eight minutes.'],
+        zh:['十二月的舞台','六百人。八分鐘。'] }
     ]
   };
 

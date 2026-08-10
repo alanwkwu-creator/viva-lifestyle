@@ -101,7 +101,26 @@ is transmitted anywhere.
 | `app.js` | Mock data (64 members, 6 events, check-in log) and shared helpers |
 | `qrcode.min.js` | qrcodejs by davidshimjs, MIT — vendored so the card works offline |
 
-### Virtual card
+### The Circle card
+
+Three finishes, one per tier, switchable on the page for demonstration:
+
+| Tier | Seal | Finish |
+|------|------|--------|
+| Associate | I | Graphite, single gold hairline |
+| Member | II | Deep navy, brighter gold |
+| Fellow | III | Near-black and bronze, double gold edge, weighted seal |
+
+The `VIVA CIRCLE` wordmark is a gold-foil gradient clipped to the glyphs with an animated
+sheen; there is a flat-gold fallback for browsers without `background-clip: text`. A
+guilloché engraving underlies each face, and on fine-pointer devices the card tilts with
+the cursor while a specular highlight tracks across it. Flip and tilt write the same
+inline transform so they cannot conflict.
+
+Benefits are tier-specific and written to withhold — what a member receives is named,
+what it amounts to is not ("Twelve names — you will be given them, and expected to use
+them"). The tier above is shown but sealed: titles blurred, detail redacted, marked
+*Sealed* / 未披露. Fellow has nothing above it, so that section disappears.
 
 Real, scannable QR codes. The payload is `VIVA:<member-id>:<token>` and the token
 regenerates every 30 seconds, so a screenshot of someone else's card stops working
