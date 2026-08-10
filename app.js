@@ -13,9 +13,9 @@
 
   /* ---------- reference data ---------- */
   var TIERS = {
-    open:    { key:'open',    en:'Diamond',    zh:'鑽石', price:0,   priceLabel:'By invitation',  term:'—' },
-    active:  { key:'active',  en:'Platinum',   zh:'白金', price:480, priceLabel:'By introduction', term:'12 months' },
-    builder: { key:'builder', en:'Black Gold', zh:'黑金', price:0,   priceLabel:'By nomination',   term:'12 months' }
+    open:    { key:'open',    en:'Black Diamond',  zh:'黑鑽',   price:0,   priceLabel:'By nomination', term:'12 months' },
+    active:  { key:'active',  en:'Black Platinum', zh:'黑白金', price:480, priceLabel:'By nomination', term:'12 months' },
+    builder: { key:'builder', en:'Black Gold',     zh:'黑金',   price:0,   priceLabel:'By nomination', term:'12 months' }
   };
 
   /* Benefits are deliberately withholding: what a member receives is named,

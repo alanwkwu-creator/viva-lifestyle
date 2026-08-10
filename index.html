@@ -129,41 +129,39 @@ h2.big{font-size:clamp(28px,4.4vw,58px)}
   .foil{-webkit-text-fill-color:var(--gold);background-image:none}}
 @keyframes sheen{to{background-position:300% 0}}
 
-/* ---------- the three cards: diamond → platinum → black gold ---------- */
+/* ---------- the three cards: black diamond → black platinum → black gold ----------
+   All three are black. They are told apart by the metal of their markings and edge,
+   which is why the bright foils are legible here where they were not on pale stock. */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:clamp(20px,2.6vw,32px)}
-.card{position:relative;aspect-ratio:1.586/1;border-radius:14px;overflow:hidden;
+.card{position:relative;aspect-ratio:1.586/1;border-radius:14px;overflow:hidden;color:var(--pearl);
   padding:22px 22px 20px;display:flex;flex-direction:column;justify-content:space-between;
-  transition:transform .7s cubic-bezier(.22,1,.36,1);color:var(--pearl)}
+  transition:transform .7s cubic-bezier(.22,1,.36,1)}
 .card::before{content:"";position:absolute;inset:0;pointer-events:none}
 .card::after{content:"";position:absolute;top:-60%;left:-30%;width:55%;height:220%;pointer-events:none;
-  background:linear-gradient(100deg,transparent,rgba(255,255,255,.4),transparent);opacity:.5;
   transform:rotate(16deg) translateX(-80%);transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
 .card:hover{transform:translateY(-7px)}
 .card:hover::after{transform:rotate(16deg) translateX(210%)}
 
-/* I — diamond: cut, cold, bright */
-.card[data-t="i"]{color:#0A0E17;
-  background:linear-gradient(145deg,#F4F8FC 0%,#CFDAE6 40%,#EDF3F9 60%,#B6C6D6 100%);
-  box-shadow:0 26px 56px -26px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.75) inset}
-.card[data-t="i"]::before{opacity:.85;background-image:
-  conic-gradient(from 205deg at 26% 24%,rgba(255,255,255,.85) 0deg 34deg,transparent 34deg 96deg),
-  conic-gradient(from 15deg at 74% 66%,rgba(255,255,255,.6) 0deg 28deg,transparent 28deg 88deg),
-  conic-gradient(from 120deg at 88% 12%,rgba(160,185,210,.45) 0deg 40deg,transparent 40deg 100deg),
-  linear-gradient(112deg,transparent 38%,rgba(255,255,255,.6) 50%,transparent 62%),
-  repeating-linear-gradient(62deg,rgba(10,14,23,.045) 0 1px,transparent 1px 13px)}
+/* I — black diamond: cold, faceted, white edge */
+.card[data-t="i"]{background:linear-gradient(150deg,#101620 0%,#04060A 52%,#151D28 100%);
+  box-shadow:0 28px 58px -26px rgba(0,0,0,.96),0 0 0 1px rgba(214,228,242,.42) inset}
+.card[data-t="i"]::before{opacity:.72;background-image:
+  conic-gradient(from 205deg at 26% 26%,rgba(202,222,242,.16) 0deg 32deg,transparent 32deg 96deg),
+  conic-gradient(from 15deg at 76% 68%,rgba(202,222,242,.11) 0deg 26deg,transparent 26deg 88deg),
+  conic-gradient(from 120deg at 88% 14%,rgba(150,180,210,.1) 0deg 38deg,transparent 38deg 100deg),
+  repeating-linear-gradient(62deg,rgba(214,228,242,.05) 0 1px,transparent 1px 12px)}
+.card[data-t="i"]::after{background:linear-gradient(100deg,transparent,rgba(226,238,250,.15),transparent)}
 
-/* II — platinum: brushed, even, weighty */
-.card[data-t="ii"]{color:#0A0E17;
-  background:linear-gradient(145deg,#DCE0E6 0%,#9BA3AD 38%,#C6CCD4 57%,#7B838D 100%);
-  box-shadow:0 26px 56px -26px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.5) inset}
-.card[data-t="ii"]::before{opacity:.7;background-image:
-  repeating-linear-gradient(97deg,rgba(255,255,255,.26) 0 1px,transparent 1px 4px),
-  repeating-linear-gradient(97deg,rgba(10,14,23,.05) 0 1px,transparent 1px 9px),
-  radial-gradient(72% 52% at 24% 18%,rgba(255,255,255,.4),transparent 62%)}
+/* II — black platinum: brushed, even, silver edge */
+.card[data-t="ii"]{background:linear-gradient(150deg,#12161C 0%,#05070A 50%,#191E26 100%);
+  box-shadow:0 28px 58px -26px rgba(0,0,0,.96),0 0 0 1px rgba(198,206,214,.4) inset}
+.card[data-t="ii"]::before{opacity:.6;background-image:
+  repeating-linear-gradient(97deg,rgba(210,218,226,.055) 0 1px,transparent 1px 4px),
+  radial-gradient(72% 52% at 24% 18%,rgba(210,218,226,.09),transparent 62%)}
+.card[data-t="ii"]::after{background:linear-gradient(100deg,transparent,rgba(226,232,238,.13),transparent)}
 
-/* III — black gold: engraved, warm, final */
-.card[data-t="iii"]{color:var(--pearl);
-  background:linear-gradient(150deg,#13110A 0%,#050508 50%,#1C1509 100%);
+/* III — black gold: engraved, warm, doubled gold edge */
+.card[data-t="iii"]{background:linear-gradient(150deg,#13110A 0%,#050508 50%,#1C1509 100%);
   box-shadow:0 30px 62px -24px rgba(0,0,0,.98),0 0 0 1px rgba(201,162,39,.7) inset,
              0 0 0 5px rgba(201,162,39,.1) inset}
 .card[data-t="iii"]::before{opacity:.8;background-image:
@@ -174,23 +172,26 @@ h2.big{font-size:clamp(28px,4.4vw,58px)}
 /* card furniture */
 .cwm{position:relative;z-index:2;font-family:var(--display);font-weight:400;font-size:15px;
   letter-spacing:.3em;line-height:1.35}
-.cwm small{display:block;font-size:8.5px;letter-spacing:.42em;font-weight:400;margin-top:5px}
+.cwm small{display:block;font-size:8.5px;letter-spacing:.42em;font-weight:300;margin-top:5px}
 .cseal{width:44px;height:44px;border-radius:50%;flex:none;display:flex;align-items:center;
-  justify-content:center;border:1px solid currentColor;position:relative;z-index:2;opacity:.55}
-.cseal::before{content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid currentColor;opacity:.4}
+  justify-content:center;position:relative;z-index:2;border:1px solid rgba(214,228,242,.5)}
+.cseal::before{content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid rgba(214,228,242,.22)}
 .cseal i{font-style:normal;font-family:var(--display);font-size:14px;letter-spacing:.08em;line-height:1}
-.card[data-t="iii"] .cseal{opacity:1;border-color:rgba(201,162,39,.85);background-color:rgba(201,162,39,.08)}
+.card[data-t="ii"] .cseal{border-color:rgba(198,206,214,.5)}
+.card[data-t="ii"] .cseal::before{border-color:rgba(198,206,214,.22)}
+.card[data-t="iii"] .cseal{border-color:rgba(201,162,39,.85);background-color:rgba(201,162,39,.08)}
+.card[data-t="iii"] .cseal::before{border-color:rgba(201,162,39,.3)}
 .chd{display:flex;justify-content:space-between;align-items:flex-start}
 .cft{position:relative;z-index:2}
 .cft .t{font-size:10px;letter-spacing:.3em;text-transform:uppercase}
-.cft .s{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-top:8px;opacity:.58}
+.cft .s{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-top:8px;
+  color:rgba(246,243,236,.32)}
 
-/* Engraved markings for the two pale cards. A light metallic gradient on a pale
-   ground is unreadable, so these read as etched steel rather than printed foil. */
-.foil.ice{background-image:linear-gradient(100deg,#0D141D 0%,#3A4757 15%,#7A8899 30%,#1F2A38 46%,
-  #56636F 62%,#101822 80%,#414D5A 100%)}
-.foil.plat{background-image:linear-gradient(100deg,#12181F 0%,#353E48 18%,#6B7580 32%,#1B222A 48%,
-  #4E5862 64%,#151B22 82%,#3A424C 100%)}
+/* metal foils — bright, because the stock is black */
+.foil.ice{background-image:linear-gradient(100deg,#6E7A88 0%,#BFCAD7 15%,#FFFFFF 30%,#E2E9F1 42%,
+  #8F9BA9 58%,#F4F8FC 76%,#A9B5C2 100%)}
+.foil.plat{background-image:linear-gradient(100deg,#5F6771 0%,#A8B0BA 16%,#F2F5F9 32%,#CDD4DC 46%,
+  #767E88 62%,#E6EBF1 80%,#8E96A0 100%)}
 
 /* withheld */
 .wh{display:flex;align-items:flex-start;gap:11px;font-size:12px;line-height:1.6;
@@ -327,27 +328,27 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
     <div class="card rv" data-t="i">
       <div class="chd">
         <span class="cwm"><span class="foil ice">VIVA</span><small class="foil ice">CIRCLE</small></span>
-        <span class="cseal"><i>I</i></span>
+        <span class="cseal"><i class="foil ice">I</i></span>
       </div>
       <div class="cft">
-        <span class="t foil ice" data-en="Diamond" data-zh="鑽石">Diamond</span>
-        <span class="s" data-en="By invitation" data-zh="憑邀請">By invitation</span>
+        <span class="t foil ice" data-en="Black Diamond" data-zh="黑鑽">Black Diamond</span>
+        <span class="s" data-en="By nomination" data-zh="由提名產生">By nomination</span>
       </div>
     </div>
     <div class="card rv" data-t="ii">
       <div class="chd">
         <span class="cwm"><span class="foil plat">VIVA</span><small class="foil plat">CIRCLE</small></span>
-        <span class="cseal"><i>II</i></span>
+        <span class="cseal"><i class="foil plat">II</i></span>
       </div>
       <div class="cft">
-        <span class="t foil plat" data-en="Platinum" data-zh="白金">Platinum</span>
-        <span class="s" data-en="By introduction" data-zh="憑引薦">By introduction</span>
+        <span class="t foil plat" data-en="Black Platinum" data-zh="黑白金">Black Platinum</span>
+        <span class="s" data-en="By nomination" data-zh="由提名產生">By nomination</span>
       </div>
     </div>
     <div class="card rv" data-t="iii">
       <div class="chd">
         <span class="cwm"><span class="foil ">VIVA</span><small class="foil ">CIRCLE</small></span>
-        <span class="cseal"><i>III</i></span>
+        <span class="cseal"><i class="foil ">III</i></span>
       </div>
       <div class="cft">
         <span class="t foil " data-en="Black Gold" data-zh="黑金">Black Gold</span>
@@ -355,7 +356,7 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
       </div>
     </div>
   </div>
-  <p class="wh rv" data-en="What membership includes is described to those who are invited." data-zh="會籍所包含的內容，只向獲邀者說明。">What membership includes is described to those who are invited.</p>
+  <p class="wh rv" data-en="Every tier is by nomination. What each includes is described to those who receive one." data-zh="所有級別均由提名產生。各級所含內容，只向獲提名者說明。">Every tier is by nomination. What each includes is described to those who receive one.</p>
 </section>
 
 <!-- ---------- quote ---------- -->
