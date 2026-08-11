@@ -106,36 +106,36 @@ is transmitted anywhere.
 Five cards on the homepage, in **The Circle**. Each is an emblem rather than an issued
 credential — no member name, no number, no prices.
 
-The ladder ascends by **rarity, not price**. That distinction is deliberate: Gold /
-Platinum / Diamond is banking and airline vocabulary, and in Hong Kong it reads as *how
-much you spend*. For a youth body where bursaries exist so cost never decides who
-belongs, a spending ladder implies exactly the wrong thing.
+The ladder ascends by **rarity, not price**. Gold / Platinum / Diamond is banking and
+airline vocabulary, and in Hong Kong it reads as *how much you spend* — the wrong
+implication for a body where bursaries exist so cost never decides who belongs.
 
 | Seal | Tier | 中文 | Surface | Admission |
 |------|------|------|---------|-----------|
-| I | Associate | 準會員 | Matte charcoal, unadorned, pewter marks | By introduction |
-| II | Onyx | 黑玉 | Banded black chalcedony, pearl marks | By nomination |
-| III | Obsidian | 黑曜 | Volcanic glass, broad conchoidal sheen | By nomination |
-| IV | Meteorite | 隕鐵 | Widmanstätten lattice — the crosshatch an iron meteorite shows when etched | By nomination |
-| V | Carbonado | 黑金剛石 | Matte crystalline fracture, one cold highlight | By invitation |
+| I | Associate | 準會員 | Plain graphite, no pattern — the only card without a material | By introduction |
+| II | Onyx | 黑玉 | Black chalcedony, cream banding | By nomination |
+| III | Obsidian | 黑曜 | Green-black volcanic glass, wet sheen | By nomination |
+| IV | Meteorite | 隕鐵 | Light etched iron, Widmanstätten lattice, dark engraved marks | By nomination |
+| V | Carbonado | 黑金剛石 | Matte porous charcoal, crystalline speckle, white edge | By invitation |
 
 **Carbonado** is natural black diamond — polycrystalline, found in only two places on
-Earth, and widely thought to be extraterrestrial. It is harder than ordinary diamond
-and rarer than meteorite, so it tops the ladder on the same axis the rest ascends. It
-replaced *Solitaire*, which was a diamond-cut term and sat outside a classification of
-black stones.
+Earth, likely extraterrestrial, harder than ordinary diamond and rarer than meteorite.
+It tops the ladder on the same axis the rest ascends.
 
-Each surface is drawn to match its material rather than recoloured from a template.
-There is no gold anywhere in the set — the cards are black stones, and gold would break
-the classification.
+**On making the set legible.** An earlier revision made all five near-black, and they
+read as one card repeated. They are now drawn from what the materials actually look
+like, which produces a real value range on its own: plain graphite, cream-banded black,
+green-black glass, *light* etched iron, and a matte charcoal that is the darkest of the
+five. Meteorite is the surprise — etched iron is silver-grey, not black — and it also
+inverts the markings, since a light card needs dark engraving where the black cards need
+bright foil. The lattice is dimmed and light pools sit under the wordmark and tier line
+so those marks stay readable against it.
 
 **The ladder has a mechanism.** A member introduces you to Associate; every tier above
-is by nomination; the last is not applied for. Associate is the only card without a
-precious surface — the difference between belonging and being elevated should be
-visible at a glance.
+is by nomination; the last is not applied for.
 
 Cards use flex rather than grid so the trailing row of two centres beneath the row of
-three. On hover a card lifts 7px and a specular highlight rakes across in its own metal.
+three. On hover a card lifts 8px and a specular highlight rakes across in its own metal.
 `background-clip: text` has a flat-colour fallback.
 
 ### Admin console

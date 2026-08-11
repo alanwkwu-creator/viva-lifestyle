@@ -130,106 +130,111 @@ h2.big{font-size:clamp(28px,4.4vw,58px)}
 @keyframes sheen{to{background-position:300% 0}}
 
 /* ---------- five cards ----------
-   Flex rather than grid so the trailing row of two centres under the row of three. */
+   Earlier revisions were five near-black rectangles that read as one card. Each surface
+   is now drawn from what the material actually looks like, which gives the set a real
+   value range: plain graphite, cream-banded black, green-black glass, light etched iron,
+   and a matte charcoal that is the darkest of all. */
 .cards{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(18px,2.2vw,28px)}
 .card{position:relative;flex:0 1 calc(33.333% - clamp(12px,1.5vw,19px));min-width:250px;
   aspect-ratio:1.586/1;border-radius:14px;overflow:hidden;color:var(--pearl);
-  padding:20px 20px 18px;display:flex;flex-direction:column;justify-content:space-between;
+  padding:22px 22px 20px;display:flex;flex-direction:column;justify-content:space-between;
   transition:transform .7s cubic-bezier(.22,1,.36,1)}
 .card::before{content:"";position:absolute;inset:0;pointer-events:none}
 .card::after{content:"";position:absolute;top:-60%;left:-30%;width:55%;height:220%;pointer-events:none;
   transform:rotate(16deg) translateX(-80%);transition:transform 1.2s cubic-bezier(.22,1,.36,1);
-  background:linear-gradient(100deg,transparent,rgba(255,255,255,.14),transparent)}
-.card:hover{transform:translateY(-7px)}
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.16),transparent)}
+.card:hover{transform:translateY(-8px)}
 .card:hover::after{transform:rotate(16deg) translateX(210%)}
 
-/* I — associate: matte, unadorned, the only card without a precious finish */
-.card[data-t="i"]{background:linear-gradient(150deg,#1B1F26 0%,#0C0F14 55%,#171B21 100%);
-  box-shadow:0 22px 48px -24px rgba(0,0,0,.9),0 0 0 1px rgba(246,243,236,.16) inset}
-.card[data-t="i"]::before{opacity:.5;background-image:
-  repeating-linear-gradient(58deg,rgba(246,243,236,.028) 0 1px,transparent 1px 8px)}
+/* I — associate: plain graphite. No pattern at all; the only card without a material. */
+.card[data-t="i"]{background:linear-gradient(150deg,#2C313A 0%,#1A1E25 55%,#272C34 100%);
+  box-shadow:0 24px 50px -24px rgba(0,0,0,.9),0 0 0 1px rgba(246,243,236,.3) inset}
+.card[data-t="i"]::before{opacity:.4;background-image:
+  repeating-linear-gradient(58deg,rgba(246,243,236,.05) 0 1px,transparent 1px 9px)}
 
-/* II — onyx: banded black chalcedony, understated */
-.card[data-t="ii"]{background:linear-gradient(150deg,#15151A 0%,#050507 52%,#17171D 100%);
-  box-shadow:0 26px 56px -24px rgba(0,0,0,.96),0 0 0 1px rgba(226,222,214,.3) inset}
-.card[data-t="ii"]::before{opacity:.7;background-image:
+/* II — onyx: black chalcedony, cream banding */
+.card[data-t="ii"]{background:linear-gradient(150deg,#131114 0%,#08070A 55%,#171418 100%);
+  box-shadow:0 24px 50px -24px rgba(0,0,0,.94),0 0 0 1px rgba(238,231,218,.55) inset}
+.card[data-t="ii"]::before{opacity:1;background-image:
   repeating-linear-gradient(84deg,
-    rgba(228,224,216,.07) 0 2px, transparent 2px 9px,
-    rgba(228,224,216,.035) 9px 12px, transparent 12px 26px,
-    rgba(228,224,216,.055) 26px 28px, transparent 28px 44px),
-  radial-gradient(80% 60% at 30% 22%,rgba(228,224,216,.06),transparent 68%)}
-.card[data-t="ii"]::after{background:linear-gradient(100deg,transparent,rgba(236,232,224,.12),transparent)}
+    rgba(240,233,220,.26) 0 3px, transparent 3px 11px,
+    rgba(240,233,220,.12) 11px 15px, transparent 15px 25px,
+    rgba(240,233,220,.19) 25px 27px, transparent 27px 46px,
+    rgba(240,233,220,.07) 46px 52px, transparent 52px 68px),
+  radial-gradient(80% 60% at 28% 20%,rgba(240,233,220,.1),transparent 68%)}
+.card[data-t="ii"]::after{background:linear-gradient(100deg,transparent,rgba(244,238,226,.2),transparent)}
 
-/* III — obsidian: volcanic glass, broad conchoidal sheen rather than brushed metal */
-.card[data-t="iii"]{background:linear-gradient(150deg,#0E1216 0%,#040507 50%,#141A20 100%);
-  box-shadow:0 26px 56px -24px rgba(0,0,0,.96),0 0 0 1px rgba(198,214,222,.42) inset}
-.card[data-t="iii"]::before{opacity:.8;background-image:
-  radial-gradient(58% 96% at 12% 96%,rgba(208,226,236,.11),transparent 62%),
-  radial-gradient(44% 74% at 84% 8%,rgba(208,226,236,.09),transparent 64%),
-  radial-gradient(30% 52% at 58% 62%,rgba(190,210,222,.06),transparent 70%),
-  linear-gradient(118deg,transparent 42%,rgba(214,230,240,.05) 50%,transparent 58%)}
-.card[data-t="iii"]::after{background:linear-gradient(100deg,transparent,rgba(220,234,244,.14),transparent)}
+/* III — obsidian: volcanic glass, green-black with a wet sheen */
+.card[data-t="iii"]{background:linear-gradient(150deg,#07150F 0%,#020806 52%,#0A1D16 100%);
+  box-shadow:0 24px 50px -24px rgba(0,0,0,.94),0 0 0 1px rgba(126,222,186,.5) inset}
+.card[data-t="iii"]::before{opacity:1;background-image:
+  radial-gradient(62% 100% at 10% 98%,rgba(112,226,182,.24),transparent 62%),
+  radial-gradient(48% 78% at 88% 6%,rgba(96,206,190,.18),transparent 64%),
+  radial-gradient(34% 56% at 56% 58%,rgba(150,240,206,.1),transparent 70%),
+  linear-gradient(118deg,transparent 40%,rgba(190,250,224,.12) 50%,transparent 60%)}
+.card[data-t="iii"]::after{background:linear-gradient(100deg,transparent,rgba(180,248,220,.18),transparent)}
 
-/* IV — meteorite: Widmanstätten lattice, the crosshatch an iron meteorite shows when etched */
-.card[data-t="iv"]{background:linear-gradient(150deg,#14151A 0%,#08090C 52%,#191B21 100%);
-  box-shadow:0 26px 56px -24px rgba(0,0,0,.96),0 0 0 1px rgba(206,212,222,.46) inset}
-.card[data-t="iv"]::before{opacity:.82;background-image:
-  repeating-linear-gradient(24deg,rgba(214,220,230,.075) 0 1px,transparent 1px 11px),
-  repeating-linear-gradient(-38deg,rgba(214,220,230,.06) 0 1px,transparent 1px 15px),
-  repeating-linear-gradient(96deg,rgba(214,220,230,.04) 0 1px,transparent 1px 23px),
-  radial-gradient(70% 54% at 74% 24%,rgba(220,226,236,.07),transparent 68%)}
-.card[data-t="iv"]::after{background:linear-gradient(100deg,transparent,rgba(222,228,238,.13),transparent)}
+/* IV — meteorite: etched iron is light, not black. Widmanstätten lattice, dark markings. */
+.card[data-t="iv"]{color:#12141A;
+  background:linear-gradient(150deg,#9AA1AB 0%,#5D646E 44%,#8E959F 62%,#4B525B 100%);
+  box-shadow:0 24px 50px -24px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.5) inset}
+.card[data-t="iv"]::before{opacity:1;background-image:
+  /* light pools under the wordmark and the tier line so the etched marks stay readable */
+  radial-gradient(58% 42% at 14% 8%,rgba(255,255,255,.5),transparent 72%),
+  radial-gradient(64% 46% at 12% 96%,rgba(255,255,255,.46),transparent 74%),
+  repeating-linear-gradient(24deg,rgba(16,18,24,.24) 0 2px,transparent 2px 14px),
+  repeating-linear-gradient(-38deg,rgba(16,18,24,.19) 0 2px,transparent 2px 18px),
+  repeating-linear-gradient(96deg,rgba(16,18,24,.1) 0 1px,transparent 1px 28px),
+  radial-gradient(70% 54% at 76% 26%,rgba(255,255,255,.24),transparent 66%)}
+.card[data-t="iv"]::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.3),transparent)}
 
-/* V — carbonado: matte, fractured, one cold highlight. Near-black rather than brilliant. */
-.card[data-t="v"]{background:linear-gradient(150deg,#0B0C0F 0%,#010102 54%,#0D0F13 100%);
-  box-shadow:0 32px 66px -22px rgba(0,0,0,.99),0 0 0 1px rgba(198,210,224,.55) inset,
-             0 0 0 5px rgba(198,210,224,.06) inset}
-.card[data-t="v"]::before{opacity:.95;background-image:
-  conic-gradient(from 12deg at 68% 34%,
-    rgba(206,220,236,.11) 0deg 7deg,transparent 7deg 31deg,
-    rgba(180,196,214,.07) 31deg 36deg,transparent 36deg 63deg,
-    rgba(214,228,242,.09) 63deg 67deg,transparent 67deg 118deg,
-    rgba(170,186,204,.06) 118deg 124deg,transparent 124deg 196deg,
-    rgba(200,214,230,.08) 196deg 200deg,transparent 200deg 268deg,
-    rgba(178,194,212,.05) 268deg 273deg,transparent 273deg 360deg),
-  conic-gradient(from 200deg at 24% 74%,
-    rgba(190,206,224,.06) 0deg 9deg,transparent 9deg 44deg,
-    rgba(206,220,236,.05) 44deg 49deg,transparent 49deg 360deg),
-  repeating-linear-gradient(38deg,rgba(206,220,236,.028) 0 1px,transparent 1px 6px),
-  radial-gradient(34% 46% at 68% 34%,rgba(226,238,252,.09),transparent 72%)}
-.card[data-t="v"]::after{background:linear-gradient(100deg,transparent,rgba(214,228,242,.11),transparent)}
+/* V — carbonado: matte, porous, the darkest of the five. Crystalline speckle, white edge. */
+.card[data-t="v"]{background:linear-gradient(150deg,#141010 0%,#040303 55%,#100C0B 100%);
+  box-shadow:0 34px 68px -22px rgba(0,0,0,1),0 0 0 1px rgba(244,248,255,.85) inset,
+             0 0 0 6px rgba(244,248,255,.09) inset}
+.card[data-t="v"]::before{opacity:1;background-image:
+  conic-gradient(from 14deg at 70% 32%,
+    rgba(236,244,255,.2) 0deg 6deg,transparent 6deg 29deg,
+    rgba(236,244,255,.13) 29deg 34deg,transparent 34deg 62deg,
+    rgba(236,244,255,.17) 62deg 66deg,transparent 66deg 116deg,
+    rgba(236,244,255,.1) 116deg 122deg,transparent 122deg 194deg,
+    rgba(236,244,255,.15) 194deg 198deg,transparent 198deg 266deg,
+    rgba(236,244,255,.09) 266deg 271deg,transparent 271deg 360deg),
+  radial-gradient(3px 3px at 22% 68%,rgba(255,255,255,.5),transparent),
+  radial-gradient(2px 2px at 46% 26%,rgba(255,255,255,.42),transparent),
+  radial-gradient(2px 2px at 82% 78%,rgba(255,255,255,.38),transparent),
+  radial-gradient(2px 2px at 12% 34%,rgba(255,255,255,.3),transparent),
+  radial-gradient(36% 48% at 70% 32%,rgba(236,246,255,.14),transparent 72%)}
+.card[data-t="v"]::after{background:linear-gradient(100deg,transparent,rgba(240,248,255,.24),transparent)}
 
 /* card furniture */
-.cwm{position:relative;z-index:2;font-family:var(--display);font-weight:400;font-size:14px;
+.cwm{position:relative;z-index:2;font-family:var(--display);font-weight:400;font-size:15px;
   letter-spacing:.28em;line-height:1.35}
-.cwm small{display:block;font-size:8px;letter-spacing:.4em;font-weight:400;margin-top:5px}
-.cseal{width:40px;height:40px;border-radius:50%;flex:none;display:flex;align-items:center;
-  justify-content:center;position:relative;z-index:2;border:1px solid currentColor;opacity:.5}
-.cseal::before{content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid currentColor;opacity:.4}
-.cseal i{font-style:normal;font-family:var(--display);font-size:12px;letter-spacing:.06em;line-height:1}
-.card[data-t="ii"] .cseal{opacity:.85;border-color:rgba(228,224,216,.55)}
-.card[data-t="ii"] .cseal::before{border-color:rgba(228,224,216,.24)}
-.card[data-t="v"] .cseal{opacity:1;border-color:rgba(206,220,236,.7);background-color:rgba(206,220,236,.05)}
-.card[data-t="v"] .cseal::before{border-color:rgba(206,220,236,.24)}
+.cwm small{display:block;font-size:8.5px;letter-spacing:.4em;font-weight:400;margin-top:5px}
+.cseal{width:44px;height:44px;border-radius:50%;flex:none;display:flex;align-items:center;
+  justify-content:center;position:relative;z-index:2;border:1px solid currentColor;opacity:.75}
+.cseal::before{content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid currentColor;opacity:.45}
+.cseal i{font-style:normal;font-family:var(--display);font-size:13px;letter-spacing:.06em;line-height:1}
+.card[data-t="v"] .cseal{opacity:1;border-color:rgba(244,248,255,.9);background-color:rgba(244,248,255,.07)}
+.card[data-t="v"] .cseal::before{border-color:rgba(244,248,255,.35)}
 .chd{display:flex;justify-content:space-between;align-items:flex-start}
 .cft{position:relative;z-index:2}
-.cft .t{font-size:9.5px;letter-spacing:.28em;text-transform:uppercase}
-.cft .s{display:block;font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-top:7px;
-  color:rgba(246,243,236,.3)}
+.cft .t{font-size:11px;letter-spacing:.3em;text-transform:uppercase}
+.cft .s{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-top:8px;
+  color:rgba(246,243,236,.45)}
+.card[data-t="iv"] .cft .s{color:rgba(10,12,16,.72)}
 
-/* marking metals */
-.foil.pew{background-image:linear-gradient(100deg,#4A525C 0%,#79838F 16%,#AAB4C0 32%,#5C656F 48%,
-  #8A94A0 64%,#4E5761 82%,#7C8590 100%)}
-.foil.ice{background-image:linear-gradient(100deg,#6E7A88 0%,#BFCAD7 15%,#FFFFFF 30%,#E2E9F1 42%,
-  #8F9BA9 58%,#F4F8FC 76%,#A9B5C2 100%)}
-.foil.prl{background-image:linear-gradient(100deg,#6B675F 0%,#A9A398 16%,#EFEAE0 32%,#C9C3B8 46%,
-  #837D73 62%,#E4DED4 80%,#9C968C 100%)}
-.foil.gls{background-image:linear-gradient(100deg,#5A6670 0%,#9DAEB8 16%,#EAF4FA 32%,#C2D2DC 46%,
-  #737F89 62%,#DCEAF2 80%,#93A2AC 100%)}
-.foil.met{background-image:linear-gradient(100deg,#61656E 0%,#9DA3AE 16%,#E4E8F0 32%,#C0C6D0 46%,
-  #787E88 62%,#D6DBE4 80%,#969CA6 100%)}
-.foil.car{background-image:linear-gradient(100deg,#5C6672 0%,#93A1B0 15%,#D6E2EE 30%,#7E8B99 46%,
-  #B4C2D0 62%,#68737F 80%,#A2AEBC 100%)}
+/* marking metal per stone */
+.foil.pew{background-image:linear-gradient(100deg,#6F7885 0%,#9EA8B6 16%,#D2DBE6 32%,#818B99 48%,
+  #B0BAC7 64%,#6D7683 82%,#A3ADBA 100%)}
+.foil.prl{background-image:linear-gradient(100deg,#8D8778 0%,#C8C1B2 16%,#FBF6EC 32%,#E0D9CA 46%,
+  #A29B8C 62%,#F6F1E6 80%,#BAB3A4 100%)}
+.foil.gls{background-image:linear-gradient(100deg,#4E9C82 0%,#8FD8BE 16%,#E6FFF4 32%,#B6ECD8 46%,
+  #5FAE93 62%,#DDFBEE 80%,#8AD2B8 100%)}
+.foil.met{background-image:linear-gradient(100deg,#020304 0%,#0E1116 18%,#2A3039 32%,#050709 48%,
+  #1C2128 64%,#010203 82%,#161B22 100%)}
+.foil.car{background-image:linear-gradient(100deg,#8FA0B4 0%,#CFDCEC 15%,#FFFFFF 30%,#EAF2FC 42%,
+  #A9B8CC 58%,#FFFFFF 76%,#C4D2E4 100%)}
 
 /* withheld */
 .wh{display:flex;align-items:flex-start;gap:11px;font-size:12px;line-height:1.6;
