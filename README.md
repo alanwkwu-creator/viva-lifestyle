@@ -77,8 +77,8 @@ the production build:
 
 Membership is **by invitation**. Members are introduced by an existing member or found
 by Viva; anyone else writes an enquiry, which is answered by a person. The three tiers
-run Associate, Black Gold, Black Platinum, Black Diamond and Solitaire. Dues are not
-published on the site. Copy is written in a formal register in both languages — the
+run Associate, Onyx, Obsidian, Meteorite and Carbonado. Dues are not published on the
+site. Copy is written in a formal register in both languages — the
 Traditional Chinese is written Chinese, not colloquial Cantonese, because the
 colloquial register undercuts the invitation framing.
 
@@ -106,27 +106,37 @@ is transmitted anywhere.
 Five cards on the homepage, in **The Circle**. Each is an emblem rather than an issued
 credential — no member name, no number, no prices.
 
-| Seal | Tier | 中文 | Card | Marking | Admission |
-|------|------|------|------|---------|-----------|
-| I | Associate | 準會員 | Matte charcoal, unadorned | Pewter | By introduction |
-| II | Black Gold | 黑金 | Warm black, guilloché, gold edge | Gold | By nomination |
-| III | Black Platinum | 黑白金 | Neutral black, brushed grain | Silver | By nomination |
-| IV | Black Diamond | 黑鑽 | Cold blue-black, faceted planes | White-blue | By nomination |
-| V | Solitaire | 獨鑽 | Deepest black, brilliant-cut burst, doubled white edge | Diamond white | By invitation |
+The ladder ascends by **rarity, not price**. That distinction is deliberate: Gold /
+Platinum / Diamond is banking and airline vocabulary, and in Hong Kong it reads as *how
+much you spend*. For a youth body where bursaries exist so cost never decides who
+belongs, a spending ladder implies exactly the wrong thing.
 
-**Why Solitaire at the summit.** A solitaire is a single stone set alone — it completes
-the gem progression rather than departing from it, and it means *one*. It replaced
-"Premium Prestige", which was two adjectives with no noun and broke the material logic
-holding the other four together.
+| Seal | Tier | 中文 | Surface | Admission |
+|------|------|------|---------|-----------|
+| I | Associate | 準會員 | Matte charcoal, unadorned, pewter marks | By introduction |
+| II | Onyx | 黑玉 | Banded black chalcedony, pearl marks | By nomination |
+| III | Obsidian | 黑曜 | Volcanic glass, broad conchoidal sheen | By nomination |
+| IV | Meteorite | 隕鐵 | Widmanstätten lattice — the crosshatch an iron meteorite shows when etched | By nomination |
+| V | Carbonado | 黑金剛石 | Matte crystalline fracture, one cold highlight | By invitation |
+
+**Carbonado** is natural black diamond — polycrystalline, found in only two places on
+Earth, and widely thought to be extraterrestrial. It is harder than ordinary diamond
+and rarer than meteorite, so it tops the ladder on the same axis the rest ascends. It
+replaced *Solitaire*, which was a diamond-cut term and sat outside a classification of
+black stones.
+
+Each surface is drawn to match its material rather than recoloured from a template.
+There is no gold anywhere in the set — the cards are black stones, and gold would break
+the classification.
 
 **The ladder has a mechanism.** A member introduces you to Associate; every tier above
-is by nomination; the last is not applied for. Associate is deliberately the only card
-without a precious finish — the difference between belonging and being elevated should
-be visible at a glance.
+is by nomination; the last is not applied for. Associate is the only card without a
+precious surface — the difference between belonging and being elevated should be
+visible at a glance.
 
-Cards are laid out with flex rather than grid so the trailing row of two centres beneath
-the row of three. On hover a card lifts 7px and a specular highlight rakes across in its
-own metal. `background-clip: text` has a flat-colour fallback.
+Cards use flex rather than grid so the trailing row of two centres beneath the row of
+three. On hover a card lifts 7px and a specular highlight rakes across in its own metal.
+`background-clip: text` has a flat-colour fallback.
 
 ### Admin console
 
