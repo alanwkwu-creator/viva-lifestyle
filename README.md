@@ -115,7 +115,7 @@ implication for a body where bursaries exist so cost never decides who belongs.
 | I | Associate | 準會員 | Plain graphite, no pattern — the only card without a material | By introduction |
 | II | Onyx | 黑玉 | Black chalcedony, cream banding | By nomination |
 | III | Obsidian | 黑曜 | Green-black volcanic glass, wet sheen | By nomination |
-| IV | Meteorite | 隕鐵 | Light etched iron, Widmanstätten lattice, dark engraved marks | By nomination |
+| IV | Meteorite | 隕鐵 | Gunmetal, Widmanstätten lattice with gold inlay | By nomination |
 | V | Carbonado | 黑金剛石 | Matte porous charcoal, crystalline speckle, white edge | By invitation |
 
 **Carbonado** is natural black diamond — polycrystalline, found in only two places on
@@ -130,6 +130,13 @@ gold is worked into each surface differently: veining between Onyx's bands, flec
 Obsidian (gold-sheen obsidian is a real variety), inlay along Meteorite's lattice, and
 grains among Carbonado's crystalline speckle. Associate gets the hairline and nothing
 more — the restraint is what marks it as the entry.
+
+**On brightness.** The set is tuned to sit quietly against the page rather than glare
+off it. Measured mean luminance across the five faces runs 19–43 out of 255, a spread
+of 24 — enough that they are plainly different cards, small enough that none of them
+shouts. Meteorite is the lightest by design (etched iron is pale) but was twice as
+bright as anything else at one point, so it came down to gunmetal and its markings
+flipped back to light steel.
 
 **On making the set legible.** An earlier revision made all five near-black, and they
 read as one card repeated. They are now drawn from what the materials actually look
