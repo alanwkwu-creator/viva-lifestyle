@@ -13,15 +13,18 @@
 
   /* ---------- reference data ---------- */
   var TIERS = {
-    open:    { key:'open',    en:'Black Diamond',  zh:'黑鑽',   price:0,   priceLabel:'By nomination', term:'12 months' },
-    active:  { key:'active',  en:'Black Platinum', zh:'黑白金', price:480, priceLabel:'By nomination', term:'12 months' },
-    builder: { key:'builder', en:'Black Gold',     zh:'黑金',   price:0,   priceLabel:'By nomination', term:'12 months' }
+    associate: { key:'associate', en:'Associate',       zh:'準會員',  rank:1, admit:'By introduction' },
+    bgold:     { key:'bgold',     en:'Black Gold',      zh:'黑金',    rank:2, admit:'By nomination'   },
+    bplatinum: { key:'bplatinum', en:'Black Platinum',  zh:'黑白金',  rank:3, admit:'By nomination'   },
+    bdiamond:  { key:'bdiamond',  en:'Black Diamond',   zh:'黑鑽',    rank:4, admit:'By nomination'   },
+    solitaire: { key:'solitaire', en:'Solitaire',       zh:'獨鑽',    rank:5, admit:'By invitation'   }
   };
+  var TIER_KEYS = ['associate','bgold','bplatinum','bdiamond','solitaire'];
 
   /* Benefits are deliberately withholding: what a member receives is named,
      what it amounts to is not. Order matters — it is the order shown on the card. */
   var PERKS = {
-    open: [
+    associate: [
       { en:['The calendar','Circulated to members. Nothing is posted publicly.'],
         zh:['日程','僅向會員發放，不作公開張貼。'] },
       { en:['The rooms','You will be told where, and when.'],
@@ -31,7 +34,7 @@
       { en:['Nothing is asked of you','Come once. Come fifty times. Both are acceptable.'],
         zh:['無所要求','來一次，或來五十次，皆可。'] }
     ],
-    active: [
+    bplatinum: [
       { en:['Forty-eight hours','You see the season before it opens.'],
         zh:['四十八小時','你在日程開放之前先看見它。'] },
       { en:['The mark','Kit that is not sold.'],
@@ -43,7 +46,7 @@
       { en:['One guest','Four times a year. Choose carefully.'],
         zh:['一位客人','每年四次。請慎選。'] }
     ],
-    builder: [
+    bgold: [
       { en:['Twelve names','You will be given them, and expected to use them.'],
         zh:['十二個名字','我們會交給你，並期望你用得上。'] },
       { en:['A mentor','Assigned within two weeks. Not chosen by you.'],
@@ -71,7 +74,7 @@
   var EVENTS = [
     { id:'EV-241', name:'Harbour Night Run',        date:'2026-08-23', venue:'Central Harbourfront', cap:120, price:0,   tier:'open'   },
     { id:'EV-242', name:'Rooftop Pickleball Social',date:'2026-09-07', venue:'Kwun Tong',            cap:36,  price:120, tier:'open'   },
-    { id:'EV-243', name:"Founders' Table",          date:'2026-09-19', venue:'Science Park',         cap:12,  price:0,   tier:'active' },
+    { id:'EV-243', name:"Founders' Table",          date:'2026-09-19', venue:'Science Park',         cap:12,  price:0,   tier:'bplatinum' },
     { id:'EV-244', name:'Sunrise Trail & Breakfast',date:'2026-10-11', venue:'Sai Kung',             cap:60,  price:80,  tier:'open'   },
     { id:'EV-245', name:'First Job, Real Talk',     date:'2026-10-30', venue:'Sheung Wan',           cap:80,  price:0,   tier:'open'   },
     { id:'EV-246', name:'The Viva Gala',            date:'2026-12-06', venue:'TBC',                  cap:600, price:680, tier:'open'   }
@@ -85,7 +88,8 @@
     var out = [], n = 64;
     for (var i = 0; i < n; i++) {
       var tierRoll = rnd();
-      var tier = tierRoll < 0.66 ? 'open' : (tierRoll < 0.92 ? 'active' : 'builder');
+      var tier = tierRoll < 0.46 ? 'associate' : tierRoll < 0.71 ? 'bgold'
+               : tierRoll < 0.88 ? 'bplatinum' : tierRoll < 0.97 ? 'bdiamond' : 'solitaire';
       var joinY = rnd() < 0.34 ? 2024 : (rnd() < 0.5 ? 2025 : 2026);
       var joinM = int(1, joinY === 2026 ? 8 : 12);
       /* today in the demo is 9 Aug 2026 — never generate a join date in the future */
@@ -114,6 +118,10 @@
       });
     }
     out.forEach(function (m) { if (m.age < 18) m.guardianConsent = rnd() < 0.9; });
+    /* the summit is rare, but never empty — otherwise the console shows a tier with no one in it */
+    if (!out.some(function (m) { return m.tier === 'solitaire'; })) {
+      out[3].tier = 'solitaire'; out[17].tier = 'solitaire';
+    }
     return out;
   })();
 
@@ -122,7 +130,7 @@
     id: 'VL-2026-04821',
     name: 'Alan Wu',
     email: 'alan@example.com',
-    tier: 'active',
+    tier: 'bdiamond',
     status: 'active',
     joined: '2026-03-14',
     renews: '2027-03-14',
@@ -200,7 +208,7 @@
 
   root.VIVA = {
     TIERS: TIERS, PERKS: PERKS, DISTRICTS: DISTRICTS, SPORTS: SPORTS,
-    EVENTS: EVENTS, MEMBERS: MEMBERS, CHECKINS: CHECKINS, ME: ME,
+    TIER_KEYS: TIER_KEYS, EVENTS: EVENTS, MEMBERS: MEMBERS, CHECKINS: CHECKINS, ME: ME,
     fmtDate: fmtDate, money: money, esc: esc, ready: ready
   };
 })(window);

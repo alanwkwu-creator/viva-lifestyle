@@ -77,8 +77,8 @@ the production build:
 
 Membership is **by invitation**. Members are introduced by an existing member or found
 by Viva; anyone else writes an enquiry, which is answered by a person. The three tiers
-are **Black Diamond**, **Black Platinum** and **Black Gold**, and every one of them is
-by nomination. Dues are not published on the site. Copy is written in a formal register in both languages — the
+run Associate, Black Gold, Black Platinum, Black Diamond and Solitaire. Dues are not
+published on the site. Copy is written in a formal register in both languages — the
 Traditional Chinese is written Chinese, not colloquial Cantonese, because the
 colloquial register undercuts the invitation framing.
 
@@ -98,34 +98,35 @@ is transmitted anywhere.
 | `card.html` | Redirect to `index.html#circle` — the card now lives on the main page |
 | `admin.html` | Staff console: members, check-in, events, data-retention checklist |
 | `app.css` | Shared design system for the three application pages |
-| `app.js` | Mock data (64 members, 6 events, check-in log) and shared helpers |
+| `app.js` | Mock data (64 members across five tiers, 6 events, check-in log) and shared helpers |
 | `qrcode.min.js` | qrcodejs by davidshimjs, MIT — vendored so the card works offline |
 
-### The Circle card
+### The Circle cards
 
-The cards live on the homepage, in **The Circle** — three of them, one per tier. There
-is no separate card page and no member's card on the public site: each is an emblem
-rather than an issued credential, so no fabricated member name or number appears. No
-prices are published.
+Five cards on the homepage, in **The Circle**. Each is an emblem rather than an issued
+credential — no member name, no number, no prices.
 
-All three are black. They are told apart by the metal of their markings, edge and seal —
-which is also why the bright metallic foils read here, where the same foils were
-illegible on pale stock.
+| Seal | Tier | 中文 | Card | Marking | Admission |
+|------|------|------|------|---------|-----------|
+| I | Associate | 準會員 | Matte charcoal, unadorned | Pewter | By introduction |
+| II | Black Gold | 黑金 | Warm black, guilloché, gold edge | Gold | By nomination |
+| III | Black Platinum | 黑白金 | Neutral black, brushed grain | Silver | By nomination |
+| IV | Black Diamond | 黑鑽 | Cold blue-black, faceted planes | White-blue | By nomination |
+| V | Solitaire | 獨鑽 | Deepest black, brilliant-cut burst, doubled white edge | Diamond white | By invitation |
 
-| Tier | Seal | Card | Marking metal | Admission |
-|------|------|------|---------------|-----------|
-| Black Diamond | I | Cold blue-black with faceted planes | White-blue | By nomination |
-| Black Platinum | II | Neutral black, fine brushed grain | Silver | By nomination |
-| Black Gold | III | Warm black, guilloché, doubled gold edge | Gold | By nomination |
+**Why Solitaire at the summit.** A solitaire is a single stone set alone — it completes
+the gem progression rather than departing from it, and it means *one*. It replaced
+"Premium Prestige", which was two adjectives with no noun and broke the material logic
+holding the other four together.
 
-Every tier is by nomination — there is no self-service route to any of them, and the
-line beneath the cards says so.
+**The ladder has a mechanism.** A member introduces you to Associate; every tier above
+is by nomination; the last is not applied for. Associate is deliberately the only card
+without a precious finish — the difference between belonging and being elevated should
+be visible at a glance.
 
-`VIVA CIRCLE` appears on each card as a metallic gradient clipped to the glyphs with a
-nine-second sheen, in that card's metal. On hover a card lifts 7px and a specular
-highlight rakes across in the same metal. Tier names carry Chinese (黑鑽 / 黑白金 /
-黑金), so the cards follow the language toggle. `background-clip: text` has a
-flat-colour fallback.
+Cards are laid out with flex rather than grid so the trailing row of two centres beneath
+the row of three. On hover a card lifts 7px and a specular highlight rakes across in its
+own metal. `background-clip: text` has a flat-colour fallback.
 
 ### Admin console
 

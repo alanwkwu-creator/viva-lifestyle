@@ -60,8 +60,9 @@
     <div class="toolbar">
       <input type="search" id="q" placeholder="Search name, member number or email…" aria-label="Search members">
       <select id="fTier" aria-label="Filter by tier">
-        <option value="">All tiers</option><option value="open">Black Diamond</option>
-        <option value="active">Black Platinum</option><option value="builder">Black Gold</option>
+        <option value="">All tiers</option><option value="associate">Associate</option>
+        <option value="bgold">Black Gold</option><option value="bplatinum">Black Platinum</option>
+        <option value="bdiamond">Black Diamond</option><option value="solitaire">Solitaire</option>
       </select>
       <select id="fStatus" aria-label="Filter by status">
         <option value="">All statuses</option><option value="active">Active</option>
@@ -187,14 +188,14 @@ VIVA.ready(function () {
 
   /* ---------- KPIs ---------- */
   var active = M.filter(function (m) { return m.status === 'active'; }).length;
-  var paid = M.filter(function (m) { return m.tier === 'active'; }).length;
+  var paid = M.filter(function (m) { return VIVA.TIERS[m.tier].rank > 1; }).length;
   var lapsed = M.filter(function (m) { return m.status === 'lapsed'; }).length;
-  var revenue = paid * 480;
+  
   var newThisMonth = M.filter(function (m) { return m.joined.slice(0, 7) === '2026-08'; }).length;
   var kpis = [
     ['Total members', M.length.toLocaleString(), '+' + newThisMonth + ' this month', false],
     ['Active', active.toLocaleString(), Math.round(active / M.length * 100) + '% of base', false],
-    ['Black Platinum', paid.toLocaleString(), 'HK$' + revenue.toLocaleString() + ' annualised', false],
+    ['Nominated tiers', paid.toLocaleString(), Math.round(paid / M.length * 100) + '% of the roll', false],
     ['Lapsed', lapsed.toLocaleString(), 'Renewal reminders due', true],
     ['Check-ins today', '41', '+12 vs last Thursday', false],
     ['Wallet passes', M.filter(function (m) { return m.walletPass; }).length.toLocaleString(), 'of ' + M.length + ' members', false]
@@ -333,7 +334,7 @@ VIVA.ready(function () {
     var pct = Math.round(reg / e.cap * 100);
     return '<tr><td>' + VIVA.esc(e.name) + '</td><td class="muted">' + VIVA.fmtDate(e.date) + '</td>' +
       '<td class="muted">' + VIVA.esc(e.venue) + '</td>' +
-      '<td>' + (e.tier === 'open' ? '<span class="badge">All members</span>' : '<span class="badge gold">Active+</span>') + '</td>' +
+      '<td>' + (e.tier === 'open' ? '<span class="badge">All members</span>' : '<span class="badge gold">' + VIVA.TIERS[e.tier].en + '+</span>') + '</td>' +
       '<td class="mono">' + reg + '</td><td class="mono">' + e.cap + '</td>' +
       '<td><span class="badge ' + (pct > 85 ? 'red' : (pct > 60 ? 'gold' : 'green')) + '">' + pct + '%</span></td>' +
       '<td class="muted">' + VIVA.money(e.price) + '</td></tr>';
@@ -356,7 +357,7 @@ VIVA.ready(function () {
   function scan(ok) {
     var m = M[Math.floor(Math.random() * M.length)];
     var ev = VIVA.EVENTS.filter(function (e) { return e.id === evSel.value; })[0];
-    var eligible = ev.tier === 'open' || m.tier !== 'open';
+    var eligible = ev.tier === 'open' || VIVA.TIERS[m.tier].rank >= VIVA.TIERS[ev.tier].rank;
     var box = document.getElementById('scanres');
     if (!ok) {
       box.className = 'scanres no';
