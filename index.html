@@ -59,9 +59,6 @@ header.stuck{background:rgba(8,11,18,.86);backdrop-filter:blur(16px);border-bott
 .links a{opacity:.55;transition:opacity .4s,color .4s}
 .links a:hover{opacity:1;color:var(--champagne)}
 .tools{display:flex;gap:16px;align-items:center}
-.lang{display:flex;gap:10px;font-size:10px;letter-spacing:.16em}
-.lang button{background:none;border:0;color:rgba(246,243,236,.35);cursor:pointer;padding:2px;transition:color .3s}
-.lang button.act{color:var(--champagne)}
 .burger{display:none;background:none;border:0;cursor:pointer;padding:8px}
 .burger span{display:block;width:22px;height:1px;background:var(--pearl);margin:5px 0;transition:transform .4s,opacity .3s}
 body.menu .burger span:nth-child(1){transform:translateY(6px) rotate(45deg)}
@@ -105,11 +102,6 @@ section.blk{padding:var(--gap) 0}
 .label{margin-bottom:clamp(40px,6vw,68px)}
 h2.big{font-size:clamp(28px,4.4vw,58px)}
 
-/* triad */
-.triad{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:clamp(34px,5vw,64px)}
-.triad div b{display:block;font-family:var(--display);font-weight:200;font-size:clamp(40px,5.6vw,72px);
-  color:var(--gold);line-height:1}
-.triad div span{display:block;font-family:var(--display);font-weight:300;font-size:22px;margin-top:18px}
 
 /* bare list */
 .list{border-top:1px solid var(--line)}
@@ -289,37 +281,33 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
   <div class="wrap nav">
     <a href="#" class="logo">VI<b>V</b>A</a>
     <nav class="links">
-      <a href="#season" data-en="The season" data-zh="本季">The season</a>
-      <a href="#circle" data-en="The Circle" data-zh="會員網絡">The Circle</a>
-      <a href="enquiry.html" data-en="Enquiries" data-zh="查詢">Enquiries</a>
+      <a href="#season">The season</a>
+      <a href="#circle">The Circle</a>
+      <a href="enquiry.html">Enquiries</a>
     </nav>
     <div class="tools">
-      <div class="lang">
-        <button class="act" data-lang="en">EN</button>
-        <button data-lang="zh">繁中</button>
-      </div>
       <button class="burger" id="bg" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 
 <div class="sheet" id="sheet">
-  <a href="#season" data-en="The season" data-zh="本季">The season</a>
-  <a href="#circle" data-en="The Circle" data-zh="會員網絡">The Circle</a>
-  <a href="enquiry.html" data-en="Enquiries" data-zh="查詢">Enquiries</a>
+  <a href="#season">The season</a>
+  <a href="#circle">The Circle</a>
+  <a href="enquiry.html">Enquiries</a>
 </div>
 
 <!-- ---------- hero ---------- -->
 <section class="hero wrap">
-  <p class="eyebrow rv" data-en="Hong Kong · By invitation" data-zh="香港 · 憑邀請入會">Hong Kong · By invitation</p>
+  <p class="eyebrow rv">Hong Kong · By invitation</p>
   <h1 class="serif">
     <span class="ln"><span>The city moves</span></span>
     <span class="ln"><span>when its youth</span></span>
     <span class="ln"><span><em>connect.</em></span></span>
   </h1>
-  <p class="sub rv" data-en="A private network of young people in Hong Kong." data-zh="香港一個以青年為本的私人網絡。">A private network of young people in Hong Kong.</p>
+  <p class="sub rv">A private network of young people in Hong Kong.</p>
   <div class="cta rv">
-    <a class="act-link" href="enquiry.html"><span data-en="Enquire" data-zh="提交查詢">Enquire</span><em>→</em></a>
+    <a class="act-link" href="enquiry.html"><span>Enquire</span><em>→</em></a>
   </div>
 </section>
 
@@ -330,20 +318,12 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
   <p class="quote rv" style="margin:0 auto;text-align:center;max-width:22ch">A network is not built in a boardroom.</p>
 </section>
 
-<!-- ---------- triad ---------- -->
-<section class="blk wrap">
-  <div class="triad">
-    <div class="rv"><b>52</b><span data-en="Sport" data-zh="運動">Sport</span></div>
-    <div class="rv"><b>30+</b><span data-en="Recreation" data-zh="康樂">Recreation</span></div>
-    <div class="rv"><b>12</b><span data-en="Ventures" data-zh="創業">Ventures</span></div>
-  </div>
-</section>
 
 <!-- ---------- season ---------- -->
 <section class="blk wrap" id="season">
   <div class="label rv">
-    <p class="eyebrow" data-en="The season" data-zh="本季">The season</p>
-    <h2 class="serif big" style="margin-top:16px" data-en="What is next." data-zh="接下來。">What is next.</h2>
+    <p class="eyebrow">The season</p>
+    <h2 class="serif big" style="margin-top:16px">What is next.</h2>
   </div>
   <div class="list rv">
     <div class="row"><span class="n">Harbour Night Run</span><span class="d">23 Aug</span></div>
@@ -352,15 +332,15 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
     <div class="row"><span class="n">Sunrise Trail</span><span class="d">11 Oct</span></div>
     <div class="row"><span class="n">The Viva Gala</span><span class="d">06 Dec</span></div>
   </div>
-  <p class="wh rv" data-en="Places, times and everything else are sent to members." data-zh="地點、時間及其餘細節，均只發予會員。">Places, times and everything else are sent to members.</p>
+  <p class="wh rv">Places, times and everything else are sent to members.</p>
 </section>
 
 
 <!-- ---------- circle ---------- -->
 <section class="blk wrap" id="circle">
   <div class="label rv">
-    <p class="eyebrow" data-en="Membership" data-zh="會籍">Membership</p>
-    <h2 class="serif big" style="margin-top:16px" data-en="The Circle." data-zh="The Circle。">The Circle.</h2>
+    <p class="eyebrow">Membership</p>
+    <h2 class="serif big" style="margin-top:16px">The Circle.</h2>
   </div>
   <div class="cards">
     <div class="card rv" data-t="i">
@@ -369,8 +349,8 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
         <span class="cseal"><i class="foil">I</i></span>
       </div>
       <div class="cft">
-        <span class="t foil pew" data-en="Associate" data-zh="準會員">Associate</span>
-        <span class="s" data-en="By introduction" data-zh="憑會員引薦">By introduction</span>
+        <span class="t foil pew">Associate</span>
+        <span class="s">By introduction</span>
       </div>
     </div>
     <div class="card rv" data-t="ii">
@@ -379,8 +359,8 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
         <span class="cseal"><i class="foil">II</i></span>
       </div>
       <div class="cft">
-        <span class="t foil prl" data-en="Onyx" data-zh="黑玉">Onyx</span>
-        <span class="s" data-en="By nomination" data-zh="由提名產生">By nomination</span>
+        <span class="t foil prl">Onyx</span>
+        <span class="s">By nomination</span>
       </div>
     </div>
     <div class="card rv" data-t="iii">
@@ -389,8 +369,8 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
         <span class="cseal"><i class="foil">III</i></span>
       </div>
       <div class="cft">
-        <span class="t foil gls" data-en="Obsidian" data-zh="黑曜">Obsidian</span>
-        <span class="s" data-en="By nomination" data-zh="由提名產生">By nomination</span>
+        <span class="t foil gls">Obsidian</span>
+        <span class="s">By nomination</span>
       </div>
     </div>
     <div class="card rv" data-t="iv">
@@ -399,8 +379,8 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
         <span class="cseal"><i class="foil">IV</i></span>
       </div>
       <div class="cft">
-        <span class="t foil met" data-en="Meteorite" data-zh="隕鐵">Meteorite</span>
-        <span class="s" data-en="By nomination" data-zh="由提名產生">By nomination</span>
+        <span class="t foil met">Meteorite</span>
+        <span class="s">By nomination</span>
       </div>
     </div>
     <div class="card rv" data-t="v">
@@ -409,12 +389,12 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
         <span class="cseal"><i class="foil">V</i></span>
       </div>
       <div class="cft">
-        <span class="t foil car" data-en="Carbonado" data-zh="黑金剛石">Carbonado</span>
-        <span class="s" data-en="By invitation" data-zh="憑邀請">By invitation</span>
+        <span class="t foil car">Carbonado</span>
+        <span class="s">By invitation</span>
       </div>
     </div>
   </div>
-  <p class="wh rv" data-en="A member introduces you to the first. Every tier above it is by nomination. The last is not applied for." data-zh="第一級由會員引薦。其上各級均由提名產生。最後一級不接受申請。">A member introduces you to the first. Every tier above it is by nomination. The last is not applied for.</p>
+  <p class="wh rv">A member introduces you to the first. Every tier above it is by nomination. The last is not applied for.</p>
 </section>
 
 <!-- ---------- quote ---------- -->
@@ -426,28 +406,28 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
 <!-- ---------- invitation ---------- -->
 <section class="blk wrap">
   <div class="label rv">
-    <p class="eyebrow" data-en="Invitation" data-zh="入會邀請">Invitation</p>
+    <p class="eyebrow">Invitation</p>
   </div>
   <div class="words">
-    <div class="rv"><i>01</i><span data-en="An introduction" data-zh="引薦">An introduction</span></div>
-    <div class="rv"><i>02</i><span data-en="A conversation" data-zh="一次交談">A conversation</span></div>
-    <div class="rv"><i>03</i><span data-en="An invitation" data-zh="一封邀請">An invitation</span></div>
+    <div class="rv"><i>01</i><span>An introduction</span></div>
+    <div class="rv"><i>02</i><span>A conversation</span></div>
+    <div class="rv"><i>03</i><span>An invitation</span></div>
   </div>
-  <p class="wh rv" data-en="Most members were introduced. A few wrote to us first." data-zh="多數會員由人引薦，少數則先來信。">Most members were introduced. A few wrote to us first.</p>
+  <p class="wh rv">Most members were introduced. A few wrote to us first.</p>
 </section>
 
 <!-- ---------- closing ---------- -->
 <section class="close">
   <div class="wrap">
-    <h2 class="serif rv" data-en="Enquiries are welcome." data-zh="歡迎提交查詢。">Enquiries are welcome.</h2>
-    <div class="rv"><a class="act-link" href="enquiry.html"><span data-en="Write to us" data-zh="來函查詢">Write to us</span><em>→</em></a></div>
+    <h2 class="serif rv">Enquiries are welcome.</h2>
+    <div class="rv"><a class="act-link" href="enquiry.html"><span>Write to us</span><em>→</em></a></div>
   </div>
 </section>
 
 <footer>
   <div class="wrap fin">
     <span>© 2026 Viva Lifestyle Limited · Hong Kong</span>
-    <span><a href="admin.html" data-en="Staff" data-zh="職員">Staff</a> · <span data-en="Privacy" data-zh="私隱">Privacy</span></span>
+    <span><a href="admin.html">Staff</a> · <span>Privacy</span></span>
   </div>
 </footer>
 
@@ -487,16 +467,6 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
   sheet.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){
     document.body.classList.remove('menu','locked');});});
 
-  document.querySelectorAll('.lang button').forEach(function(b){
-    b.addEventListener('click',function(){
-      var l=b.dataset.lang;
-      document.querySelectorAll('.lang button').forEach(function(o){o.classList.toggle('act',o===b)});
-      document.documentElement.lang = l==='zh' ? 'zh-Hant' : 'en';
-      document.querySelectorAll('[data-'+l+']').forEach(function(el){
-        el.textContent = el.getAttribute('data-'+l);
-      });
-    });
-  });
 })();
 </script>
 </body>

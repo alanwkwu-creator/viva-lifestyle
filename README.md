@@ -38,9 +38,10 @@ If GitHub Pages is enabled on this repository, the live preview is at
 
 ## Sections
 
-Hero · Partner marquee · Manifesto · Triad (Sport / Recreation / Ventures) ·
-The season (event names and dates only) · The Circle (five cards) · Pull quote ·
-Invitation (three steps) · Closing · Footer
+Hero · Partner marquee · Manifesto · The season (event names and dates only) ·
+The Circle (five cards) · Pull quote · Invitation (three steps) · Closing · Footer
+
+The Sport / Recreation / Ventures triad was removed along with the impact counters.
 
 The impact counters (12,480 members, 214 gatherings, 46 partners, 31 ventures) were
 removed. They were the last fabricated figures on a public page, and the site no longer
@@ -55,7 +56,9 @@ Traditional Chinese uses natural Hong Kong phrasing rather than literal translat
 
 ## Features
 
-- Bilingual EN / 繁體中文 toggle (demo implementation via `data-en` / `data-zh` attributes)
+- The homepage is **English only**. The language toggle and every `data-en` / `data-zh`
+  attribute were stripped from `index.html`; `enquiry.html` and `admin.html` are unchanged,
+  and `enquiry.html` keeps its bilingual toggle.
 - Scroll-reveal animations, scroll progress bar
 - Drag-to-scroll events rail, accordion membership tiers
 - Custom cursor and magnetic buttons on fine-pointer devices
@@ -73,6 +76,12 @@ the production build:
 - All content (events, journal posts, tiers, partners) is hardcoded.
 - The newsletter input has no submit handling.
 - No routing — the nav links are in-page anchors only.
+
+## Language
+
+`index.html` is English only. The other pages still carry Traditional Chinese, so if the
+homepage ever needs it back, the `data-en` / `data-zh` pattern and the toggle script are
+still in `enquiry.html` to copy from.
 
 ## Membership model
 
