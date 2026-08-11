@@ -115,56 +115,55 @@ seed, but nothing public renders it now that the staff console has been removed.
 
 ### The Circle cards
 
-Five cards on the homepage, in **The Circle**. Each is an emblem rather than an issued
-credential — no member name, no number, no prices.
+Five cards on the homepage, in **The Circle**. Each is an emblem rather than an
+issued credential — no member name, no number, no prices.
 
-The ladder ascends by **rarity, not price**. Gold / Platinum / Diamond is banking and
-airline vocabulary, and in Hong Kong it reads as *how much you spend* — the wrong
-implication for a body where bursaries exist so cost never decides who belongs.
+The ladder ascends by **rarity, not price**. Gold / Platinum / Diamond is banking
+and airline vocabulary, and in Hong Kong it reads as *how much you spend* — the
+wrong implication for a body that decides membership by introduction.
 
-| Seal | Tier | 中文 | Surface | Admission |
-|------|------|------|---------|-----------|
-| I | Associate | 準會員 | Plain graphite, no pattern — the only card without a material | By introduction |
-| II | Onyx | 黑玉 | Black chalcedony, cream banding | By nomination |
-| III | Obsidian | 黑曜 | Green-black volcanic glass, wet sheen | By nomination |
-| IV | Meteorite | 隕鐵 | Gunmetal, Widmanstätten lattice with gold inlay | By nomination |
-| V | Carbonado | 黑金剛石 | Matte porous charcoal, crystalline speckle, white edge | By invitation |
+**All five cards are black.** This is the second attempt at that. The first one
+differentiated the tiers by lightness, which produced a set where Meteorite was
+twice as bright as anything else and read as a different product rather than a
+higher rank. The set is now tuned to a mean luminance of 11–16 out of 255 — a
+spread of five, which is to say they are all simply black.
 
-**Carbonado** is natural black diamond — polycrystalline, found in only two places on
-Earth, likely extraterrestrial, harder than ordinary diamond and rarer than meteorite.
-It tops the ladder on the same axis the rest ascends.
+What escalates instead is **how much gold a card is permitted to carry**. That is
+the only axis that reads as rank rather than as price:
 
-**Gold is the house metal.** Every card carries three constants — the `VIVA` wordmark
-in gold foil, a gold seal ring, and a gold hairline edge — so the set reads as one
-family. The material then differentiates: `CIRCLE` and the tier name are struck in that
-card's own metal (pewter, pearl, glass-green, dark engraved, diamond-white), and the
-gold is worked into each surface differently: veining between Onyx's bands, flecks in
-Obsidian (gold-sheen obsidian is a real variety), inlay along Meteorite's lattice, and
-grains among Carbonado's crystalline speckle. Associate gets the hairline and nothing
-more — the restraint is what marks it as the entry.
+| Seal | Tier | Gold permitted | Material showing through | Admission |
+|------|------|----------------|--------------------------|-----------|
+| I | Associate | A single hairline edge. Nothing else. | Neutral graphite, a faint diagonal tooth | By introduction |
+| II | Onyx | Hairline, plus an inner rule | Chalcedony banding with one gold vein | By nomination |
+| III | Obsidian | Inner rule, plus corner brackets | Conchoidal sheen, gold flecks in the melt | By nomination |
+| IV | Meteorite | Brighter rule, longer brackets | Widmanstätten lattice with gold inlay | By nomination |
+| V | Carbonado | Double frame, full brackets, filled seal | Crystalline burst, gold grains in the speckle | By invitation |
 
-**On brightness.** The set is tuned to sit quietly against the page rather than glare
-off it. Measured mean luminance across the five faces runs 19–43 out of 255, a spread
-of 24 — enough that they are plainly different cards, small enough that none of them
-shouts. Meteorite is the lightest by design (etched iron is pale) but was twice as
-bright as anything else at one point, so it came down to gunmetal and its markings
-flipped back to light steel.
+Associate's restraint is the point: it is the only card in the set that carries no
+ornament at all, and the absence is legible precisely because every card above it
+has something.
 
-**On making the set legible.** An earlier revision made all five near-black, and they
-read as one card repeated. They are now drawn from what the materials actually look
-like, which produces a real value range on its own: plain graphite, cream-banded black,
-green-black glass, *light* etched iron, and a matte charcoal that is the darkest of the
-five. Meteorite is the surprise — etched iron is silver-grey, not black — and it also
-inverts the markings, since a light card needs dark engraving where the black cards need
-bright foil. The lattice is dimmed and light pools sit under the wordmark and tier line
-so those marks stay readable against it.
+**Carbonado** is natural black diamond — polycrystalline, found in only two places
+on Earth, likely extraterrestrial, harder than ordinary diamond and rarer than
+meteorite. It tops the ladder on the same axis the rest ascends.
 
-**The ladder has a mechanism.** A member introduces you to Associate; every tier above
-is by nomination; the last is not applied for.
+**The markings changed karat, not colour.** Gold is now the only metal on the set;
+the per-material silvers, pearls and glass-greens are gone. `CIRCLE` and the tier
+name run from an antique, sunk gold at Associate through struck gold to a pale
+white-gold at Carbonado. The `VIVA` wordmark is identical on all five — it is the
+house constant, and the thing that makes the set read as one family.
 
-Cards use flex rather than grid so the trailing row of two centres beneath the row of
-three. On hover a card lifts 8px and a specular highlight rakes across in its own metal.
-`background-clip: text` has a flat-colour fallback.
+**Every card carries a scrim.** A soft dark gradient sits between the material and
+the markings, top and bottom. It is what allows the textures to be as busy as they
+are — the wordmark and the tier line always have their own quiet ground, so
+Meteorite's lattice can cross the whole face without swallowing the type.
+
+**The ladder has a mechanism.** A member introduces you to Associate; every tier
+above is by nomination; the last is not applied for.
+
+Cards use flex rather than grid so the trailing row of two centres beneath the row
+of three. On hover a card lifts 10px and a specular highlight rakes across it.
+`background-clip: text` has a flat-colour fallback for browsers without it.
 
 ### The staff console is gone
 

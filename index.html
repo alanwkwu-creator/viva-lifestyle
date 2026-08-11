@@ -121,122 +121,190 @@ h2.big{font-size:clamp(28px,4.4vw,58px)}
   .foil{-webkit-text-fill-color:var(--gold);background-image:none}}
 @keyframes sheen{to{background-position:300% 0}}
 
-/* ---------- five cards ----------
-   Earlier revisions were five near-black rectangles that read as one card. Each surface
-   is now drawn from what the material actually looks like, which gives the set a real
-   value range: plain graphite, cream-banded black, green-black glass, light etched iron,
-   and a matte charcoal that is the darkest of all. */
-.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(18px,2.2vw,28px)}
-.card{position:relative;flex:0 1 calc(33.333% - clamp(12px,1.5vw,19px));min-width:250px;
-  aspect-ratio:1.586/1;border-radius:14px;overflow:hidden;color:var(--pearl);
-  padding:22px 22px 20px;display:flex;flex-direction:column;justify-content:space-between;
-  transition:transform .7s cubic-bezier(.22,1,.36,1)}
+/* ---------- The Circle — five black cards ----------
+   All five are black. The set is deliberately NOT differentiated by lightness: an
+   earlier revision tried that and Meteorite came out twice as bright as anything
+   else, which read as a different product rather than a different rank. What
+   escalates instead is how much gold a card is permitted to carry — a single
+   hairline at Associate, a full engraved frame, corner ornament and a filled seal
+   at Carbonado. Rank by architecture, not by tone. The material still shows, but
+   only as texture caught in raking light. */
+.cards{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(20px,2.4vw,30px)}
+.card{position:relative;flex:0 1 calc(33.333% - clamp(14px,1.6vw,20px));min-width:262px;
+  aspect-ratio:1.586/1;border-radius:11px;overflow:hidden;color:var(--pearl);
+  padding:clamp(21px,1.9vw,27px);display:flex;flex-direction:column;justify-content:space-between;
+  transition:transform .85s cubic-bezier(.22,1,.36,1),box-shadow .85s cubic-bezier(.22,1,.36,1)}
+/* material texture */
 .card::before{content:"";position:absolute;inset:0;pointer-events:none}
-.card::after{content:"";position:absolute;top:-60%;left:-30%;width:55%;height:220%;pointer-events:none;
-  transform:rotate(16deg) translateX(-80%);transition:transform 1.2s cubic-bezier(.22,1,.36,1);
-  background:linear-gradient(100deg,transparent,rgba(255,255,255,.1),transparent)}
-.card:hover{transform:translateY(-8px)}
-.card:hover::after{transform:rotate(16deg) translateX(210%)}
+/* specular sweep on hover */
+.card::after{content:"";position:absolute;top:-60%;left:-30%;width:52%;height:220%;pointer-events:none;
+  transform:rotate(16deg) translateX(-85%);transition:transform 1.35s cubic-bezier(.22,1,.36,1);
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.09),transparent)}
+.card:hover{transform:translateY(-10px)}
+.card:hover::after{transform:rotate(16deg) translateX(215%)}
 
-/* I — associate: plain graphite. No pattern at all; the only card without a material. */
-.card[data-t="i"]{background:linear-gradient(150deg,#22262D 0%,#14171C 55%,#1E222A 100%);
-  box-shadow:0 24px 50px -24px rgba(0,0,0,.9),0 0 0 1px rgba(201,162,39,.38) inset}
-.card[data-t="i"]::before{opacity:.3;background-image:
-  repeating-linear-gradient(58deg,rgba(246,243,236,.05) 0 1px,transparent 1px 9px)}
+/* engraved frame — this is the rank signal */
+.cfr{position:absolute;inset:0;pointer-events:none;border-radius:11px;z-index:1;
+  /* a scrim under the markings — the texture is allowed to be busy because the
+     wordmark and the tier line always sit on their own quiet ground */
+  background-image:linear-gradient(to bottom,rgba(0,0,0,.52) 0%,rgba(0,0,0,.1) 24%,
+    rgba(0,0,0,0) 46%,rgba(0,0,0,.34) 74%,rgba(0,0,0,.68) 100%)}
+.cfr::before,.cfr::after{content:"";position:absolute;pointer-events:none}
+.cfr::before{inset:6px;border-radius:6px;border:1px solid transparent}
+/* corner brackets: eight hairlines, two per corner */
+.cfr::after{inset:11px;background-repeat:no-repeat;background-size:0 0;
+  background-position:left top,left top,right top,right top,left bottom,left bottom,right bottom,right bottom}
 
-/* II — onyx: black chalcedony, cream banding */
-.card[data-t="ii"]{background:linear-gradient(150deg,#131114 0%,#08070A 55%,#171418 100%);
-  box-shadow:0 24px 50px -24px rgba(0,0,0,.94),0 0 0 1px rgba(201,162,39,.5) inset,
-             0 0 0 4px rgba(238,231,218,.06) inset}
+/* the vignette every card shares — centre sinks, edges catch the light */
+.card{background-image:radial-gradient(128% 108% at 50% -12%,rgba(255,255,255,.055),transparent 58%)}
+
+/* I — ASSOCIATE. Neutral graphite black, no ornament. The restraint is the mark. */
+.card[data-t="i"]{background-color:#0C0E11;
+  background-image:radial-gradient(128% 108% at 50% -12%,rgba(255,255,255,.05),transparent 58%),
+    linear-gradient(152deg,#16181D 0%,#0A0B0E 56%,#12141A 100%);
+  box-shadow:0 26px 54px -26px rgba(0,0,0,.95),0 0 0 1px rgba(201,162,39,.24) inset}
+.card[data-t="i"]::before{opacity:.5;background-image:
+  repeating-linear-gradient(58deg,rgba(246,243,236,.028) 0 1px,transparent 1px 10px)}
+
+/* II — ONYX. Black chalcedony: parallel banding, one gold vein between the bands. */
+.card[data-t="ii"]{background-color:#080707;
+  background-image:radial-gradient(128% 108% at 50% -12%,rgba(255,255,255,.05),transparent 58%),
+    linear-gradient(152deg,#13100F 0%,#070505 56%,#151110 100%);
+  box-shadow:0 26px 54px -26px rgba(0,0,0,.96),0 0 0 1px rgba(201,162,39,.34) inset}
 .card[data-t="ii"]::before{opacity:1;background-image:
   repeating-linear-gradient(84deg,
-    rgba(240,233,220,.14) 0 3px, transparent 3px 11px,
-    rgba(240,233,220,.065) 11px 15px, transparent 15px 25px,
-    rgba(240,233,220,.1) 25px 27px, transparent 27px 46px,
-    rgba(240,233,220,.04) 46px 52px, transparent 52px 68px),
+    rgba(236,228,214,.038) 0 4px, transparent 4px 19px,
+    rgba(236,228,214,.019) 19px 24px, transparent 24px 44px,
+    rgba(236,228,214,.028) 44px 46px, transparent 46px 78px),
   repeating-linear-gradient(84deg,
-    rgba(226,183,64,.19) 0 1px, transparent 1px 19px,
-    rgba(226,183,64,.1) 19px 20px, transparent 20px 57px),
-  radial-gradient(80% 60% at 28% 20%,rgba(240,233,220,.1),transparent 68%)}
-.card[data-t="ii"]::after{background:linear-gradient(100deg,transparent,rgba(244,238,226,.12),transparent)}
+    rgba(226,183,64,.1) 0 1px, transparent 1px 34px,
+    rgba(226,183,64,.045) 34px 35px, transparent 35px 96px)}
+.card[data-t="ii"] .cfr::before{border-color:rgba(201,162,39,.13)}
 
-/* III — obsidian: volcanic glass, green-black with a wet sheen */
-.card[data-t="iii"]{background:linear-gradient(150deg,#07150F 0%,#020806 52%,#0A1D16 100%);
-  box-shadow:0 24px 50px -24px rgba(0,0,0,.94),0 0 0 1px rgba(201,162,39,.5) inset,
-             0 0 0 4px rgba(126,222,186,.07) inset}
+/* III — OBSIDIAN. Volcanic glass: a wet conchoidal sheen, gold flecks in the melt. */
+.card[data-t="iii"]{background-color:#040807;
+  background-image:radial-gradient(128% 108% at 50% -12%,rgba(255,255,255,.05),transparent 58%),
+    linear-gradient(152deg,#080F0C 0%,#030605 54%,#08110D 100%);
+  box-shadow:0 26px 54px -26px rgba(0,0,0,.96),0 0 0 1px rgba(201,162,39,.4) inset}
 .card[data-t="iii"]::before{opacity:1;background-image:
-  radial-gradient(62% 100% at 10% 98%,rgba(112,226,182,.13),transparent 62%),
-  radial-gradient(48% 78% at 88% 6%,rgba(96,206,190,.09),transparent 64%),
-  radial-gradient(34% 56% at 56% 58%,rgba(150,240,206,.055),transparent 70%),
-  linear-gradient(118deg,transparent 40%,rgba(190,250,224,.06) 50%,transparent 60%),
-  radial-gradient(54% 40% at 72% 74%,rgba(232,200,106,.11),transparent 66%),
-  linear-gradient(104deg,transparent 44%,rgba(240,214,130,.09) 52%,transparent 60%)}
-.card[data-t="iii"]::after{background:linear-gradient(100deg,transparent,rgba(180,248,220,.1),transparent)}
+  radial-gradient(58% 94% at 8% 100%,rgba(112,226,182,.05),transparent 62%),
+  radial-gradient(34% 52% at 94% 2%,rgba(96,206,190,.03),transparent 62%),
+  linear-gradient(118deg,transparent 44%,rgba(190,250,224,.022) 50%,transparent 56%),
+  radial-gradient(52% 40% at 74% 76%,rgba(232,200,106,.085),transparent 66%),
+  linear-gradient(104deg,transparent 45%,rgba(240,214,130,.055) 52%,transparent 59%)}
+.card[data-t="iii"] .cfr::before{border-color:rgba(201,162,39,.17)}
+.card[data-t="iii"] .cfr::after{background-size:15px 1px,1px 15px,15px 1px,1px 15px,15px 1px,1px 15px,15px 1px,1px 15px;
+  background-image:linear-gradient(rgba(201,162,39,.46),rgba(201,162,39,.46)),
+    linear-gradient(rgba(201,162,39,.46),rgba(201,162,39,.46)),
+    linear-gradient(rgba(201,162,39,.46),rgba(201,162,39,.46)),
+    linear-gradient(rgba(201,162,39,.46),rgba(201,162,39,.46)),
+    linear-gradient(rgba(201,162,39,.46),rgba(201,162,39,.46)),
+    linear-gradient(rgba(201,162,39,.46),rgba(201,162,39,.46)),
+    linear-gradient(rgba(201,162,39,.46),rgba(201,162,39,.46)),
+    linear-gradient(rgba(201,162,39,.46),rgba(201,162,39,.46))}
 
-/* IV — meteorite: etched iron is light, not black. Widmanstätten lattice, dark markings. */
-.card[data-t="iv"]{background:linear-gradient(150deg,#2E333A 0%,#15181D 46%,#282D34 64%,#101318 100%);
-  box-shadow:0 24px 50px -24px rgba(0,0,0,.9),0 0 0 1px rgba(201,162,39,.5) inset,
-             0 0 0 4px rgba(222,230,240,.08) inset}
+/* IV — METEORITE. Widmanstätten lattice, gold inlay along the crossing bands.
+   Etched iron is pale in life; here it is held down to a blue-black so the card
+   sits in the set, and the lattice does the identifying instead of the tone. */
+.card[data-t="iv"]{background-color:#06070A;
+  background-image:radial-gradient(128% 108% at 50% -12%,rgba(255,255,255,.05),transparent 58%),
+    linear-gradient(152deg,#14171D 0%,#070809 48%,#12151B 66%,#050608 100%);
+  box-shadow:0 28px 58px -26px rgba(0,0,0,.97),0 0 0 1px rgba(201,162,39,.46) inset}
 .card[data-t="iv"]::before{opacity:1;background-image:
-  /* light pools under the wordmark and the tier line so the etched marks stay readable */
-  repeating-linear-gradient(24deg,rgba(222,230,240,.115) 0 2px,transparent 2px 14px),
-  repeating-linear-gradient(-38deg,rgba(222,230,240,.085) 0 2px,transparent 2px 18px),
-  repeating-linear-gradient(96deg,rgba(222,230,240,.06) 0 1px,transparent 1px 28px),
-  repeating-linear-gradient(24deg,rgba(201,162,39,.2) 0 1px,transparent 1px 42px),
-  repeating-linear-gradient(-38deg,rgba(201,162,39,.15) 0 1px,transparent 1px 54px),
-  radial-gradient(70% 54% at 74% 24%,rgba(226,232,240,.08),transparent 66%)}
-.card[data-t="iv"]::after{background:linear-gradient(100deg,transparent,rgba(226,232,240,.11),transparent)}
+  repeating-linear-gradient(24deg,rgba(214,224,238,.055) 0 2px,transparent 2px 15px),
+  repeating-linear-gradient(-38deg,rgba(214,224,238,.04) 0 2px,transparent 2px 19px),
+  repeating-linear-gradient(96deg,rgba(214,224,238,.026) 0 1px,transparent 1px 30px),
+  repeating-linear-gradient(24deg,rgba(201,162,39,.15) 0 1px,transparent 1px 44px),
+  repeating-linear-gradient(-38deg,rgba(201,162,39,.11) 0 1px,transparent 1px 56px)}
+.card[data-t="iv"] .cfr::before{border-color:rgba(201,162,39,.24)}
+.card[data-t="iv"] .cfr::after{background-size:20px 1px,1px 20px,20px 1px,1px 20px,20px 1px,1px 20px,20px 1px,1px 20px;
+  background-image:linear-gradient(rgba(201,162,39,.62),rgba(201,162,39,.62)),
+    linear-gradient(rgba(201,162,39,.62),rgba(201,162,39,.62)),
+    linear-gradient(rgba(201,162,39,.62),rgba(201,162,39,.62)),
+    linear-gradient(rgba(201,162,39,.62),rgba(201,162,39,.62)),
+    linear-gradient(rgba(201,162,39,.62),rgba(201,162,39,.62)),
+    linear-gradient(rgba(201,162,39,.62),rgba(201,162,39,.62)),
+    linear-gradient(rgba(201,162,39,.62),rgba(201,162,39,.62)),
+    linear-gradient(rgba(201,162,39,.62),rgba(201,162,39,.62))}
 
-/* V — carbonado: matte, porous, the darkest of the five. Crystalline speckle, white edge. */
-.card[data-t="v"]{background:linear-gradient(150deg,#141010 0%,#040303 55%,#100C0B 100%);
-  box-shadow:0 34px 68px -22px rgba(0,0,0,1),0 0 0 1px rgba(201,162,39,.62) inset,
-             0 0 0 4px rgba(244,248,255,.3) inset,0 0 0 8px rgba(201,162,39,.09) inset}
+/* V — CARBONADO. Near true black, matte and porous. A crystalline burst, gold
+   grains among the speckle, and the only card that carries a full double frame. */
+.card[data-t="v"]{background-color:#020202;
+  background-image:radial-gradient(128% 108% at 50% -12%,rgba(255,255,255,.06),transparent 58%),
+    linear-gradient(152deg,#100C0C 0%,#020202 56%,#0D0A0A 100%);
+  box-shadow:0 38px 76px -24px rgba(0,0,0,1),0 0 0 1px rgba(201,162,39,.62) inset,
+             0 0 0 5px rgba(201,162,39,.07) inset}
 .card[data-t="v"]::before{opacity:1;background-image:
-  conic-gradient(from 14deg at 70% 32%,
-    rgba(236,244,255,.2) 0deg 6deg,transparent 6deg 29deg,
-    rgba(236,244,255,.13) 29deg 34deg,transparent 34deg 62deg,
-    rgba(236,244,255,.17) 62deg 66deg,transparent 66deg 116deg,
-    rgba(236,244,255,.1) 116deg 122deg,transparent 122deg 194deg,
-    rgba(236,244,255,.15) 194deg 198deg,transparent 198deg 266deg,
-    rgba(236,244,255,.09) 266deg 271deg,transparent 271deg 360deg),
-  radial-gradient(3px 3px at 22% 68%,rgba(255,255,255,.5),transparent),
-  radial-gradient(2px 2px at 46% 26%,rgba(255,255,255,.42),transparent),
-  radial-gradient(2px 2px at 82% 78%,rgba(255,255,255,.38),transparent),
-  radial-gradient(2px 2px at 12% 34%,rgba(255,255,255,.3),transparent),
-  radial-gradient(3px 3px at 34% 82%,rgba(232,200,106,.55),transparent),
-  radial-gradient(2px 2px at 64% 16%,rgba(232,200,106,.45),transparent),
-  radial-gradient(2px 2px at 88% 46%,rgba(232,200,106,.4),transparent),
-  radial-gradient(36% 48% at 70% 32%,rgba(236,246,255,.14),transparent 72%)}
-.card[data-t="v"]::after{background:linear-gradient(100deg,transparent,rgba(240,248,255,.14),transparent)}
+  conic-gradient(from 14deg at 72% 30%,
+    rgba(236,244,255,.11) 0deg 5deg,transparent 5deg 30deg,
+    rgba(236,244,255,.07) 30deg 34deg,transparent 34deg 63deg,
+    rgba(236,244,255,.09) 63deg 66deg,transparent 66deg 118deg,
+    rgba(236,244,255,.055) 118deg 122deg,transparent 122deg 196deg,
+    rgba(236,244,255,.08) 196deg 199deg,transparent 199deg 268deg,
+    rgba(236,244,255,.05) 268deg 272deg,transparent 272deg 360deg),
+  radial-gradient(2px 2px at 21% 70%,rgba(255,255,255,.36),transparent),
+  radial-gradient(2px 2px at 47% 25%,rgba(255,255,255,.3),transparent),
+  radial-gradient(2px 2px at 83% 79%,rgba(255,255,255,.26),transparent),
+  radial-gradient(2px 2px at 12% 33%,rgba(255,255,255,.2),transparent),
+  radial-gradient(2px 2px at 34% 83%,rgba(232,200,106,.5),transparent),
+  radial-gradient(2px 2px at 65% 15%,rgba(232,200,106,.42),transparent),
+  radial-gradient(2px 2px at 89% 45%,rgba(232,200,106,.36),transparent),
+  radial-gradient(34% 46% at 72% 30%,rgba(236,246,255,.075),transparent 72%)}
+.card[data-t="v"] .cfr{box-shadow:0 0 0 1px rgba(201,162,39,.3) inset}
+.card[data-t="v"] .cfr::before{inset:5px;border-color:rgba(201,162,39,.34)}
+.card[data-t="v"] .cfr::after{inset:10px;
+  background-size:26px 1px,1px 26px,26px 1px,1px 26px,26px 1px,1px 26px,26px 1px,1px 26px;
+  background-image:linear-gradient(rgba(226,196,104,.78),rgba(226,196,104,.78)),
+    linear-gradient(rgba(226,196,104,.78),rgba(226,196,104,.78)),
+    linear-gradient(rgba(226,196,104,.78),rgba(226,196,104,.78)),
+    linear-gradient(rgba(226,196,104,.78),rgba(226,196,104,.78)),
+    linear-gradient(rgba(226,196,104,.78),rgba(226,196,104,.78)),
+    linear-gradient(rgba(226,196,104,.78),rgba(226,196,104,.78)),
+    linear-gradient(rgba(226,196,104,.78),rgba(226,196,104,.78)),
+    linear-gradient(rgba(226,196,104,.78),rgba(226,196,104,.78))}
 
 /* card furniture */
 .cwm{position:relative;z-index:2;font-family:var(--display);font-weight:400;font-size:15px;
-  letter-spacing:.28em;line-height:1.35}
-.cwm small{display:block;font-size:8.5px;letter-spacing:.4em;font-weight:400;margin-top:5px}
-.cseal{width:44px;height:44px;border-radius:50%;flex:none;display:flex;align-items:center;
-  justify-content:center;position:relative;z-index:2;border:1px solid rgba(201,162,39,.55)}
-.cseal::before{content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid rgba(201,162,39,.22)}
-.cseal i{font-style:normal;font-family:var(--display);font-size:13px;letter-spacing:.06em;line-height:1}
-.card[data-t="v"] .cseal{border-color:rgba(201,162,39,.7);background-color:rgba(201,162,39,.06)}
-.card[data-t="v"] .cseal::before{border-color:rgba(244,248,255,.3)}
+  letter-spacing:.3em;line-height:1.35;filter:drop-shadow(0 1px 1px rgba(0,0,0,.75))}
+.cwm small{display:block;font-size:8.5px;letter-spacing:.42em;font-weight:400;margin-top:6px}
+.cseal{width:46px;height:46px;border-radius:50%;flex:none;display:flex;align-items:center;
+  justify-content:center;position:relative;z-index:2;border:1px solid rgba(201,162,39,.36)}
+.cseal::before{content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid transparent}
+.cseal i{font-style:normal;font-family:var(--display);font-size:13px;letter-spacing:.06em;line-height:1;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.8))}
+.card[data-t="ii"] .cseal{border-color:rgba(201,162,39,.46)}
+.card[data-t="iii"] .cseal{border-color:rgba(201,162,39,.54)}
+.card[data-t="iii"] .cseal::before{border-color:rgba(201,162,39,.14)}
+.card[data-t="iv"] .cseal{border-color:rgba(201,162,39,.64)}
+.card[data-t="iv"] .cseal::before{border-color:rgba(201,162,39,.2)}
+.card[data-t="v"] .cseal{border-color:rgba(226,196,104,.85);background-color:rgba(201,162,39,.09);
+  box-shadow:0 0 18px -4px rgba(201,162,39,.35)}
+.card[data-t="v"] .cseal::before{border-color:rgba(244,238,214,.42)}
 .chd{display:flex;justify-content:space-between;align-items:flex-start}
 .cft{position:relative;z-index:2}
-.cft .t{font-size:11px;letter-spacing:.3em;text-transform:uppercase}
-.cft .s{display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-top:8px;
-  color:rgba(246,243,236,.45)}
+.cft .t{font-size:11px;letter-spacing:.32em;text-transform:uppercase;
+  filter:drop-shadow(0 1px 1px rgba(0,0,0,.75))}
+.cft .s{display:block;font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;margin-top:9px;
+  color:rgba(246,243,236,.38)}
+/* a hairline rule above the tier line, in the card's own gold */
+.cft::before{content:"";display:block;width:26px;height:1px;margin-bottom:13px;
+  background:rgba(201,162,39,.3)}
+.card[data-t="iv"] .cft::before{width:34px;background:rgba(201,162,39,.45)}
+.card[data-t="v"] .cft::before{width:44px;background:linear-gradient(90deg,rgba(226,196,104,.85),rgba(226,196,104,.1))}
 
-
-/* marking metal per stone */
-.foil.pew{background-image:linear-gradient(100deg,#6F7885 0%,#9EA8B6 16%,#D2DBE6 32%,#818B99 48%,
-  #B0BAC7 64%,#6D7683 82%,#A3ADBA 100%)}
-.foil.prl{background-image:linear-gradient(100deg,#8D8778 0%,#C8C1B2 16%,#FBF6EC 32%,#E0D9CA 46%,
-  #A29B8C 62%,#F6F1E6 80%,#BAB3A4 100%)}
-.foil.gls{background-image:linear-gradient(100deg,#4E9C82 0%,#8FD8BE 16%,#E6FFF4 32%,#B6ECD8 46%,
-  #5FAE93 62%,#DDFBEE 80%,#8AD2B8 100%)}
-.foil.met{background-image:linear-gradient(100deg,#5E6672 0%,#8E97A4 16%,#D4DCE8 32%,#79828F 48%,
-  #A9B2BF 64%,#5A626E 82%,#98A1AE 100%)}
-.foil.car{background-image:linear-gradient(100deg,#8FA0B4 0%,#CFDCEC 15%,#FFFFFF 30%,#EAF2FC 42%,
-  #A9B8CC 58%,#FFFFFF 76%,#C4D2E4 100%)}
+/* Gold is the house metal, and now the only metal. The markings do not change
+   colour up the ladder, they change karat: antique and sunk at Associate,
+   through struck gold, to a pale white-gold at Carbonado. */
+.foil.m1{background-image:linear-gradient(100deg,#7E6620 0%,#A48A3B 16%,#C6AC63 32%,#8E7628 48%,
+  #B29A4C 64%,#786120 82%,#A38A3A 100%)}
+.foil.m2{background-image:linear-gradient(100deg,#7A5F0E 0%,#B08F22 16%,#D8BC63 32%,#9C7F1C 48%,
+  #C3A43C 64%,#755C10 82%,#AE8D21 100%)}
+.foil.m3{background-image:linear-gradient(100deg,#8A6C10 0%,#C9A227 15%,#EBD182 31%,#B08D1E 47%,
+  #DDBC55 63%,#84680F 81%,#C39C24 100%)}
+.foil.m4{background-image:linear-gradient(100deg,#9A7A12 0%,#DCB93C 15%,#F6E4A4 30%,#C6A324 46%,
+  #EDD378 62%,#96770F 80%,#D6B234 100%)}
+.foil.m5{background-image:linear-gradient(100deg,#B7A469 0%,#E8DDB4 14%,#FFFCEE 28%,#F2E9CA 40%,
+  #CDBE8A 56%,#FFFDF4 74%,#DED2A6 100%)}
 
 /* withheld */
 .wh{display:flex;align-items:flex-start;gap:11px;font-size:12px;line-height:1.6;
@@ -344,52 +412,57 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
   </div>
   <div class="cards">
     <div class="card rv" data-t="i">
+      <span class="cfr"></span>
       <div class="chd">
-        <span class="cwm"><span class="foil">VIVA</span><small class="foil pew">CIRCLE</small></span>
+        <span class="cwm"><span class="foil">VIVA</span><small class="foil m1">CIRCLE</small></span>
         <span class="cseal"><i class="foil">I</i></span>
       </div>
       <div class="cft">
-        <span class="t foil pew">Associate</span>
+        <span class="t foil m1">Associate</span>
         <span class="s">By introduction</span>
       </div>
     </div>
     <div class="card rv" data-t="ii">
+      <span class="cfr"></span>
       <div class="chd">
-        <span class="cwm"><span class="foil">VIVA</span><small class="foil prl">CIRCLE</small></span>
+        <span class="cwm"><span class="foil">VIVA</span><small class="foil m2">CIRCLE</small></span>
         <span class="cseal"><i class="foil">II</i></span>
       </div>
       <div class="cft">
-        <span class="t foil prl">Onyx</span>
+        <span class="t foil m2">Onyx</span>
         <span class="s">By nomination</span>
       </div>
     </div>
     <div class="card rv" data-t="iii">
+      <span class="cfr"></span>
       <div class="chd">
-        <span class="cwm"><span class="foil">VIVA</span><small class="foil gls">CIRCLE</small></span>
+        <span class="cwm"><span class="foil">VIVA</span><small class="foil m3">CIRCLE</small></span>
         <span class="cseal"><i class="foil">III</i></span>
       </div>
       <div class="cft">
-        <span class="t foil gls">Obsidian</span>
+        <span class="t foil m3">Obsidian</span>
         <span class="s">By nomination</span>
       </div>
     </div>
     <div class="card rv" data-t="iv">
+      <span class="cfr"></span>
       <div class="chd">
-        <span class="cwm"><span class="foil">VIVA</span><small class="foil met">CIRCLE</small></span>
+        <span class="cwm"><span class="foil">VIVA</span><small class="foil m4">CIRCLE</small></span>
         <span class="cseal"><i class="foil">IV</i></span>
       </div>
       <div class="cft">
-        <span class="t foil met">Meteorite</span>
+        <span class="t foil m4">Meteorite</span>
         <span class="s">By nomination</span>
       </div>
     </div>
     <div class="card rv" data-t="v">
+      <span class="cfr"></span>
       <div class="chd">
-        <span class="cwm"><span class="foil">VIVA</span><small class="foil car">CIRCLE</small></span>
+        <span class="cwm"><span class="foil">VIVA</span><small class="foil m5">CIRCLE</small></span>
         <span class="cseal"><i class="foil">V</i></span>
       </div>
       <div class="cft">
-        <span class="t foil car">Carbonado</span>
+        <span class="t foil m5">Carbonado</span>
         <span class="s">By invitation</span>
       </div>
     </div>
