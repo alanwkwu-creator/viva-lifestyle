@@ -103,7 +103,10 @@
         name: pick(GIVEN) + ' ' + pick(SURNAMES),
         email: 'member' + pad(i + 1, 3) + '@example.com',
         phone: '+852 5' + int(100, 999) + ' ' + int(1000, 9999),
-        age: int(15, 30),
+        /* the circle is not age-bounded — members run from teenagers to people in
+           their sixties; minors are rare but still occur, which is what keeps the
+           guardian-consent flag meaningful in the console */
+        age: int(16, 64),
         district: pick(DISTRICTS),
         sports: [pick(SPORTS), pick(SPORTS)].filter(function (v, ix, a) { return a.indexOf(v) === ix; }),
         tier: tier,

@@ -1,8 +1,9 @@
 # Viva Lifestyle — Homepage Mockup
 
-Static homepage mockup for **Viva Lifestyle Limited** (活力生活有限公司), a Hong Kong
-organisation running sports and recreational events for young people and connecting
-them to start-up incubators, mentors and funding.
+Static homepage mockup for **Viva Lifestyle Limited** (活力生活有限公司), a private
+Hong Kong circle. Members are drawn from different fields and different generations;
+the house runs a season of sporting and social occasions and connects members to
+mentors, operators and capital.
 
 This is a **design mockup**, not a production build. It is a single self-contained
 HTML file with inlined CSS and JavaScript, intended as the visual reference for the
@@ -31,7 +32,8 @@ If GitHub Pages is enabled on this repository, the live preview is at
 | `pulse`     | `#FF4B3E` | Single urgent accent (CTAs, spots left)  |
 | `pearl`     | `#F6F3EC` | Body text on dark; light section ground  |
 
-**Type** — Display: Fraunces (Noto Serif TC fallback). Body: Inter (Noto Sans TC fallback).
+**Type** — Display: Fraunces. Body: Inter. `index.html` no longer requests the Noto TC
+families; the other pages, which are still bilingual, keep them.
 
 **Layout** — 1440px max width, fluid padding `clamp(20px,5vw,80px)`, section rhythm
 `clamp(88px,12vw,160px)`.
@@ -49,10 +51,12 @@ argues its case with numbers.
 
 ## Voice
 
-Copy is written for a 15–30 Hong Kong audience: second person, short sentences,
-concrete local detail (districts, MTR exits, prices in HKD). Direct and energetic
-rather than slangy, so it sits with the editorial design and does not date quickly.
-Traditional Chinese uses natural Hong Kong phrasing rather than literal translation.
+Formal, withholding, and unhurried. The site names what exists and declines to
+explain it. It does not address a youth audience — the earlier youth framing was
+removed, because the circle is composed of people from different fields and
+different generations, and copy pitched at fifteen-to-thirty reads as a club the
+rest of them are too old for. Traditional Chinese on the remaining bilingual pages
+is written Chinese, not colloquial Cantonese.
 
 ## Features
 
@@ -181,8 +185,9 @@ retention checklist.
 
 ### Personal data note
 
-Viva's members are aged 15–30 and based in Hong Kong, so the Personal Data (Privacy)
-Ordinance applies, and under-18 members need guardian consent. The sign-up flow
+Viva's members are based in Hong Kong, so the Personal Data (Privacy) Ordinance
+applies. Membership is no longer age-bounded, but minors are still admitted, so
+guardian consent remains a live requirement for anyone under 18. The sign-up flow
 captures guardian email and separates marketing and photo consent from the mandatory
 terms — but consent capture is not the same as a compliance review. Treat the
 `Data & retention` tab in `admin.html` as a checklist, not as evidence.
