@@ -61,8 +61,8 @@ is written Chinese, not colloquial Cantonese.
 ## Features
 
 - The homepage is **English only**. The language toggle and every `data-en` / `data-zh`
-  attribute were stripped from `index.html`; `enquiry.html` and `admin.html` are unchanged,
-  and `enquiry.html` keeps its bilingual toggle.
+  attribute were stripped from `index.html`. `enquiry.html` is unchanged and keeps its
+  bilingual toggle.
 - Scroll-reveal animations, scroll progress bar
 - Drag-to-scroll events rail, accordion membership tiers
 - Custom cursor and magnetic buttons on fine-pointer devices
@@ -98,11 +98,10 @@ colloquial register undercuts the invitation framing.
 
 ## Membership prototype
 
-Beyond the homepage, the repo now contains a clickable prototype of the membership
-system. **It is a front-end demonstration only** — there is no database, no
-authentication and no server. All member data is fabricated in the browser by
-`app.js` from a fixed seed, so the demo looks identical on every load, and nothing
-is transmitted anywhere.
+Beyond the homepage, the repo carries the public half of the membership prototype.
+**It is a front-end demonstration only** — there is no database, no authentication
+and no server. `app.js` still fabricates member data in the browser from a fixed
+seed, but nothing public renders it now that the staff console has been removed.
 
 | File | What it is |
 |------|------------|
@@ -110,10 +109,9 @@ is transmitted anywhere.
 | `enquiry.html` | Enquiry letter — membership is by invitation, so there is no self-service sign-up |
 | `join.html` | Redirect to `enquiry.html`, kept so older links do not break |
 | `card.html` | Redirect to `index.html#circle` — the card now lives on the main page |
-| `admin.html` | Staff console: members, check-in, events, data-retention checklist |
-| `app.css` | Shared design system for the three application pages |
+| `app.css` | Shared design system for the application pages |
 | `app.js` | Mock data (64 members across five tiers, 6 events, check-in log) and shared helpers |
-| `qrcode.min.js` | qrcodejs by davidshimjs, MIT — vendored so the card works offline |
+| `qrcode.min.js` | qrcodejs by davidshimjs, MIT — vendored. Currently unreferenced: the card page became a redirect and the staff console is gone. Kept for the real build's check-in flow. |
 
 ### The Circle cards
 
@@ -168,12 +166,14 @@ Cards use flex rather than grid so the trailing row of two centres beneath the r
 three. On hover a card lifts 8px and a specular highlight rakes across in its own metal.
 `background-clip: text` has a flat-colour fallback.
 
-### Admin console
+### The staff console is gone
 
-Searchable, sortable, filterable member table with pagination and CSV export; a
-member detail drawer; a check-in console with scan simulation that enforces tier
-eligibility and flags missing guardian consent; event fill rates; and a data
-retention checklist.
+`admin.html` — the members table, check-in console, events tab and retention
+checklist — was removed from the repository. It was reachable from the public
+footer, which meant a staff console full of fabricated member records sat on the
+open web. It is still in git history; `git show <commit>^:admin.html` brings it
+back if the real build wants it as a starting point. A production console belongs
+behind authentication, not on GitHub Pages.
 
 ### What a production build still needs
 
@@ -189,8 +189,8 @@ Viva's members are based in Hong Kong, so the Personal Data (Privacy) Ordinance
 applies. Membership is no longer age-bounded, but minors are still admitted, so
 guardian consent remains a live requirement for anyone under 18. The sign-up flow
 captures guardian email and separates marketing and photo consent from the mandatory
-terms — but consent capture is not the same as a compliance review. Treat the
-`Data & retention` tab in `admin.html` as a checklist, not as evidence.
+terms — but consent capture is not the same as a compliance review, and the
+retention checklist that used to live in `admin.html` went with that page.
 
 ## Licence
 
