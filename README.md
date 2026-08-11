@@ -122,6 +122,15 @@ implication for a body where bursaries exist so cost never decides who belongs.
 Earth, likely extraterrestrial, harder than ordinary diamond and rarer than meteorite.
 It tops the ladder on the same axis the rest ascends.
 
+**Gold is the house metal.** Every card carries three constants — the `VIVA` wordmark
+in gold foil, a gold seal ring, and a gold hairline edge — so the set reads as one
+family. The material then differentiates: `CIRCLE` and the tier name are struck in that
+card's own metal (pewter, pearl, glass-green, dark engraved, diamond-white), and the
+gold is worked into each surface differently: veining between Onyx's bands, flecks in
+Obsidian (gold-sheen obsidian is a real variety), inlay along Meteorite's lattice, and
+grains among Carbonado's crystalline speckle. Associate gets the hairline and nothing
+more — the restraint is what marks it as the entry.
+
 **On making the set legible.** An earlier revision made all five near-black, and they
 read as one card repeated. They are now drawn from what the materials actually look
 like, which produces a real value range on its own: plain graphite, cream-banded black,

@@ -148,36 +148,44 @@ h2.big{font-size:clamp(28px,4.4vw,58px)}
 
 /* I — associate: plain graphite. No pattern at all; the only card without a material. */
 .card[data-t="i"]{background:linear-gradient(150deg,#2C313A 0%,#1A1E25 55%,#272C34 100%);
-  box-shadow:0 24px 50px -24px rgba(0,0,0,.9),0 0 0 1px rgba(246,243,236,.3) inset}
+  box-shadow:0 24px 50px -24px rgba(0,0,0,.9),0 0 0 1px rgba(201,162,39,.5) inset}
 .card[data-t="i"]::before{opacity:.4;background-image:
   repeating-linear-gradient(58deg,rgba(246,243,236,.05) 0 1px,transparent 1px 9px)}
 
 /* II — onyx: black chalcedony, cream banding */
 .card[data-t="ii"]{background:linear-gradient(150deg,#131114 0%,#08070A 55%,#171418 100%);
-  box-shadow:0 24px 50px -24px rgba(0,0,0,.94),0 0 0 1px rgba(238,231,218,.55) inset}
+  box-shadow:0 24px 50px -24px rgba(0,0,0,.94),0 0 0 1px rgba(201,162,39,.72) inset,
+             0 0 0 4px rgba(238,231,218,.1) inset}
 .card[data-t="ii"]::before{opacity:1;background-image:
   repeating-linear-gradient(84deg,
     rgba(240,233,220,.26) 0 3px, transparent 3px 11px,
     rgba(240,233,220,.12) 11px 15px, transparent 15px 25px,
     rgba(240,233,220,.19) 25px 27px, transparent 27px 46px,
     rgba(240,233,220,.07) 46px 52px, transparent 52px 68px),
+  repeating-linear-gradient(84deg,
+    rgba(226,183,64,.3) 0 1px, transparent 1px 19px,
+    rgba(226,183,64,.16) 19px 20px, transparent 20px 57px),
   radial-gradient(80% 60% at 28% 20%,rgba(240,233,220,.1),transparent 68%)}
 .card[data-t="ii"]::after{background:linear-gradient(100deg,transparent,rgba(244,238,226,.2),transparent)}
 
 /* III — obsidian: volcanic glass, green-black with a wet sheen */
 .card[data-t="iii"]{background:linear-gradient(150deg,#07150F 0%,#020806 52%,#0A1D16 100%);
-  box-shadow:0 24px 50px -24px rgba(0,0,0,.94),0 0 0 1px rgba(126,222,186,.5) inset}
+  box-shadow:0 24px 50px -24px rgba(0,0,0,.94),0 0 0 1px rgba(201,162,39,.72) inset,
+             0 0 0 4px rgba(126,222,186,.12) inset}
 .card[data-t="iii"]::before{opacity:1;background-image:
   radial-gradient(62% 100% at 10% 98%,rgba(112,226,182,.24),transparent 62%),
   radial-gradient(48% 78% at 88% 6%,rgba(96,206,190,.18),transparent 64%),
   radial-gradient(34% 56% at 56% 58%,rgba(150,240,206,.1),transparent 70%),
-  linear-gradient(118deg,transparent 40%,rgba(190,250,224,.12) 50%,transparent 60%)}
+  linear-gradient(118deg,transparent 40%,rgba(190,250,224,.12) 50%,transparent 60%),
+  radial-gradient(54% 40% at 72% 74%,rgba(232,200,106,.2),transparent 66%),
+  linear-gradient(104deg,transparent 44%,rgba(240,214,130,.16) 52%,transparent 60%)}
 .card[data-t="iii"]::after{background:linear-gradient(100deg,transparent,rgba(180,248,220,.18),transparent)}
 
 /* IV — meteorite: etched iron is light, not black. Widmanstätten lattice, dark markings. */
 .card[data-t="iv"]{color:#12141A;
   background:linear-gradient(150deg,#9AA1AB 0%,#5D646E 44%,#8E959F 62%,#4B525B 100%);
-  box-shadow:0 24px 50px -24px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.5) inset}
+  box-shadow:0 24px 50px -24px rgba(0,0,0,.9),0 0 0 1px rgba(158,124,20,.85) inset,
+             0 0 0 4px rgba(255,255,255,.28) inset}
 .card[data-t="iv"]::before{opacity:1;background-image:
   /* light pools under the wordmark and the tier line so the etched marks stay readable */
   radial-gradient(58% 42% at 14% 8%,rgba(255,255,255,.5),transparent 72%),
@@ -185,13 +193,15 @@ h2.big{font-size:clamp(28px,4.4vw,58px)}
   repeating-linear-gradient(24deg,rgba(16,18,24,.24) 0 2px,transparent 2px 14px),
   repeating-linear-gradient(-38deg,rgba(16,18,24,.19) 0 2px,transparent 2px 18px),
   repeating-linear-gradient(96deg,rgba(16,18,24,.1) 0 1px,transparent 1px 28px),
+  repeating-linear-gradient(24deg,rgba(186,146,32,.4) 0 1px,transparent 1px 42px),
+  repeating-linear-gradient(-38deg,rgba(186,146,32,.3) 0 1px,transparent 1px 54px),
   radial-gradient(70% 54% at 76% 26%,rgba(255,255,255,.24),transparent 66%)}
 .card[data-t="iv"]::after{background:linear-gradient(100deg,transparent,rgba(255,255,255,.3),transparent)}
 
 /* V — carbonado: matte, porous, the darkest of the five. Crystalline speckle, white edge. */
 .card[data-t="v"]{background:linear-gradient(150deg,#141010 0%,#040303 55%,#100C0B 100%);
-  box-shadow:0 34px 68px -22px rgba(0,0,0,1),0 0 0 1px rgba(244,248,255,.85) inset,
-             0 0 0 6px rgba(244,248,255,.09) inset}
+  box-shadow:0 34px 68px -22px rgba(0,0,0,1),0 0 0 1px rgba(201,162,39,.9) inset,
+             0 0 0 4px rgba(244,248,255,.5) inset,0 0 0 8px rgba(201,162,39,.14) inset}
 .card[data-t="v"]::before{opacity:1;background-image:
   conic-gradient(from 14deg at 70% 32%,
     rgba(236,244,255,.2) 0deg 6deg,transparent 6deg 29deg,
@@ -204,6 +214,9 @@ h2.big{font-size:clamp(28px,4.4vw,58px)}
   radial-gradient(2px 2px at 46% 26%,rgba(255,255,255,.42),transparent),
   radial-gradient(2px 2px at 82% 78%,rgba(255,255,255,.38),transparent),
   radial-gradient(2px 2px at 12% 34%,rgba(255,255,255,.3),transparent),
+  radial-gradient(3px 3px at 34% 82%,rgba(232,200,106,.55),transparent),
+  radial-gradient(2px 2px at 64% 16%,rgba(232,200,106,.45),transparent),
+  radial-gradient(2px 2px at 88% 46%,rgba(232,200,106,.4),transparent),
   radial-gradient(36% 48% at 70% 32%,rgba(236,246,255,.14),transparent 72%)}
 .card[data-t="v"]::after{background:linear-gradient(100deg,transparent,rgba(240,248,255,.24),transparent)}
 
@@ -212,11 +225,11 @@ h2.big{font-size:clamp(28px,4.4vw,58px)}
   letter-spacing:.28em;line-height:1.35}
 .cwm small{display:block;font-size:8.5px;letter-spacing:.4em;font-weight:400;margin-top:5px}
 .cseal{width:44px;height:44px;border-radius:50%;flex:none;display:flex;align-items:center;
-  justify-content:center;position:relative;z-index:2;border:1px solid currentColor;opacity:.75}
-.cseal::before{content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid currentColor;opacity:.45}
+  justify-content:center;position:relative;z-index:2;border:1px solid rgba(201,162,39,.75)}
+.cseal::before{content:"";position:absolute;inset:3px;border-radius:50%;border:1px solid rgba(201,162,39,.35)}
 .cseal i{font-style:normal;font-family:var(--display);font-size:13px;letter-spacing:.06em;line-height:1}
-.card[data-t="v"] .cseal{opacity:1;border-color:rgba(244,248,255,.9);background-color:rgba(244,248,255,.07)}
-.card[data-t="v"] .cseal::before{border-color:rgba(244,248,255,.35)}
+.card[data-t="v"] .cseal{border-color:rgba(201,162,39,.95);background-color:rgba(201,162,39,.1)}
+.card[data-t="v"] .cseal::before{border-color:rgba(244,248,255,.5)}
 .chd{display:flex;justify-content:space-between;align-items:flex-start}
 .cft{position:relative;z-index:2}
 .cft .t{font-size:11px;letter-spacing:.3em;text-transform:uppercase}
@@ -370,8 +383,8 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
   <div class="cards">
     <div class="card rv" data-t="i">
       <div class="chd">
-        <span class="cwm"><span class="foil pew">VIVA</span><small class="foil pew">CIRCLE</small></span>
-        <span class="cseal"><i>I</i></span>
+        <span class="cwm"><span class="foil">VIVA</span><small class="foil pew">CIRCLE</small></span>
+        <span class="cseal"><i class="foil">I</i></span>
       </div>
       <div class="cft">
         <span class="t foil pew" data-en="Associate" data-zh="準會員">Associate</span>
@@ -380,8 +393,8 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
     </div>
     <div class="card rv" data-t="ii">
       <div class="chd">
-        <span class="cwm"><span class="foil prl">VIVA</span><small class="foil prl">CIRCLE</small></span>
-        <span class="cseal"><i>II</i></span>
+        <span class="cwm"><span class="foil">VIVA</span><small class="foil prl">CIRCLE</small></span>
+        <span class="cseal"><i class="foil">II</i></span>
       </div>
       <div class="cft">
         <span class="t foil prl" data-en="Onyx" data-zh="黑玉">Onyx</span>
@@ -390,8 +403,8 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
     </div>
     <div class="card rv" data-t="iii">
       <div class="chd">
-        <span class="cwm"><span class="foil gls">VIVA</span><small class="foil gls">CIRCLE</small></span>
-        <span class="cseal"><i>III</i></span>
+        <span class="cwm"><span class="foil">VIVA</span><small class="foil gls">CIRCLE</small></span>
+        <span class="cseal"><i class="foil">III</i></span>
       </div>
       <div class="cft">
         <span class="t foil gls" data-en="Obsidian" data-zh="黑曜">Obsidian</span>
@@ -400,8 +413,8 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
     </div>
     <div class="card rv" data-t="iv">
       <div class="chd">
-        <span class="cwm"><span class="foil met">VIVA</span><small class="foil met">CIRCLE</small></span>
-        <span class="cseal"><i>IV</i></span>
+        <span class="cwm"><span class="foil">VIVA</span><small class="foil met">CIRCLE</small></span>
+        <span class="cseal"><i class="foil">IV</i></span>
       </div>
       <div class="cft">
         <span class="t foil met" data-en="Meteorite" data-zh="隕鐵">Meteorite</span>
@@ -410,8 +423,8 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
     </div>
     <div class="card rv" data-t="v">
       <div class="chd">
-        <span class="cwm"><span class="foil car">VIVA</span><small class="foil car">CIRCLE</small></span>
-        <span class="cseal"><i>V</i></span>
+        <span class="cwm"><span class="foil">VIVA</span><small class="foil car">CIRCLE</small></span>
+        <span class="cseal"><i class="foil">V</i></span>
       </div>
       <div class="cft">
         <span class="t foil car" data-en="Carbonado" data-zh="黑金剛石">Carbonado</span>
