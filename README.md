@@ -38,12 +38,13 @@ If GitHub Pages is enabled on this repository, the live preview is at
 
 ## Sections
 
-Hero (with stat chips and dual CTA) · Partner marquee · Manifesto ·
-Three pillars (each with a four-point breakdown) · Upcoming events rail (six events,
-with tags and logistics detail) · Impact counters with context lines ·
-The Circle (three tiers, itemised benefits) · Ventures (pull quote + three venture
-stories) · How to join (three steps) · Journal (four posts with category and read time) ·
-Closing band · Footer
+Hero · Partner marquee · Manifesto · Triad (Sport / Recreation / Ventures) ·
+The season (event names and dates only) · The Circle (five cards) · Pull quote ·
+Invitation (three steps) · Closing · Footer
+
+The impact counters (12,480 members, 214 gatherings, 46 partners, 31 ventures) were
+removed. They were the last fabricated figures on a public page, and the site no longer
+argues its case with numbers.
 
 ## Voice
 
@@ -55,7 +56,7 @@ Traditional Chinese uses natural Hong Kong phrasing rather than literal translat
 ## Features
 
 - Bilingual EN / 繁體中文 toggle (demo implementation via `data-en` / `data-zh` attributes)
-- Scroll-reveal animations, animated counters, scroll progress bar
+- Scroll-reveal animations, scroll progress bar
 - Drag-to-scroll events rail, accordion membership tiers
 - Custom cursor and magnetic buttons on fine-pointer devices
 - Full-screen mobile navigation overlay

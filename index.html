@@ -253,12 +253,6 @@ h2.big{font-size:clamp(28px,4.4vw,58px)}
   border:1px solid rgba(201,162,39,.5);
   background:repeating-linear-gradient(45deg,rgba(201,162,39,.3) 0 2px,transparent 2px 4px)}
 
-/* numbers */
-.nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:clamp(34px,5vw,56px)}
-.nums div b{display:block;font-family:var(--display);font-weight:200;font-size:clamp(36px,5vw,64px);
-  line-height:1;font-variant-numeric:tabular-nums}
-.nums div small{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  color:rgba(246,243,236,.3);margin-top:16px}
 
 /* quote */
 .quote{font-family:var(--display);font-weight:200;font-size:clamp(24px,4vw,52px);line-height:1.28;max-width:20ch}
@@ -361,15 +355,6 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
   <p class="wh rv" data-en="Places, times and everything else are sent to members." data-zh="地點、時間及其餘細節，均只發予會員。">Places, times and everything else are sent to members.</p>
 </section>
 
-<!-- ---------- numbers ---------- -->
-<section class="blk wrap">
-  <div class="nums">
-    <div class="rv"><b data-count="12480">0</b><small data-en="Members" data-zh="會員">Members</small></div>
-    <div class="rv"><b data-count="214">0</b><small data-en="Gatherings" data-zh="聚會">Gatherings</small></div>
-    <div class="rv"><b data-count="46">0</b><small data-en="Partners" data-zh="夥伴">Partners</small></div>
-    <div class="rv"><b data-count="31">0</b><small data-en="Ventures" data-zh="初創">Ventures</small></div>
-  </div>
-</section>
 
 <!-- ---------- circle ---------- -->
 <section class="blk wrap" id="circle">
@@ -468,8 +453,6 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
 
 <script>
 (function(){
-  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
   var names=['Hong Kong Science Park','Cyberport','HKSTP','Brinc','Betatron','Cocoon','Mills Fabrica','Blueprint','Runway HK'];
   var tk=document.getElementById('tk');
   for(var r=0;r<2;r++) names.forEach(function(n){var s=document.createElement('span');s.textContent=n;tk.appendChild(s);});
@@ -483,24 +466,11 @@ footer{padding:56px 0 44px;border-top:1px solid var(--line)}
   }
   addEventListener('scroll',onScroll,{passive:true});onScroll();
 
-  function count(el){
-    var t=+el.dataset.count,t0=null;
-    if(reduce){el.textContent=t.toLocaleString();return;}
-    requestAnimationFrame(function s(ts){
-      if(!t0)t0=ts;
-      var p=Math.min((ts-t0)/2200,1),e=1-Math.pow(1-p,4);
-      el.textContent=Math.round(t*e).toLocaleString();
-      if(p<1)requestAnimationFrame(s);
-    });
-  }
-
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e){
       if(!e.isIntersecting)return;
       e.target.classList.add('on');
       io.unobserve(e.target);
-      var n=e.target.querySelector('[data-count]');
-      if(n)count(n);
     });
   },{threshold:.2,rootMargin:'0px 0px -5% 0px'});
   document.querySelectorAll('.rv,.ln').forEach(function(el,i){
